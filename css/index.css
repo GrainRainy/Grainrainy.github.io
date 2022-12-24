@@ -68,7 +68,7 @@
     top: 0;
   }
 }
-/*更换主题色*/
+/*更换主题色 - 白色主题*/
 :root {
   --primary: #5a5df0;
   --primary-70: rgba(90, 93, 240, 0.7);
@@ -78,6 +78,23 @@
   --primary-weak-50: rgba(105, 123, 226, 0.5);
 }
 :root.dark {
+  --primary: #5a5df0;
+  --primary-70: rgba(90, 93, 240, 0.7);
+  --primary-50: rgba(90, 93, 240, 0.5);
+  --primary-30: rgba(90, 93, 240, 0.3);
+  --primary-weak: #697be2;
+  --primary-weak-50: rgba(105, 123, 226, 0.5);
+}
+/*更换主题色 - 黑色主题*/
+:root.dart {
+  --primary: #5a5df0;
+  --primary-70: rgba(90, 93, 240, 0.7);
+  --primary-50: rgba(90, 93, 240, 0.5);
+  --primary-30: rgba(90, 93, 240, 0.3);
+  --primary-weak: #697be2;
+  --primary-weak-50: rgba(105, 123, 226, 0.5);
+}
+:root.dart.dark {
   --primary: #5a5df0;
   --primary-70: rgba(90, 93, 240, 0.7);
   --primary-50: rgba(90, 93, 240, 0.5);
