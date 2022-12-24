@@ -62,7 +62,7 @@
 
 
 <!-- Variable -->
-<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"John Doe","root":"/","typed_text":["Hungry | Stay Foolish"],"favicon":{"logo":"favicon-32x32.png","icon16":"favicon-16x16.png","icon32":"favicon-32x32.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！"},"theme_version":"1.2.9","theme":{"switch":true,"default":"style-light"},"search":{"enable":false,"type":"engine","href":"https://www.google.com/search?q=site:","domain":null},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated."},"creative_commons":{"license":"by-nc-sa","language":"deed.zh","post":false,"clipboard":false},"swup":false};</script>
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"John Doe","root":"/","typed_text":["Hungry | Stay Foolish"],"favicon":{"logo":"favicon-32x32.png","icon16":"favicon-16x16.png","icon32":"favicon-32x32.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！"},"theme_version":"1.2.9","theme":{"switch":true,"default":"style-light"},"search":{"enable":false,"type":"engine","href":"https://www.google.com/search?q=site:","domain":null},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。"},"creative_commons":{"license":"by-nc-sa","language":"deed.zh","post":false,"clipboard":false},"swup":false};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=1.2.9" id="trm-switch-style">
@@ -224,12 +224,9 @@
     <!-- banner -->
     <div class="trm-banner" data-scroll data-scroll-direction="vertical">
     
-    <!-- banner video cover -->
-    <video autoplay="autoplay" loop muted playsinline webkit-playinginline class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3">
-        <source src="/img/banner.png" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-        Your browser does not support HTML5 video.
-    </video>
-    <!-- banner video cover end -->
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" src="/img/banner.png" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3">
+    <!-- banner cover end -->
     
 
     <!-- banner content -->
@@ -251,9 +248,16 @@
                         </h1>
 
                         
-                            <a data-fancybox data-fancybox="gallery" target="_blank" rel="noopener" href="https://cdn.moji.com/websrc/video/autumn20190924.mp4" class="trm-btn trm-btn-border">
-                                Video <i class="fas fa-play"></i>
-                            </a>
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        page
+                                    </span
+                                ></li>
+                            </ul>
                         
                     </div>
                     <!-- banner title end -->
@@ -345,7 +349,7 @@
 <!-- action button -->
 <div class="text-center">
     <a href="mailto:23548399650@qq.com" class="trm-btn">
-        Contact Me
+        联系我
         <i class="far fa-envelope"></i>
     </a>
 </div>
@@ -375,7 +379,7 @@
     <div class="col-lg-12">
         <!-- title -->
         <h5 class="trm-title-with-divider">
-            Newest Publications 
+            最近发布 
             <span data-number="01"></span>
         </h5>
     </div>
@@ -391,7 +395,7 @@
         <div class="trm-card-descr">
             <div class="trm-label trm-category trm-mb-20">
                 <a href=" #.">
-                    Unclassified
+                    未分类
                 </a>
             </div>
             <h5>
@@ -421,7 +425,7 @@
         <div class="trm-card-descr">
             <div class="trm-label trm-category trm-mb-20">
                 <a href=" #.">
-                    Unclassified
+                    未分类
                 </a>
             </div>
             <h5>
@@ -461,11 +465,11 @@
     
         <div class="trm-footer-item">
             <span>
-                Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> v6.3.0
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0
             </span>
             <span class="footer-separator"> | </span>
             <span> 
-                Theme - 
+                主题 - 
                 <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
                 v1.2.9
             </span>
