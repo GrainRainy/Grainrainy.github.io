@@ -103,29 +103,6 @@
   --primary-weak-50: rgba(105, 123, 226, 0.5);
 }
 /*跟随系统选择主题亮暗色调*/
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary: #afb42b;
-    --primary-70: rgba(175, 180, 43, 0.7);
-    --primary-50: rgba(175, 180, 43, 0.5);
-    --primary-30: rgba(175, 180, 43, 0.3);
-    --primary-weak: #c0ca33;
-    --primary-weak-50: rgba(192, 202, 51, 0.5);
-    --body-color: #cccdcfb3;
-    --body-color-5: rgba(204, 205, 207, 0.05);
-    --body-bg-color: #00151f;
-    --theme-color: #dedee0;
-    --theme-bg-color: #00283a;
-    --theme-bg-color-80: rgba(0, 40, 58, 0.8);
-    --theme-bg2-color: #02162b;
-    --box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.6);
-    --box-shadow2: inset 0 0 4px -1px rgba(0, 0, 0, 0.6);
-    --border-dotted: dotted 2px rgba(225, 225, 235, 0.15);
-    --preloader-background: #dedee0;
-    --top-bar-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.6);
-    --card-cover-bg-color: #162e38;
-  }
-}
 body {
   font-weight: 500;
   color: var(--body-color, #7B7B7D);
