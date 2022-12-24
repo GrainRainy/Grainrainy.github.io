@@ -20,12 +20,16 @@
 
 <!-- Favicon -->
 
-    <link href='/img/favicon.svg?v=1.2.9' rel='icon' type='image/png' sizes='16x16' ></link>
+    <link href='/favicon-16x16.png?v=1.2.9' rel='icon' type='image/png' sizes='16x16' ></link>
 
 
-    <link href='/img/favicon.svg?v=1.2.9' rel='icon' type='image/png' sizes='32x32' ></link>
+    <link href='/favicon-32x32.png?v=1.2.9' rel='icon' type='image/png' sizes='32x32' ></link>
 
 
+    <link href='/apple-touch-icon.png?v=1.2.9' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+    <link href='/site.webmanifest' rel='manifest' ></link>
 
 
 <!-- Plugin -->
@@ -58,7 +62,7 @@
 
 
 <!-- Variable -->
-<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"John Doe","root":"/","typed_text":null,"favicon":{"logo":"/img/favicon.svg","icon16":"/img/favicon.svg","icon32":"/img/favicon.svg","appleTouchIcon":null,"webmanifest":null,"visibilitychange":false,"hidden":"/failure.ico","showText":"(/≧▽≦/)咦！又好了！","hideText":"(●—●)喔哟，崩溃啦！"},"theme_version":"1.2.9","theme":{"switch":true,"default":"style-light"},"search":{"enable":false,"type":"engine","href":"https://www.google.com/search?q=site:","domain":null},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。"},"creative_commons":{"license":"by-nc-sa","language":"deed.zh","post":false,"clipboard":false},"swup":false};</script>
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"John Doe","root":"/","typed_text":["Hungry | Stay Foolish"],"favicon":{"logo":"favicon-32x32.png","icon16":"favicon-16x16.png","icon32":"favicon-32x32.png","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)嘿！骗你的！","hideText":"(●—●)喔哟，崩溃啦！"},"theme_version":"1.2.9","theme":{"switch":true,"default":"style-light"},"search":{"enable":false,"type":"engine","href":"https://www.google.com/search?q=site:","domain":null},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。"},"creative_commons":{"license":"by-nc-sa","language":"deed.zh","post":false,"clipboard":false},"swup":false};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=1.2.9" id="trm-switch-style">
@@ -130,11 +134,11 @@
 			<!-- logo -->
 			<a href="/" class="trm-logo-frame trm-anima-link">
 				
-					<img src="/img/favicon.svg" alt="logo">
+					<img src="/favicon-32x32.png" alt="logo">
 				
 				
 					<div class="trm-logo-text">
-						Async<span>Theme</span>
+						Grain<span>Rain</span>
 					</div>
 				
 			</a>
@@ -149,14 +153,38 @@
 						
 						<li class="menu-item-has-children ">
 							<a  href="/" target="">
-								首页
+								Home
 							</a>
 							
 						</li>
 						
 						<li class="menu-item-has-children ">
-							<a  href="/archives/" target="">
-								归档
+							<a data-no-swup href="/archives/" target="">
+								Archives
+							</a>
+							
+							<ul>
+								
+								<li>
+									<a  href="/categories/" target="">
+										Categories
+									</a>
+								</li>
+								
+							</ul>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a data-no-swup href="/links/" target="">
+								Links
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a data-no-swup href="/about/" target="">
+								About
 							</a>
 							
 						</li>
@@ -196,9 +224,12 @@
     <!-- banner -->
     <div class="trm-banner" data-scroll data-scroll-direction="vertical">
     
-    <!-- banner cover -->
-    <img style="object-position:top;object-fit:cover;" src="/img/banner.png" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3">
-    <!-- banner cover end -->
+    <!-- banner video cover -->
+    <video autoplay="autoplay" loop muted playsinline webkit-playinginline class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3">
+        <source src="/img/home_banner.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+        Your browser does not support HTML5 video.
+    </video>
+    <!-- banner video cover end -->
     
 
     <!-- banner content -->
@@ -260,10 +291,17 @@
     
         <!-- card header -->
 <div class="trm-mc-header">
-    <div class="trm-avatar-frame trm-mb-20"><img class="trm-avatar" src="/img/avatar.jpg" alt="Avatar"> </div>
+    <div class="trm-avatar-frame trm-mb-20"><img class="trm-avatar" src="/img/avatar.jpeg" alt="Avatar"> </div>
     <h5 class="trm-name trm-mb-15">
-        ThemeAsync
+        Grain Rain
     </h5>
+    
+    <div class="trm-label">
+        Stay
+        <span class="trm-typed-text">
+            <!-- Words for theme.user.typedText -->
+        </span>
+    </div>
     
 </div>
 <!-- card header end -->
@@ -273,8 +311,12 @@
 
 <div class="trm-social">
     
-        <a href="https://github.com" title="Github" rel="nofollow" target="_blank">
+        <a href="https://github.com" title="github" rel="nofollow" target="_blank">
             <i class="fab fa-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="gitee" rel="nofollow" target="_blank">
+            <i class="iconfont cg-gitee"></i>
         </a>
     
 </div>
@@ -287,7 +329,25 @@
     
         <li>
             <div class="trm-label">
-                Residence:
+                Ages:
+            </div>
+            <div class="trm-label trm-label-light">
+                16
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                Address:
+            </div>
+            <div class="trm-label trm-label-light">
+                Hebei - China
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                residence:
             </div>
             <div class="trm-label trm-label-light">
                 Mars
@@ -295,6 +355,17 @@
         </li>
     
 </ul>
+
+<!-- info end -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<!-- action button -->
+<div class="text-center">
+    <a href="mailto:23548399650@qq.com" class="trm-btn">
+        联系我
+        <i class="far fa-envelope"></i>
+    </a>
+</div>
+<!-- action button end -->
 
     
     </div>
@@ -438,19 +509,13 @@
     
 
     
-
-    
         <div class="trm-footer-item">
-            <span>
-                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v6.3.0
-            </span>
-            <span class="footer-separator"> | </span>
-            <span> 
-                主题 - 
-                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
-                v1.2.9
-            </span>
+            <span>© 2020- 2022</span>
+            <span class="footer-separator">·</span>
+            <span class="trm-accent-color">Grain Rain</span>
         </div>
+    
+
       
 
      
@@ -495,6 +560,8 @@
     
 
     
+        <script src="/js/plugins/typing.js?v=1.2.9"></script>
+    
 
     
 
@@ -526,6 +593,21 @@
     
     <!-- baidu push -->
     
+    <script data-swup-reload-script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
 
 
 <script id="async-script" src="/js/main.js?v=1.2.9"></script>
