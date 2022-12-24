@@ -7,18 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://example.com/about/index.html">
+<meta name="description" content="双指针算法核心思想：对于 12for (int i &#x3D; 0; i &lt; n; ;i ++)    for (int j &#x3D; 0; j &lt; n; j ++) 一个O(n^2^)时间复杂度的爆搜算法，使用 1234for (int i &#x3D; 0, j &#x3D; 0; i &lt; n; i ++)&amp;#123;    while(j &lt; i &amp;&amp; check(i, j)) j +">
+<meta property="og:type" content="article">
+<meta property="og:title" content="双指针算法 | 学习笔记">
+<meta property="og:url" content="http://example.com/2022/12/24/2022.10.4%20-%20%E5%8F%8C%E6%8C%87%E9%92%88/index.html">
 <meta property="og:site_name" content="GrainRain &#39;s Blog">
+<meta property="og:description" content="双指针算法核心思想：对于 12for (int i &#x3D; 0; i &lt; n; ;i ++)    for (int j &#x3D; 0; j &lt; n; j ++) 一个O(n^2^)时间复杂度的爆搜算法，使用 1234for (int i &#x3D; 0, j &#x3D; 0; i &lt; n; i ++)&amp;#123;    while(j &lt; i &amp;&amp; check(i, j)) j +">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-12-24T09:10:56.270Z">
-<meta property="article:modified_time" content="2022-12-24T09:10:56.270Z">
+<meta property="article:published_time" content="2022-12-24T05:04:34.000Z">
+<meta property="article:modified_time" content="2022-12-24T09:48:02.292Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
 
 
-<title >about</title>
+<title >双指针算法 | 学习笔记</title>
 
 <!-- Favicon -->
 
@@ -244,10 +247,10 @@
                     <!-- banner title -->
                     <div class="trm-banner-text ">
                         <div class="trm-label trm-mb-20">
-                            About me
+                            NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            醉后不知天在水，<br>满船清梦压星河。
+                            双指针算法 | 学习笔记
                         </h1>
 
                         
@@ -257,7 +260,7 @@
                                 </li>
                                 <li>
                                     <span>
-                                        about
+                                        2022
                                     </span
                                 ></li>
                             </ul>
@@ -368,55 +371,115 @@
                 <div class="trm-content" id="trm-content">
                     <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
 
-                    
-    <div class="row trm-mb-40 trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <div class="col-lg-12">
-            <blockquote>
-                如果一切都是镜花水月，那就让这万物走向终结。如果一切皆是命中注定，那就让这世界消失殆尽。
-            </blockquote>
+                    <div class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="far fa-calendar-alt trm-icon"></i><br>
+            12/24
         </div>
     </div>
-    
-    
-    <div class="row trm-mb-20 trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <div class="col-lg-12">
-            <h5 class="trm-title-with-divider">
-                Author
-                <span data-number="01"></span>
-            </h5>
-            <div class="trm-service-icon-box trm-contrast trm-active-el" >
-                大家好，我是 <strong>Async</strong>，很高兴您能在浩瀚如烟的互联网世界里发现这个博客，更感谢您能够饶有兴致地浏览这个页面。建立这个 Blog 是出于兴趣爱好，我将在此分会分享一些学习笔记，可能还会分享少许图片、视频以及其他有趣东西的链接。
-            </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="far fa-clock trm-icon"></i><br>
+            13:04
         </div>
     </div>
-    
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="far fa-user trm-icon"></i><br>
+            John Doe
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article class="trm-publication">
+    <h1 id="双指针算法"><a href="#双指针算法" class="headerlink" title="双指针算法"></a>双指针算法</h1><h4 id="核心思想："><a href="#核心思想：" class="headerlink" title="核心思想："></a>核心思想：</h4><p>对于</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ;i ++)</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j ++)</span><br></pre></td></tr></table></figure>
+<p>一个O(n^2^)时间复杂度的爆搜算法，使用</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(j &lt; i &amp;&amp; <span class="built_in">check</span>(i, j)) j ++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优化为O(n)级别的算法<br>为什么是O(n)呢？</p>
+<blockquote>
+<p>因为<code>j</code>不会在每个<code>i</code>循环内更新成0，再开始循环，而是直接沿用上次循环的j值，因而j移动的次数总共是&lt; n 的，而<code>i = 0; i &lt; 0; i ++</code>移动次数也是小于n的，所以双指针算法总共的时间复杂度是O(n)的</p>
+</blockquote>
+<p>例题：acwing799-最长连续不重复子序列</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">100000</span>;</span><br><span class="line"><span class="type">int</span> a[N + <span class="number">10</span>];</span><br><span class="line"><span class="type">int</span> s[N + <span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">		cin &gt;&gt; a[i];</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">	&#123;</span><br><span class="line">		s[a[i]] ++;</span><br><span class="line">		<span class="keyword">while</span> (s[a[i]] &gt; <span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			s[a[j]] --;</span><br><span class="line">			j ++;</span><br><span class="line">		&#125;</span><br><span class="line">		res = <span class="built_in">max</span>(res, i - j + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+</article>
     
-    <div class="row trm-mb-20 trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <div class="col-lg-12">
-            <h5 class="trm-title-with-divider">
-                Blog Application
-                <span data-number="02"></span>
-            </h5>
-            <div class="trm-service-icon-box trm-active-el">
-                <ul class="trm-list"> <li>程序：Hexo </li> <li>主题：Hexo-theme-async </li> </ul>
-            </div>
-        </div>
+    
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            Other Articles
+            <span data-number="02"></span>
+        </h5>
     </div>
     
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2022/12/24/2022.10.14%20-%20DFS%E4%B8%8EBFS/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img src="/img/block.jpg" alt="cover">
+            
+        </a>
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2022/12/24/2022.10.14%20-%20DFS%E4%B8%8EBFS/" class="trm-anima-link">
+                    深度优先搜索与广度优先搜索 | 学习笔记
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>22/12/24</li>
+                <li>13:04</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2022/12/24/2022.10.5%20-%20%E7%A6%BB%E6%95%A3%E5%8C%96/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img src="/img/block.jpg" alt="cover">
+            
+        </a>
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2022/12/24/2022.10.5%20-%20%E7%A6%BB%E6%95%A3%E5%8C%96/" class="trm-anima-link">
+                    离散化 | 学习笔记
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>22/12/24</li>
+                <li>13:04</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
 
-    
-    <div class="row trm-mb-20 trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <div class="col-lg-12">
-            <h5 class="trm-title-with-divider">
-                Privacy and Comments
-                <span data-number="03"></span>
-            </h5>
-            <div class="trm-service-icon-box trm-active-el">
-                本网站不会追踪访客行为，且不要求访客提供任何敏感信息（比如真实姓名、身份证号码、手机号等），因而也不存在任何隐私泄漏问题。访客参与评论，必须遵守法律法规和基本道德规范，文明礼貌。严禁发布任何有关淫秽、反动、暴力、博彩、恐吓、低俗的内容或违法信息，在尊重言论自由的同时请保持和平与理性。请勿对他人采取不友好的评论或其它过激行为。
-            </div>
-        </div>
-    </div>
     
 
 

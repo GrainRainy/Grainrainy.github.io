@@ -7,18 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://example.com/about/index.html">
+<meta name="description" content="余数加法定理(a + b) % c &#x3D; (a % c + b % c) % c 证明： 若 a &#x3D; xc + p, b &#x3D; yc + q则 a % c &#x3D; p, b % c &#x3D; q 则有:(a + b) % c &#x3D; [(x + y)c + p + q] % c &#x3D; (p + q) % c(a % c + b % c) % c &#x3D; (p + q) % c 余数乘法定理(a * b) % c &#x3D; (a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="余数定理 | 学习笔记">
+<meta property="og:url" content="http://example.com/2022/12/24/2022.12.4%20-%20%E4%BD%99%E6%95%B0%E5%AE%9A%E7%90%86/index.html">
 <meta property="og:site_name" content="GrainRain &#39;s Blog">
+<meta property="og:description" content="余数加法定理(a + b) % c &#x3D; (a % c + b % c) % c 证明： 若 a &#x3D; xc + p, b &#x3D; yc + q则 a % c &#x3D; p, b % c &#x3D; q 则有:(a + b) % c &#x3D; [(x + y)c + p + q] % c &#x3D; (p + q) % c(a % c + b % c) % c &#x3D; (p + q) % c 余数乘法定理(a * b) % c &#x3D; (a">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-12-24T09:10:56.270Z">
-<meta property="article:modified_time" content="2022-12-24T09:10:56.270Z">
+<meta property="article:published_time" content="2022-12-24T05:04:34.000Z">
+<meta property="article:modified_time" content="2022-12-24T09:50:09.081Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="学习笔记">
 <meta name="twitter:card" content="summary">
 
 
-<title >about</title>
+<title >余数定理 | 学习笔记</title>
 
 <!-- Favicon -->
 
@@ -244,10 +247,10 @@
                     <!-- banner title -->
                     <div class="trm-banner-text ">
                         <div class="trm-label trm-mb-20">
-                            About me
+                            NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            醉后不知天在水，<br>满船清梦压星河。
+                            余数定理 | 学习笔记
                         </h1>
 
                         
@@ -257,7 +260,7 @@
                                 </li>
                                 <li>
                                     <span>
-                                        about
+                                        2022
                                     </span
                                 ></li>
                             </ul>
@@ -368,55 +371,113 @@
                 <div class="trm-content" id="trm-content">
                     <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
 
-                    
-    <div class="row trm-mb-40 trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <div class="col-lg-12">
-            <blockquote>
-                如果一切都是镜花水月，那就让这万物走向终结。如果一切皆是命中注定，那就让这世界消失殆尽。
-            </blockquote>
+                    <div class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="far fa-calendar-alt trm-icon"></i><br>
+            12/24
         </div>
     </div>
-    
-    
-    <div class="row trm-mb-20 trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <div class="col-lg-12">
-            <h5 class="trm-title-with-divider">
-                Author
-                <span data-number="01"></span>
-            </h5>
-            <div class="trm-service-icon-box trm-contrast trm-active-el" >
-                大家好，我是 <strong>Async</strong>，很高兴您能在浩瀚如烟的互联网世界里发现这个博客，更感谢您能够饶有兴致地浏览这个页面。建立这个 Blog 是出于兴趣爱好，我将在此分会分享一些学习笔记，可能还会分享少许图片、视频以及其他有趣东西的链接。
-            </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="far fa-clock trm-icon"></i><br>
+            13:04
         </div>
     </div>
-    
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="far fa-user trm-icon"></i><br>
+            John Doe
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article class="trm-publication">
+    <h1 id="余数加法定理"><a href="#余数加法定理" class="headerlink" title="余数加法定理"></a>余数加法定理</h1><p><code>(a + b) % c = (a % c + b % c) % c</code></p>
+<p><strong>证明：</strong></p>
+<p>若 <code>a = xc + p</code>, <code>b = yc + q</code><br>则 <code>a % c = p</code>, <code>b % c = q</code></p>
+<p>则有:<br><code>(a + b) % c = [(x + y)c + p + q] % c = (p + q) % c</code><br><code>(a % c + b % c) % c = (p + q) % c</code></p>
+<h1 id="余数乘法定理"><a href="#余数乘法定理" class="headerlink" title="余数乘法定理"></a>余数乘法定理</h1><p><code>(a * b) % c = (a % c * b % c) % c</code></p>
+<p><strong>证明</strong></p>
+<p>若 <code>a = xc + p</code>, <code>b = yc + q</code><br>则</p>
+<h1 id="同余定理"><a href="#同余定理" class="headerlink" title="同余定理"></a>同余定理</h1><p>a和b同余：a ||| b</p>
 
+</article>
     
-    <div class="row trm-mb-20 trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <div class="col-lg-12">
-            <h5 class="trm-title-with-divider">
-                Blog Application
-                <span data-number="02"></span>
-            </h5>
-            <div class="trm-service-icon-box trm-active-el">
-                <ul class="trm-list"> <li>程序：Hexo </li> <li>主题：Hexo-theme-async </li> </ul>
-            </div>
-        </div>
+    
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            Other Articles
+            <span data-number="02"></span>
+        </h5>
     </div>
     
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2022/12/24/2022.11.15%20-%20STL%E5%AE%B9%E5%99%A8%E8%BF%9B%E9%98%B6/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img src="/img/block.jpg" alt="cover">
+            
+        </a>
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2022/12/24/2022.11.15%20-%20STL%E5%AE%B9%E5%99%A8%E8%BF%9B%E9%98%B6/" class="trm-anima-link">
+                    STL进阶 | 学习笔记
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>22/12/24</li>
+                <li>13:04</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation" data-scroll data-scroll-offset="40">
+        <a href="/2022/12/24/2022.11.11%20-%20Trie%E6%A0%91/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img src="/img/block.jpg" alt="cover">
+            
+        </a>
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" #.">
+                    Unclassified
+                </a>
+            </div>
+            <h5>
+                <a href="/2022/12/24/2022.11.11%20-%20Trie%E6%A0%91/" class="trm-anima-link">
+                    Trie树 | 学习笔记
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>22/12/24</li>
+                <li>13:04</li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
 
-    
-    <div class="row trm-mb-20 trm-scroll-animation" data-scroll data-scroll-offset="40">
-        <div class="col-lg-12">
-            <h5 class="trm-title-with-divider">
-                Privacy and Comments
-                <span data-number="03"></span>
-            </h5>
-            <div class="trm-service-icon-box trm-active-el">
-                本网站不会追踪访客行为，且不要求访客提供任何敏感信息（比如真实姓名、身份证号码、手机号等），因而也不存在任何隐私泄漏问题。访客参与评论，必须遵守法律法规和基本道德规范，文明礼貌。严禁发布任何有关淫秽、反动、暴力、博彩、恐吓、低俗的内容或违法信息，在尊重言论自由的同时请保持和平与理性。请勿对他人采取不友好的评论或其它过激行为。
-            </div>
-        </div>
-    </div>
     
 
 
