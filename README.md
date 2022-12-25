@@ -5,6 +5,18 @@ Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [docume
 
 ## Quick Start
 
+### When You Want To Upload to Github
+
+git add .
+
+git commit -m "commit信息"
+
+git push
+
+### When Download
+
+git clone git@github.com:GrainRainy/Grainrainy.github.io.git
+
 ### 文章内使用链接
 
 <a href="https://grainrain.netlify.app/2022/11/12/2022.11.12%20-%20%E5%A0%86/" alt="堆">堆</a>
