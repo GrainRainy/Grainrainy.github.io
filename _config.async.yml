@@ -1,0 +1,155 @@
+# 语言
+
+language: zh-Hans
+
+# 主题模式
+
+theme: 
+  switch: true 
+  default: style-light 
+
+# 网站图标
+
+favicon:
+  logo: /img/logo.svg
+  icon16: /img/logo.svg
+  icon32: /img/logo.svg
+  appleTouchIcon: apple-touch-icon.png
+  webmanifest: /site.webmanifest
+  visibilitychange: true
+  hidden: failure.ico
+  showText: (/≧▽≦/)嘿！骗你的！
+  hideText: (●—●)喔哟，崩溃啦！
+
+# 用户信息
+
+user:
+  name: Grain Rain # 侧边栏与其他位置的姓名标识
+  first_name: Rain
+  last_name: Grain # 顶栏姓名标识
+  avatar: /img/avatar.jpeg
+  email: 23548399650@qq.com
+  domain: https://grainrain.netlify.app/
+  describe: 醒，亦在人间；梦，亦在人间。
+  ruleText: 暂不接受个人博客以外的友链申请，确保您的网站内容积极向上，文章至少30篇，原创70%以上，部署HTTPS。
+
+# 顶栏 | 导航栏 | TopBars
+
+top_bars:
+  - title: Home
+    url: /
+  
+  - title: Archives
+    url: /archives/
+    noswup: true
+    children:
+      - title: Categories
+        url: /categories/
+  
+  - title: Links
+    url: /links/
+    noswup: true
+
+  - title: About
+    url: /about/
+    noswup: true
+
+# 侧栏
+
+## 社交链接
+
+sidebar:
+  social:  # 社交地址
+    - name: github
+      icon: fab fa-github   
+      url: https://github.com 
+    - name: gitee
+      icon: iconfont cg-gitee
+      url: https://gitee.com
+
+## 打字动画
+
+  typedTextPrefix: Stay
+  typedText: [ 'Hungry | Stay Foolish' ]
+
+## 侧边信息
+
+  info: # 个人信息
+    - key: Ages
+      val: 16
+    - key: Address
+      val: Hebei - China  
+
+
+# 横幅 Banner
+
+banner:
+  index:
+    type: video
+    bgurl: /img/home_banner.mp4
+    bannerTitle: 树深时见鹿，<br>溪午不闻钟。
+    bannerText: Hi my new friend!
+
+  archive: 
+    type: img
+    bgurl: https://pic1.zhimg.com/v2-b3c2c6745b9421a13a3c4706b19223b3_r.jpg?source=1940ef5c
+
+
+# 分类卡片
+
+categorie_card:
+  enable: true
+  len: 2
+  list: ['基础算法','数据结构']
+
+# 归档页
+
+archive:
+  type: more # less more
+
+
+# 页脚
+
+footer:
+  copyrightYear: 2020
+  
+  powered:
+    enable: false
+  
+  live_time:
+    enable: false
+    prefix: footer.tips
+    start_time: 24/12/2022 17:00:00
+
+# 百度SEO
+
+baidu_push: true
+
+# 评论
+
+comment:
+  bComments:
+    enable: true
+    env: 腾讯云环境ID
+
+# 链接页
+
+links:
+  - name: 洛谷
+    url: https://www.luogu.com.cn/
+    image: https://cdn.luogu.com.cn/fe/logo.png?0fdd294ff62e331d2f70e1a37ba4ee02
+    desc: 洛谷 | 计算机科学教育新生态
+
+# 字数统计
+
+wordcount:
+  enable: false
+  count: true
+  time: true
+
+# KaTeX
+
+katex:
+  copy_tex: true
+  global: true
+  options: {}
