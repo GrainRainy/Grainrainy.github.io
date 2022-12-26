@@ -27,7 +27,7 @@ user:
   email: 23548399650@qq.com
   domain: https://grainrain.netlify.app/
   describe: 醒，亦在人间；梦，亦在人间。
-  ruleText: 暂不接受个人博客以外的友链申请，确保您的网站内容积极向上，文章至少30篇，原创70%以上，部署HTTPS。
+  ruleText: <br> 暂不接受友链申请，仅收录OJ链接。
 
 # 顶栏 | 导航栏 | TopBars
 
@@ -116,15 +116,15 @@ archive:
 # 页脚
 
 footer:
-  copyrightYear: 2020
+  copyrightYear: 2022
   
   powered:
     enable: false
   
   live_time:
-    enable: false
+    enable: true
     prefix: footer.tips
-    start_time: 24/12/2022 17:00:00
+    start_time: 25/12/2022 08:00:00
 
 # 文章Artical
 
@@ -148,13 +148,9 @@ comment:
     enable: true
     env: 腾讯云环境ID
 
-# 链接页
+# 链接页配置，请见 /source/_data/links.yml
 
-links:
-  - name: 洛谷
-    url: https://www.luogu.com.cn/
-    image: /img/luogu.png
-    desc: 洛谷 | 计算机科学教育新生态
+
 
 # 关于页
 

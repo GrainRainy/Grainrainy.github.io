@@ -1,0 +1,13 @@
+- name: 洛谷
+  url: https://www.luogu.com.cn/
+  image: /img/luogu.png
+  desc: 洛谷 | 计算机科学教育新生态
+
+- name: Codeforces
+  url: https://codeforces.com/
+  image: https://cdn.luogu.com.cn/upload/image_hosting/yx6atdky.png
+  desc: The bigest OJ on the world
+- name: S2OJ
+  url: https://sjzezoj.com/
+  image: https://sjzezoj.com/images/logo_small.png
+  desc: The OJ of S2 Middle School!
