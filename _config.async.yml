@@ -1,7 +1,3 @@
-# 语言
-
-language: zh-Hans
-
 # 主题模式
 
 theme: 
@@ -88,7 +84,7 @@ sidebar:
 banner:
   index:
     type: video
-    bgurl: /img/home_banner.mp4
+    bgurl: https://cdn.moji.com/websrc/video/autumn20190924.mp4
     bannerTitle: 树深时见鹿，<br>溪午不闻钟。
     bannerText: Hi my new friend!
 
