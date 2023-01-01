@@ -105,3 +105,8 @@ deploy:
   type: 'git'
   repo: git@github.com:GrainRainy/Grainrainy.github.io.git
   branch: pages
+
+# Music Player
+
+aplayer:
+  meting: true
