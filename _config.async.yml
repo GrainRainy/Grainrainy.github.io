@@ -23,7 +23,7 @@ user:
   name: Grain Rain # 侧边栏与其他位置的姓名标识
   first_name: Rain
   last_name: Grain # 顶栏姓名标识
-  avatar: /img/avatar.jpeg
+  avatar: https://pic.imgdb.cn/item/63ba7e07be43e0d30ed318cd.jpg
   email: 23548399650@qq.com
   domain: https://grainrain.netlify.app/
   describe: 醒，亦在人间；梦，亦在人间。
@@ -61,6 +61,7 @@ sidebar:
     - name: github
       icon: fab fa-github   
       url: https://github.com/GrainRainy
+    
     - name: luogu
       icon: /img/luogu.png
       url: https://gitee.com
@@ -90,15 +91,15 @@ banner:
 
   archive: 
     type: img
-    bgurl: /img/pexels-creative-vix-9754.jpg
+    bgurl: https://pic.imgdb.cn/item/63ba7f5cbe43e0d30ed4dad0.jpg
 
   about:
     type: img
-    bgurl: /img/pexels-fatih-doğrul-11730927.jpg
+    bgurl: https://pic.imgdb.cn/item/63ba97c1be43e0d30e0306c3.jpg
   
   links: 
     type: img
-    bgurl: /img/links.jpg
+    bgurl: https://pic.imgdb.cn/item/63ba7f83be43e0d30ed522ad.jpg
 
 
 # 分类卡片
@@ -128,6 +129,11 @@ footer:
 
 # 文章Artical
 
+post_pagination: 
+  enable: true 
+  type: small # large || small
+
+
 ## 目录
 
 toc:
@@ -144,9 +150,12 @@ baidu_push: true
 # 评论
 
 comment:
-  bComments:
+  twikoo:
     enable: true
-    env: 腾讯云环境ID
+    envId: xxxxxxxxxxxxxxx # 腾讯云环境id
+    region: # 环境地域，默认为 ap-shanghai，如果您的环境地域不是上海，需传此参数
+    option: # 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
+
 
 # 链接页配置，请见 /source/_data/links.yml
 
