@@ -560,7 +560,7 @@
     
 
     <div class="trm-card trm-scroll-animation comment-container" data-scroll data-scroll-offset="50">
-    <com-comment env='腾讯云环境ID' hash=''></com-comment>
+    <div id="tcomment"></div>
 </div>
 
 
@@ -696,9 +696,13 @@
         
         
             
-<script src="//imgcache.qq.com/qcloud/cloudbase-js-sdk/1.7.1/cloudbase.full.js" data-swup-reload-script></script>
-<script src="//cdn.jsdelivr.net/npm/b-comments@0.0.13/dist/index.all.min.js" data-swup-reload-script></script>
+<script src="//cdn.jsdelivr.net/npm/twikoo@1.6.7/dist/twikoo.all.min.js" data-swup-reload-script></script>
 
+            <script data-swup-reload-script>
+                const twikooConfig = {"enable":true,"envId":"xxxxxxxxxxxxxxx","region":null,"option":null};
+                twikooConfig.el = '#tcomment';
+                twikoo.init(twikooConfig);
+            </script>
         
     
 
