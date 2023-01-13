@@ -1,15 +1,30 @@
 ---
 title: Hello World
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
+
+## Links
+
+Hexo:
+
+[Hexo](https://hexo.io/)
+
+Documents:
+
+[documentation](https://hexo.io/docs/)
+
+Problem Solving:
+
+[troubleshooting](https://hexo.io/docs/troubleshooting.html)
+
+Developer Connection:
+
+[GitHub](https://github.com/hexojs/hexo/issues)
 
 ## Quick Start
 
 ### 插入本地视频
 
 <video src="相对路径" position= "absolute" width="100%" height="100%" controls="controls"></video>
-
-
 
 ### When You Want To Upload to Github
 
@@ -23,7 +38,7 @@ git push
 
 git clone git@github.com:GrainRainy/Grainrainy.github.io.git
 
-### 文章内使用链接
+### 文章内使用文章链接
 
 <a href="https://grainrain.netlify.app/2022/11/12/2022.11.12%20-%20%E5%A0%86/" alt="堆">堆</a>
 
