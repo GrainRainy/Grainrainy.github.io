@@ -12,6 +12,8 @@ date: 2023-01-13 10:51:14
 
 ## Introduction
 
+<br>
+
 $Hi$，我是 $Grain Rain$ 
 
 很高兴您能在浩瀚如烟的互联网世界里发现这个博客. 
@@ -26,6 +28,14 @@ $Hi$，我是 $Grain Rain$
 
 别来无恙啊 ~
 
+<br>
+
 ## Others
 
+<br>
+
 Powered by Hexo
+
+<br>
+
+********
