@@ -7,16 +7,16 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="$ST$ 表 RMQ ($Range\ Minimum\ &#x2F;\ Maximum\ Query$) 问题：$O(1)$ 查询区间最大 &#x2F; 最小值  基本思想：定义 f[i][j] 表示从 $i$ 开始，长度为 $2^j$ 的区间中最大 &#x2F; 小值 考虑状态转移，将一个区间分为两部分，去两部分的 $max$ 或 $min$ 即可。则有： $$ f[i, j] &#x3D;">
+<meta name="description" content="$ST$ 表 全名 $Sparse Table$RMQ ($Range\ Minimum\ &#x2F;\ Maximum\ Query$) 问题：$O(1)$ 查询区间最大 &#x2F; 最小值  基本思想：定义 f[i][j] 表示从 $i$ 开始，长度为 $2^j$ 的区间中最大 &#x2F; 小值 考虑状态转移，将一个区间分为两部分，去两部分的 $max$ 或 $min$ 即可。则有： $">
 <meta property="og:type" content="article">
 <meta property="og:title" content="$ST$ 表 | 学习笔记">
 <meta property="og:url" content="http://example.com/2023/01/28/2023.1.28%20-%20ST%E8%A1%A8%20(RMQ%E9%97%AE%E9%A2%98)/index.html">
 <meta property="og:site_name" content="GrainRain &#39;s Blog">
-<meta property="og:description" content="$ST$ 表 RMQ ($Range\ Minimum\ &#x2F;\ Maximum\ Query$) 问题：$O(1)$ 查询区间最大 &#x2F; 最小值  基本思想：定义 f[i][j] 表示从 $i$ 开始，长度为 $2^j$ 的区间中最大 &#x2F; 小值 考虑状态转移，将一个区间分为两部分，去两部分的 $max$ 或 $min$ 即可。则有： $$ f[i, j] &#x3D;">
+<meta property="og:description" content="$ST$ 表 全名 $Sparse Table$RMQ ($Range\ Minimum\ &#x2F;\ Maximum\ Query$) 问题：$O(1)$ 查询区间最大 &#x2F; 最小值  基本思想：定义 f[i][j] 表示从 $i$ 开始，长度为 $2^j$ 的区间中最大 &#x2F; 小值 考虑状态转移，将一个区间分为两部分，去两部分的 $max$ 或 $min$ 即可。则有： $">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic.imgdb.cn/item/63d4c5c6face21e9efa1b86b.jpg">
 <meta property="article:published_time" content="2023-01-28T15:01:57.000Z">
-<meta property="article:modified_time" content="2023-01-31T15:45:04.763Z">
+<meta property="article:modified_time" content="2023-03-04T13:46:40.502Z">
 <meta property="article:author" content="Grain Rain">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -431,7 +431,7 @@
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
     <h1 id="ST-表"><a href="#ST-表" class="headerlink" title="$ST$ 表"></a>$ST$ 表</h1><blockquote>
-<p>RMQ ($Range\ Minimum\ &#x2F;\ Maximum\ Query$) 问题：<br>$O(1)$ 查询区间最大 &#x2F; 最小值</p>
+<p>全名 $Sparse Table$<br>RMQ ($Range\ Minimum\ &#x2F;\ Maximum\ Query$) 问题：<br>$O(1)$ 查询区间最大 &#x2F; 最小值</p>
 </blockquote>
 <h2 id="基本思想："><a href="#基本思想：" class="headerlink" title="基本思想："></a>基本思想：</h2><p>定义 <code>f[i][j]</code> 表示从 $i$ 开始，长度为 $2^j$ 的区间中最大 &#x2F; 小值</p>
 <p>考虑状态转移，将一个区间分为两部分，去两部分的 $max$ 或 $min$ 即可。则有：</p>
