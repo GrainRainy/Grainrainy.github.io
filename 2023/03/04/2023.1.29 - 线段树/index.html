@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="线段树 $Segment\ Tree$线段树 $Segment\ Tree$ 是一种数据结构，可维护区间信息，与树状数组不同的是，线段树可以维护更多信息，因而功能也更强大，但缺点是递归操作和建树的常数较大 线段树的主要思想是将整个区间分成若干小段，以二倍关系向上合成区间（实际代码实现时使用递归从上向下建树），将数组信息构建出树形结构，通过子结点向父节点传递信息，从而达到 $log$ 级别的复杂度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="$Manacher$ | 学习笔记">
+<meta property="og:url" content="http://example.com/2023/03/04/2023.1.29%20-%20%E7%BA%BF%E6%AE%B5%E6%A0%91/index.html">
+<meta property="og:site_name" content="GrainRain &#39;s Blog">
+<meta property="og:description" content="线段树 $Segment\ Tree$线段树 $Segment\ Tree$ 是一种数据结构，可维护区间信息，与树状数组不同的是，线段树可以维护更多信息，因而功能也更强大，但缺点是递归操作和建树的常数较大 线段树的主要思想是将整个区间分成若干小段，以二倍关系向上合成区间（实际代码实现时使用递归从上向下建树），将数组信息构建出树形结构，通过子结点向父节点传递信息，从而达到 $log$ 级别的复杂度">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic.imgdb.cn/item/63fef113f144a010078e4dbd.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/63fef41cf144a01007944626.jpg">
+<meta property="og:image" content="https://pic.imgdb.cn/item/63ff17e5f144a01007cc4b7b.jpg">
+<meta property="article:published_time" content="2023-03-04T10:30:22.000Z">
+<meta property="article:modified_time" content="2023-03-04T10:45:28.182Z">
+<meta property="article:author" content="Grain Rain">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/63fef113f144a010078e4dbd.jpg">
+
+
+<title >$Manacher$ | 学习笔记</title>
+
+<!-- Favicon -->
+
+    <link href='/img/logo.svg?v=1.2.14' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/img/logo.svg?v=1.2.14' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=1.2.14' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+    <link href='/site.webmanifest' rel='manifest' ></link>
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+
+    
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/katex@latest/dist/katex.min.css">
+
+    
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"Grain Rain","root":"/","typed_text":["Hungry | Stay Foolish"],"favicon":{"logo":"/img/logo.svg","icon16":"/img/logo.svg","icon32":"/img/logo.svg","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)嘿！骗你的！","hideText":"(●—●)哎呀，崩溃了！"},"theme_version":"1.2.14","theme":{"switch":true,"default":"style-light"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.xml"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_button":"Copy","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode"},"creative_commons":{"license":"by-nc-sa","language":"deed.zh","post":false,"clipboard":false},"swup":false,"plugin":{"flickr_justified_gallery":{"js":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"fancybox":{"css":"https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css","js":"https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"}},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h"}};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=1.2.14" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+
+
+<!-- Site Analytics -->
+ 
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
+          <div data-scroll-section id="content" class="trm-scroll-section">
+
+            <div class="locomotive-scroll__sticky-target" style=" position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+
+            <!-- top bar -->
+            <header class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+			<a href="/" class="trm-logo-frame trm-anima-link">
+				
+					<img alt="logo" src="/img/logo.svg">
+				
+				
+					<div class="trm-logo-text">
+						Grain<span>Rain</span>
+					</div>
+				
+			</a>
+			<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+
+			<!-- menu -->
+			<div class="trm-menu">
+				<nav>
+					<ul>
+						
+						<li class="menu-item-has-children ">
+							<a  href="/" target="">
+								Home
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a data-no-swup href="/archives/" target="">
+								Archives
+							</a>
+							
+							<ul>
+								
+								<li>
+									<a  href="/archives/" target="">
+										year
+									</a>
+								</li>
+								
+								<li>
+									<a  href="/categories/" target="">
+										Categories
+									</a>
+								</li>
+								
+							</ul>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a data-no-swup href="/links/" target="">
+								Links
+							</a>
+							
+						</li>
+						
+						<li class="menu-item-has-children ">
+							<a data-no-swup href="/about/" target="">
+								About
+							</a>
+							
+						</li>
+						
+					</ul>
+				</nav>
+			</div>
+			<!-- menu end -->
+			
+			<!-- mode switcher place -->
+			
+			<div class="trm-mode-switcher-place">
+				<!-- <div class="trm-hidden-switcher"> -->
+					<div class="trm-mode-switcher">
+					  <i class="iconfont far fa-sun"></i>
+					  <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+					  <label class="trm-swich" for="trm-swich"></label>
+					  <i class="iconfont far fa-moon"></i>
+					</div>
+				  <!-- </div> -->
+			</div>
+			
+			<!-- mode switcher place end -->
+
+			
+				
+				<div id="trm-search-btn" class="trm-search-btn">
+					<i class="iconfont fas fa-search"></i>
+				</div>
+				 
+			 
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner" data-scroll data-scroll-direction="vertical">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" data-scroll data-scroll-direction="vertical" data-scroll-speed="-3" src="/img/banner.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container" data-scroll data-scroll-direction="vertical" data-scroll-speed="0">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            $Manacher$ | 学习笔记
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2023
+                                    </span
+                                ></li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <a href="#about-triger" data-scroll-to="#about-triger" data-scroll-offset="-130" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </a>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div id="page-sidebar" class="col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    
+
+<div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card" data-scroll data-scroll-repeat data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="60"> 
+    
+        <div class="trm-user-tabs" id="sidebar-tabs">
+           <div class="trm-tabs-nav trm-mb-40" id="trm-tabs-nav">
+                <div data-to="tabs-user" class="trm-tabs-nav-item">
+                    <i class="iconfont fas fa-user-alt"></i>
+                </div>
+                <div data-to="tabs-toc" class="trm-tabs-nav-item active">
+                    <i class="iconfont fas fa-th-list"></i>
+                </div>
+           </div>
+            <div name="tabs-user" class="trm-tabs-item">
+                <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="https://pic.imgdb.cn/item/63ba7e07be43e0d30ed318cd.jpg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        Grain Rain
+    </h5>
+    
+    <div class="trm-label">
+        Stay
+        <span class="trm-typed-text">
+            <!-- Words for theme.user.typedText -->
+        </span>
+    </div>
+    
+</div>
+<!-- card header end -->
+
+<!-- sidebar social -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+
+<div class="trm-social">
+    
+        <a href="https://github.com/GrainRainy" title="github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+        <a href="https://gitee.com" title="luogu" rel="nofollow" target="_blank">
+            <i class="iconfont /img/luogu.png"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+
+<!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                Ages:
+            </div>
+            <div class="trm-label trm-label-light">
+                16
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                Address:
+            </div>
+            <div class="trm-label trm-label-light">
+                Hebei - China
+            </div>
+        </li>
+    
+</ul>
+
+<!-- info end -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<!-- action button -->
+<div class="text-center">
+    <a href="mailto:23548399650@qq.com" class="trm-btn">
+        Contact Me
+        <i class="iconfont far fa-envelope"></i>
+    </a>
+</div>
+<!-- action button end -->
+
+            </div>
+            <div name="tabs-toc" class="trm-tabs-item active">
+                <div class="post-toc">
+    <ol class="toc"><li class="toc-item toc-level-1"><a rel="nofollow" class="toc-link" href="#线段树-Segment-Tree"  data-scroll-to="#线段树-Segment-Tree"><span class="toc-number">1.</span> <span class="toc-text">线段树 $Segment\ Tree$</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#模板"  data-scroll-to="#模板"><span class="toc-number">1.1.</span> <span class="toc-text">模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#存储方式（以维护区间和为例）"  data-scroll-to="#存储方式（以维护区间和为例）"><span class="toc-number">1.1.1.</span> <span class="toc-text">存储方式（以维护区间和为例）</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#递归建树"  data-scroll-to="#递归建树"><span class="toc-number">1.1.2.</span> <span class="toc-text">递归建树</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#向父节点上传信息"  data-scroll-to="#向父节点上传信息"><span class="toc-number">1.1.3.</span> <span class="toc-text">向父节点上传信息</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#单点修改（无需懒标记）"  data-scroll-to="#单点修改（无需懒标记）"><span class="toc-number">1.1.4.</span> <span class="toc-text">单点修改（无需懒标记）</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#区间修改"  data-scroll-to="#区间修改"><span class="toc-number">1.1.5.</span> <span class="toc-text">区间修改</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#查询"  data-scroll-to="#查询"><span class="toc-number">1.1.6.</span> <span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a rel="nofollow" class="toc-link" href="#查询时间复杂度证明"  data-scroll-to="#查询时间复杂度证明"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">查询时间复杂度证明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#Tricks"  data-scroll-to="#Tricks"><span class="toc-number">1.2.</span> <span class="toc-text">$Tricks$</span></a></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#例题"  data-scroll-to="#例题"><span class="toc-number">1.3.</span> <span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#1-Acwing246-区间最大公约数"  data-scroll-to="#1-Acwing246-区间最大公约数"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. Acwing246 - 区间最大公约数</span></a></li><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#2-洛谷p3373-线段树2"  data-scroll-to="#2-洛谷p3373-线段树2"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 洛谷p3373 - 线段树2</span></a></li></ol></li><li class="toc-item toc-level-2"><a rel="nofollow" class="toc-link" href="#线段树扩展-扫描线"  data-scroll-to="#线段树扩展-扫描线"><span class="toc-number">1.4.</span> <span class="toc-text">线段树扩展 - 扫描线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a rel="nofollow" class="toc-link" href="#模板-1"  data-scroll-to="#模板-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">模板</span></a></li></ol></li></ol></li></ol>
+</div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div id="page-content" class="col-lg-8">
+                <div class="trm-content" id="trm-content">
+                    <div data-scroll data-scroll-repeat data-scroll-offset="500" id="about-triger"></div>
+
+                    <div id="post-info" class="row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            03/04
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            18:30
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            GrainRain
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h1 id="线段树-Segment-Tree"><a href="#线段树-Segment-Tree" class="headerlink" title="线段树 $Segment\ Tree$"></a>线段树 $Segment\ Tree$</h1><p>线段树 $Segment\ Tree$ 是一种数据结构，可维护区间信息，与树状数组不同的是，线段树可以维护更多信息，因而功能也更强大，但缺点是递归操作和建树的常数较大</p>
+<p>线段树的主要思想是将整个区间分成若干小段，以二倍关系向上合成区间（实际代码实现时使用递归从上向下建树），将数组信息构建出树形结构，通过<strong>子结点向父节点传递信息</strong>，从而达到 $log$ 级别的复杂度</p>
+<p>特别地，我们规定左子结点的下标为 <code>idx &lt;&lt; 1</code>，右子结点的下标为 <code>idx &lt;&lt; 1 | 1</code>，从而相对稠密地存储，因此对于一个长度为 $n$ 的区间，需要<strong>开 $4n$ 大小的数组存储</strong>线段树。在动态开点线段树中，抛弃了这一规则，改为与插入操作同步新建节点，在线段树节点中记录左右子结点下标，进一步优化了空间复杂度</p>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><h3 id="存储方式（以维护区间和为例）"><a href="#存储方式（以维护区间和为例）" class="headerlink" title="存储方式（以维护区间和为例）"></a>存储方式（以维护区间和为例）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> sonl (idx &lt;&lt; 1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> sonr (idx &lt;&lt; 1 | 1)</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> nums[N];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SegmentTree</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> l, r, val;</span><br><span class="line">	<span class="type">int</span> lazy; <span class="comment">// 延迟标记 </span></span><br><span class="line">	</span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> l(x) (tree[(x)].l)</span></span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> r(x) (tree[(x)].r)</span></span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> val(x) (tree[(x)].val)</span></span><br><span class="line">	<span class="meta">#<span class="keyword">define</span> lazy(x) (tree[(x)].lazy)</span></span><br><span class="line">&#125;tree[N &lt;&lt; <span class="number">2</span>]; <span class="comment">// 4 倍空间</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="递归建树"><a href="#递归建树" class="headerlink" title="递归建树"></a>递归建树</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> idx, <span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"><span class="comment">// 当前节点编号，区间左端点，区间右端点</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">l</span>(idx) = l, <span class="built_in">r</span>(idx) = r;</span><br><span class="line">	<span class="keyword">if</span> (l == r) <span class="keyword">return</span> <span class="built_in">val</span>(idx) = nums[l], <span class="built_in">void</span>();</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">build</span>(sonl, l, mid), <span class="built_in">build</span>(sonr, mid + <span class="number">1</span>, r);</span><br><span class="line">	<span class="built_in">pushup</span>(idx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*调用时使用*/</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">build</span>(<span class="number">1</span>, <span class="number">1</span>, n);</span><br></pre></td></tr></table></figure>
+
+<h3 id="向父节点上传信息"><a href="#向父节点上传信息" class="headerlink" title="向父节点上传信息"></a>向父节点上传信息</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> idx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">val</span>(idx) = <span class="built_in">val</span>(sonl) + <span class="built_in">val</span>(sonr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="单点修改（无需懒标记）"><a href="#单点修改（无需懒标记）" class="headerlink" title="单点修改（无需懒标记）"></a>单点修改（无需懒标记）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(<span class="type">int</span> idx, <span class="type">int</span> x, <span class="type">int</span> v)</span></span></span><br><span class="line"><span class="function"><span class="comment">// 将位置为 x 的点的值修改为 v</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">l</span>(idx) &gt; r || <span class="built_in">r</span>(idx) &lt; l) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">l</span>(idx) == x <span class="keyword">and</span> <span class="built_in">r</span>(idx) == x) </span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">val</span>(idx) = v, <span class="built_in">void</span>();</span><br><span class="line"></span><br><span class="line">	<span class="built_in">modify</span>(sonl, x, v), <span class="built_in">modify</span>(sonr, x, v);</span><br><span class="line">	<span class="built_in">pushup</span>(idx);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于单点修改，每次修改操作最多遍历 $log_2n$ 个节点，而如果对区间中每一个点都进行单点修改，修改时间复杂度会退化到 $O(n)$。</p>
+<p>类比于区间查询，如果查询区间包含整个线段树区间，我们可以在更新信息后直接返回，因此时间复杂度仍会控制到 $log_2n$ 级别，常数控制在 $4$ 左右。</p>
+<p>我们将存储该信息的操作称为<strong>懒标记</strong>。当遍历到一个区间时，对被完全包含的区间暂时不进行修改，而将需要修改的信息暂时赋给懒标记，<strong>需要向下查询时再下传一层懒标记</strong>。显然，为保证当前访问节点信息的正确性，在一个区间被遍历到时，它和它祖先的懒标记需要被下放完成。</p>
+<p>值得注意的是，懒标记一般不包含当前节点信息。</p>
+<p>利用懒标记，线段树可以支持区间修改与区间查询的操作，下面是下放懒标记的 $pushdown$ 操作，需要在 $query$ 和 $modify$ 操作时分别调用</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushdown</span><span class="params">(<span class="type">int</span> idx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">lazy</span>(sonl) += <span class="built_in">lazy</span>(idx);</span><br><span class="line">	<span class="built_in">lazy</span>(sonr) += <span class="built_in">lazy</span>(idx);</span><br><span class="line">	<span class="comment">// 更新子节点延迟标记信息 lazy </span></span><br><span class="line">	<span class="built_in">val</span>(sonl) += (<span class="built_in">r</span>(sonl) - <span class="built_in">l</span>(sonl) + <span class="number">1</span>) * <span class="built_in">lazy</span>(idx);</span><br><span class="line">	<span class="built_in">val</span>(sonr) += (<span class="built_in">r</span>(sonr) - <span class="built_in">l</span>(sonr) + <span class="number">1</span>) * <span class="built_in">lazy</span>(idx);</span><br><span class="line">	<span class="comment">// 更新子节点 value</span></span><br><span class="line">	<span class="built_in">lazy</span>(idx) = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="区间修改"><a href="#区间修改" class="headerlink" title="区间修改"></a>区间修改</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(<span class="type">int</span> idx, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">l</span>(idx) &gt; r || <span class="built_in">r</span>(idx) &lt; l) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span> (l &lt;= <span class="built_in">l</span>(idx) &amp;&amp; r &gt;= <span class="built_in">r</span>(idx))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">lazy</span>(idx) += v;</span><br><span class="line">		<span class="built_in">val</span>(idx) += (<span class="built_in">r</span>(idx) - <span class="built_in">l</span>(idx) + <span class="number">1</span>) * v;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 否则当前区间与赋值区间有交集, 需要先下传懒标记</span></span><br><span class="line">	<span class="built_in">pushdown</span>(idx);</span><br><span class="line">	<span class="built_in">modify</span>(sonl, l, r, v), <span class="built_in">modify</span>(sonr, l, r, v);</span><br><span class="line">	<span class="built_in">pushup</span>(idx);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p><img src="https://pic.imgdb.cn/item/63fef113f144a010078e4dbd.jpg" loading="lazy"></p>
+<p>查询时间复杂度 $n·log_2n$，常数大概为4，与之相比树状数组常数较小，稳定为 $1$</p>
+<h4 id="查询时间复杂度证明"><a href="#查询时间复杂度证明" class="headerlink" title="查询时间复杂度证明"></a>查询时间复杂度证明</h4><p>我们尝试分类讨论</p>
+<p><img src="https://pic.imgdb.cn/item/63fef41cf144a01007944626.jpg" loading="lazy"></p>
+<p>不难发现，对于任意一种情况都只会递归一次，或在第二层递归终止</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> idx, <span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">l</span>(idx) &gt; r || <span class="built_in">r</span>(idx) &lt; l) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">l</span>(idx) &gt;= l &amp;&amp; <span class="built_in">r</span>(idx) &lt;= r) <span class="keyword">return</span> <span class="built_in">val</span>(idx);</span><br><span class="line">	<span class="built_in">pushdown</span>(idx); <span class="comment">// 下传懒标记</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">query</span>(sonl, l, r) + <span class="built_in">query</span>(sonr, l, r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Tricks"><a href="#Tricks" class="headerlink" title="$Tricks$"></a>$Tricks$</h2><p>区间加单点查询可以在线段树中存储差分数组，转化为单点修改区间查询，无需使用懒标记每次询问单点x查询[1, x] 即可</p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="1-Acwing246-区间最大公约数"><a href="#1-Acwing246-区间最大公约数" class="headerlink" title="1. Acwing246 - 区间最大公约数"></a>1. <a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/problem/content/1609/">Acwing246 - 区间最大公约数</a></h3><p>核心公式</p>
+<p>gcd(a, b, c) &#x3D; gcd(a, b - a, c - b)</p>
+<p>因此线段树维护原序列差分序列即可</p>
+<h3 id="2-洛谷p3373-线段树2"><a href="#2-洛谷p3373-线段树2" class="headerlink" title="2. 洛谷p3373 - 线段树2"></a>2. <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3373">洛谷p3373 - 线段树2</a></h3><p>一个同时维护区间乘和区间加的模板，下放懒标记时先下放乘法标记再下放加法标记即可 </p>
+<h2 id="线段树扩展-扫描线"><a href="#线段树扩展-扫描线" class="headerlink" title="线段树扩展 - 扫描线"></a>线段树扩展 - 扫描线</h2><p>当维护矩形面积的并时，也可以尝试使用线段树优化</p>
+<p><img src="https://pic.imgdb.cn/item/63ff17e5f144a01007cc4b7b.jpg" loading="lazy"></p>
+<p>如图，建立平面直角坐标系，如果对于 $n$ 个矩形左右边界作为分割线，可以将整张图分为 $2n - 1$ 个区间，左边界赋为 <code>+1</code>，右边界赋为 <code>-1</code>，需要维护面积时，只需要将当前边上<strong>值为正数的部分乘横坐标之差</strong>即可。因此我们将问题转化成了<strong>维护区间正值部分</strong>。</p>
+<p>考虑解决问题需要的信息，在线段树节点上维护 $cnt$，表示当前区间<strong>整体</strong>被覆盖的次数， $len$ 表示值大于 $0$ 的区间长度。考虑到仍不是很好维护，我们尝试从中挖掘一些性质：</p>
+<ol>
+<li>区间值必定先加后减，不存在负值情况</li>
+<li>查询时只需要根节点信息，$query$ 不需要 $pushdown$</li>
+<li>所有操作均是成对出现</li>
+</ol>
+<p>综上可以发现，在树中进行维护操作时不需要 $pushdown$ 操作，因此保证了时间复杂度 $n·logn$</p>
+<p>另外值得注意的是，线段树中维护的是区间而不是点位，因此右边界值需要在适当位置 <code>- 1</code></p>
+<h3 id="模板-1"><a href="#模板-1" class="headerlink" title="模板"></a>模板</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> sonl (idx &lt;&lt; 1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> sonr (idx &lt;&lt; 1 | 1)</span></span><br><span class="line"><span class="keyword">using</span> LL = <span class="type">long</span> <span class="type">long</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Segment</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">double</span> x, y1, y2;</span><br><span class="line">    <span class="type">int</span> k;</span><br><span class="line"></span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span> &lt; (<span class="type">const</span> Segment t) <span class="type">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> x &lt; t.x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;seg[N &lt;&lt; <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">SegmentTree</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> l, r;</span><br><span class="line">    <span class="type">int</span> cnt;</span><br><span class="line">    <span class="type">double</span> len;</span><br><span class="line"></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> l(x) tree[x].l</span></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> r(x) tree[x].r</span></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> cnt(x) tree[x].cnt</span></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> len(x) tree[x].len</span></span><br><span class="line">&#125;tree[N * <span class="number">8</span>];</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">double</span>&gt; lis;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">double</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">lower_bound</span>(lis.<span class="built_in">begin</span>(), lis.<span class="built_in">end</span>(), y) - lis.<span class="built_in">begin</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">pushup</span><span class="params">(<span class="type">int</span> idx)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">cnt</span>(idx)) <span class="built_in">len</span>(idx) = lis[<span class="built_in">r</span>(idx) + <span class="number">1</span>] - lis[<span class="built_in">l</span>(idx)];</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">l</span>(idx) != <span class="built_in">r</span>(idx)) <span class="built_in">len</span>(idx) = <span class="built_in">len</span>(sonl) + <span class="built_in">len</span>(sonr);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">len</span>(idx) = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> idx, <span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    tree[idx] = &#123;l, r, <span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">if</span> (l != r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">build</span>(sonl, l, mid), <span class="built_in">build</span>(sonr, mid + <span class="number">1</span>, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(<span class="type">int</span> idx, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">l</span>(idx) &gt; r <span class="keyword">or</span> <span class="built_in">r</span>(idx) &lt; l) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">l</span>(idx) &gt;= l <span class="keyword">and</span> <span class="built_in">r</span>(idx) &lt;= r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cnt</span>(idx) += k;</span><br><span class="line">        <span class="built_in">pushup</span>(idx);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">modify</span>(sonl, l, r, k), <span class="built_in">modify</span>(sonr, l, r, k);</span><br><span class="line">    <span class="built_in">pushup</span>(idx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> t; <span class="built_in">input</span>(t);</span><br><span class="line">    <span class="keyword">while</span> (t --)</span><br><span class="line">    &#123;</span><br><span class="line">		<span class="type">int</span> n; <span class="built_in">input</span>(n);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; n; i ++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">double</span> x1, x2, y1, y2;</span><br><span class="line">            cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; x2 &gt;&gt; y2;</span><br><span class="line">            seg[j ++] = &#123;x1, y1, y2, <span class="number">1</span>&#125;;</span><br><span class="line">            seg[j ++] = &#123;x2, y1, y2, <span class="number">-1</span>&#125;;</span><br><span class="line">            lis.<span class="built_in">push_back</span>(y1), lis.<span class="built_in">push_back</span>(y2);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">sort</span>(lis.<span class="built_in">begin</span>(), lis.<span class="built_in">end</span>());</span><br><span class="line">        lis.<span class="built_in">erase</span>(<span class="built_in">unique</span>(lis.<span class="built_in">begin</span>(), lis.<span class="built_in">end</span>()), lis.<span class="built_in">end</span>());</span><br><span class="line">		<span class="comment">// 离散化</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">sort</span>(seg, seg + <span class="number">2</span> * n);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">build</span>(<span class="number">1</span>, <span class="number">0</span>, lis.<span class="built_in">size</span>() - <span class="number">2</span>);</span><br><span class="line">		<span class="comment">// 建树</span></span><br><span class="line"></span><br><span class="line">        <span class="type">double</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span> * n; i ++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (i &gt; <span class="number">0</span>) ans += <span class="built_in">len</span>(<span class="number">1</span>) * (seg[i].x - seg[i - <span class="number">1</span>].x);</span><br><span class="line">            <span class="built_in">modify</span>(<span class="number">1</span>, <span class="built_in">find</span>(seg[i].y1), <span class="built_in">find</span>(seg[i].y2) - <span class="number">1</span>, seg[i].k);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article>
+    
+    
+</div>
+<div id="post-next-prev" class="row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            Other Articles
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+            <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+    <div class="trm-older-publication">
+        
+        <a class="trm-op-top trm-anima-link" href="/2023/03/04/2023.1.30%20-%20%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91%20(%E4%B8%BB%E5%B8%AD%E6%A0%91)/">
+            <span class="trm-op-cover">
+                <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/6403210df144a01007ab6743.jpg">
+            </span>
+            <h6 class="trm-op-title">$Manacher$ | 学习笔记</h6>
+        </a>
+        <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+        <ul class="trm-card-data trm-label">
+            <li>23/03/04</li>
+            <li>18:45</li>
+            <li>数据结构</li>
+        </ul>
+    </div>
+</div>
+        </div>
+    
+    
+        <div class="col-lg-6">
+            <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+    <div class="trm-older-publication">
+        
+        <a class="trm-op-top trm-anima-link" href="/2023/01/31/2023.1.31%20-%20Manacher%E5%9B%9E%E6%96%87%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/">
+            <span class="trm-op-cover">
+                <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/63d936c3e90d1c00984bb396.jpg">
+            </span>
+            <h6 class="trm-op-title">$Manacher$ | 学习笔记</h6>
+        </a>
+        <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+        <ul class="trm-card-data trm-label">
+            <li>23/01/31</li>
+            <li>23:46</li>
+            <li>字符串</li>
+        </ul>
+    </div>
+</div>
+        </div>
+    
+</div>
+
+    
+
+    <div class="trm-card trm-scroll-animation comment-container" data-scroll data-scroll-offset="50">
+    <div id="tcomment"></div>
+</div>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-scroll-animation" data-scroll data-scroll-offset="50">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2022- 2023</span>
+            <span class="footer-separator"data-separator=" · "></span>
+            <span class="trm-accent-color">Grain Rain</span>
+        </div>
+    
+
+      
+
+    
+        <div class="trm-footer-item">
+            The blog has been lovely to run <span id="since" class="trm-accent-color"></span> day
+        </div>
+     
+
+     
+</footer>
+
+<script>
+    function show_date_time () {
+        BirthDay = new Date("12/25/2022 17:00:00");
+        today = new Date();
+        timeold = (today.getTime() - BirthDay.getTime());
+        msPerDay = 24 * 60 * 60 * 1000
+        day = Math.floor(timeold / msPerDay)
+        since.innerHTML = day
+    }
+    show_date_time()
+</script>
+ 
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            <!-- body -->
+            <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
+    
+        <div class="trm-fixed-btn" data-title="Read Mode" onclick="switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+</div>
+            <!-- body end -->
+          </div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+
+  </div>
+  <!-- app wrapper end -->
+
+  <div id="trm-back-top" class="trm-back-top" data-title="Back To Top">
+    <i class="iconfont fas fa-arrow-up"></i>
+</div>
+  
+<div class="trm-search-popup">
+    <div class="trm-search-header">
+        <span class="trm-search-popup-btn-close">
+            <i class="iconfont fas fa-times"></i>
+        </span>
+    </div>
+    <div class="form trm-search-form">
+        <input class="trm-search-input" type="text" placeholder="Searching...">
+    </div>
+    <div class="trm-search-result-container">
+
+    </div>
+</div>
+
+  <!-- Plugin -->
+
+
+
+    
+    
+
+    
+<script src="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=1.2.14"></script>
+    
+
+    
+        
+<script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+
+        <script src="/js/plugins/local_search.js?v=1.2.14"></script>
+    
+
+    <!-- 数学公式 -->
+    
+        
+<script src="https://unpkg.com/katex@latest/dist/katex.min.js" data-swup-reload-script></script>
+
+        
+            
+<script src="https://unpkg.com/katex@latest/dist/contrib/copy-tex.min.js" data-swup-reload-script></script>
+
+        
+        
+<script src="https://unpkg.com/katex@latest/dist/contrib/auto-render.min.js" data-swup-reload-script></script>
+
+        <script data-swup-reload-script>
+              window.renderMathInElement(document.body, {
+                delimiters: [
+                    { left: '$$', right: '$$', display: true },
+                    { left: '$', right: '$', display: false },
+                    { left: '\\(', right: '\\)', display: false },
+                    { left: '\\[', right: '\\]', display: true },
+                ],
+                ...{},
+            })
+        </script>
+    
+
+
+    <!-- 评论插件 -->
+    
+        
+        
+            
+<script src="https://unpkg.com/twikoo@1.6.7/dist/twikoo.all.min.js" data-swup-reload-script data-reset="true"></script>
+
+            <script data-swup-reload-script>
+                const twikooConfig = {"enable":true,"envId":"cloud-development-server-cf32436","visitor":true};
+                twikooConfig.el = '#tcomment';
+                twikoo.init(twikooConfig).then(function () {
+                    let container = document.querySelector('body>.tk-admin-container')
+                    if(container) container.remove()
+                    document.body.append(document.querySelector('.tk-admin-container'))
+                });;
+            </script>
+        
+    
+
+
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+    <script data-swup-reload-script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+
+<script id="async-script" src="/js/main.js?v=1.2.14"></script>
+
+</body>
+
+</html>
