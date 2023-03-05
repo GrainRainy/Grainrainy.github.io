@@ -8,7 +8,8 @@ cover: https://pic.imgdb.cn/item/63d53f59face21e9efc45f4c.jpg
 ---
 
 
-# 最小生成树 $MST$
+# 最小生成树 
+$Minimum\ Spanning\ Tree$
 
 最小生成树指在无向图中找出任意两点都相互连通的树结构的最小边权
 
