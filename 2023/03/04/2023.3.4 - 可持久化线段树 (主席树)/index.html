@@ -7,15 +7,15 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="可持久化线段树 (主席树)一个非常上流的英文名：$Persistable\ Segment\ Tree$ $Persistable$ 意为可读写的，动态的，持久的 顾名思义，基于线段树维护区间的基本功能，可持久化线段树保存了每一个版本的信息，以便于对任意一个版本的信息进行修改 因此我们需要在线段树的基础之上多开节点来存储版本信息。然而如果对于每一个版本都存储一棵完整的树形结构，空间复杂度为 $O(">
+<meta name="description" content="可持久化线段树 (主席树)有一个非常上流的英文名：$Persistable\ Segment\ Tree$ $Persistable$ 意为可读写的，动态的，持久的 顾名思义，基于线段树维护区间的基本功能，可持久化线段树保存了每一个版本的信息，以便于对任意一个版本的信息进行修改 因此我们需要在线段树的基础之上多开节点来存储版本信息。然而如果对于每一个版本都存储一棵完整的树形结构，空间复杂度为 $O">
 <meta property="og:type" content="article">
 <meta property="og:title" content="可持久化线段树 | 学习笔记">
 <meta property="og:url" content="http://example.com/2023/03/04/2023.3.4%20-%20%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E7%BA%BF%E6%AE%B5%E6%A0%91%20(%E4%B8%BB%E5%B8%AD%E6%A0%91)/index.html">
 <meta property="og:site_name" content="GrainRain &#39;s Blog">
-<meta property="og:description" content="可持久化线段树 (主席树)一个非常上流的英文名：$Persistable\ Segment\ Tree$ $Persistable$ 意为可读写的，动态的，持久的 顾名思义，基于线段树维护区间的基本功能，可持久化线段树保存了每一个版本的信息，以便于对任意一个版本的信息进行修改 因此我们需要在线段树的基础之上多开节点来存储版本信息。然而如果对于每一个版本都存储一棵完整的树形结构，空间复杂度为 $O(">
+<meta property="og:description" content="可持久化线段树 (主席树)有一个非常上流的英文名：$Persistable\ Segment\ Tree$ $Persistable$ 意为可读写的，动态的，持久的 顾名思义，基于线段树维护区间的基本功能，可持久化线段树保存了每一个版本的信息，以便于对任意一个版本的信息进行修改 因此我们需要在线段树的基础之上多开节点来存储版本信息。然而如果对于每一个版本都存储一棵完整的树形结构，空间复杂度为 $O">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-03-04T10:45:41.000Z">
-<meta property="article:modified_time" content="2023-03-05T01:35:06.735Z">
+<meta property="article:modified_time" content="2023-03-05T01:37:22.774Z">
 <meta property="article:author" content="Grain Rain">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
@@ -428,7 +428,7 @@
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
-    <h1 id="可持久化线段树-主席树"><a href="#可持久化线段树-主席树" class="headerlink" title="可持久化线段树 (主席树)"></a>可持久化线段树 (主席树)</h1><p>一个非常上流的英文名：$Persistable\ Segment\ Tree$</p>
+    <h1 id="可持久化线段树-主席树"><a href="#可持久化线段树-主席树" class="headerlink" title="可持久化线段树 (主席树)"></a>可持久化线段树 (主席树)</h1><p>有一个非常上流的英文名：$Persistable\ Segment\ Tree$</p>
 <p>$Persistable$ 意为可读写的，动态的，持久的</p>
 <p>顾名思义，基于线段树维护区间的基本功能，可持久化线段树保存了每一个版本的信息，以便于对任意一个版本的信息进行修改</p>
 <p>因此我们需要在线段树的基础之上多开节点来存储版本信息。然而如果对于每一个版本都存储一棵完整的树形结构，空间复杂度为 $O(m * 4n)$。尝试思考：是否有更优的存储版本信息方式呢？</p>
