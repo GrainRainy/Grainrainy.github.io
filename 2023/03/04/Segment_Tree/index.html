@@ -14,28 +14,28 @@
 <meta property="og:site_name" content="GrainRain &#39;s Blog">
 <meta property="og:description" content="线段树 $Segment\ Tree$线段树是一种数据结构，可维护区间信息，与树状数组不同的是，线段树可以维护更多信息，因而功能也更强大，但缺点是递归操作和建树的常数较大 线段树的主要思想是将整个区间分成若干小段，以二倍关系向上合成区间（实际代码实现时使用递归从上向下建树），将数组信息构建出树形结构，通过子结点向父节点传递信息，从而达到 $log$ 级别的复杂度 特别地，我们规定左子结点的下标为">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://pic.imgdb.cn/item/63fef113f144a010078e4dbd.jpg">
-<meta property="og:image" content="https://pic.imgdb.cn/item/63fef41cf144a01007944626.jpg">
-<meta property="og:image" content="https://pic.imgdb.cn/item/63ff17e5f144a01007cc4b7b.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
+<meta property="og:image" content="http://example.com/img/404.jpg">
 <meta property="article:published_time" content="2023-03-04T10:30:22.000Z">
 <meta property="article:modified_time" content="2023-03-05T08:48:45.440Z">
 <meta property="article:author" content="Grain Rain">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic.imgdb.cn/item/63fef113f144a010078e4dbd.jpg">
+<meta name="twitter:image" content="http://example.com/img/404.jpg">
 
 
 <title >线段树 | 学习笔记</title>
 
 <!-- Favicon -->
 
-    <link href='/img/logo.svg?v=1.2.14' rel='icon' type='image/png' sizes='16x16' ></link>
+    <link href='/img/logo.svg?v=2.0.3' rel='icon' type='image/png' sizes='16x16' ></link>
 
 
-    <link href='/img/logo.svg?v=1.2.14' rel='icon' type='image/png' sizes='32x32' ></link>
+    <link href='/img/logo.svg?v=2.0.3' rel='icon' type='image/png' sizes='32x32' ></link>
 
 
-    <link href='/apple-touch-icon.png?v=1.2.14' rel='apple-touch-icon' sizes='180x180' ></link>
+    <link href='/apple-touch-icon.png?v=2.0.3' rel='apple-touch-icon' sizes='180x180' ></link>
 
 
     <link href='/site.webmanifest' rel='manifest' ></link>
@@ -55,14 +55,11 @@
     
 <link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
 
-
     
-
     
-        
 <link rel="stylesheet" href="https://unpkg.com/katex@latest/dist/katex.min.css">
 
-    
+
 
 
 
@@ -75,10 +72,11 @@
 
 
 <!-- Variable -->
-<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"Grain Rain","root":"/","typed_text":["Hungry | Stay Foolish"],"favicon":{"logo":"/img/logo.svg","icon16":"/img/logo.svg","icon32":"/img/logo.svg","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)嘿！骗你的！","hideText":"(●—●)哎呀，崩溃了！"},"theme_version":"1.2.14","theme":{"switch":true,"default":"style-light"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.xml"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_button":"Copy","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode"},"creative_commons":{"license":"by-nc-sa","language":"deed.zh","post":false,"clipboard":false},"swup":false,"plugin":{"flickr_justified_gallery":{"js":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"fancybox":{"css":"https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css","js":"https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"}},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h"}};</script>
+<script>window.ASYNC_CONFIG = {"hostname":"example.com","author":"Grain Rain","root":"/","typed_text":["Hungry | Stay Foolish"],"theme_version":"2.0.3","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"/img/logo.svg","icon16":"/img/logo.svg","icon32":"/img/logo.svg","appleTouchIcon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":true,"hidden":"failure.ico","showText":"(/≧▽≦/)嘿！骗你的！","hideText":"(●—●)哎呀，崩溃了！"},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}.","hits":"${hits} results found","hits_time":"${hits} results found in ${time} ms","author":"Post author: ","copyright_link":"Post link: ","copyright_license_title":"Copyright Notice: ","copyright_license_content":"All articles in this blog are licensed under undefined unless otherwise stated.","copy_success":"Copied","copy_failure":"Copy failed","open_read_mode":"Enter reading mode","exit_read_mode":"Exit reading mode","notice_outdate_message":"It has been undefined days since the last update, the content of the article may be outdated.","just":"Just","min":"minutes ago","hour":"hours ago","day":"days ago","month":"months ago"},"swup":false,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","user_tag":"fas fa-user-alt","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.xml"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2023-03-05 16:48:45"};</script>
 
 <!-- Theme mode css -->
-<link data-swup-theme rel="stylesheet" href="/css/index.css?v=1.2.14" id="trm-switch-style">
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.0.3" id="trm-switch-style">
 <script>
     let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
     let catchMode = localStorage.getItem('theme-mode') || defaultMode;
@@ -90,7 +88,6 @@
 
 
     
-
     
 
 
@@ -138,103 +135,97 @@
         <div id="trm-scroll-container" class="trm-scroll-container" data-scroll-container style="opacity: 0">
           <div data-scroll-section id="content" class="trm-scroll-section">
 
-            <div class="locomotive-scroll__sticky-target" style=" position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
+            <div class="locomotive-scroll__sticky-target" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none;"></div>
 
             <!-- top bar -->
             <header class="trm-top-bar" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
 	<div class="container">
 		<div class="trm-left-side">
 			<!-- logo -->
-			<a href="/" class="trm-logo-frame trm-anima-link">
-				
-					<img alt="logo" src="/img/logo.svg">
-				
-				
-					<div class="trm-logo-text">
-						Grain<span>Rain</span>
-					</div>
-				
-			</a>
-			<!-- logo end -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/img/logo.svg">
+    
+    
+        <div class="trm-logo-text">
+            Grain<span>Rain</span>
+        </div>
+    
+</a>
+<!-- logo end -->
 		</div>
 		<div class="trm-right-side">
-
 			<!-- menu -->
-			<div class="trm-menu">
-				<nav>
-					<ul>
-						
-						<li class="menu-item-has-children ">
-							<a  href="/" target="">
-								Home
-							</a>
-							
-						</li>
-						
-						<li class="menu-item-has-children ">
-							<a data-no-swup href="/archives/" target="">
-								Archives
-							</a>
-							
-							<ul>
-								
-								<li>
-									<a  href="/archives/" target="">
-										year
-									</a>
-								</li>
-								
-								<li>
-									<a  href="/categories/" target="">
-										Categories
-									</a>
-								</li>
-								
-							</ul>
-							
-						</li>
-						
-						<li class="menu-item-has-children ">
-							<a data-no-swup href="/links/" target="">
-								Links
-							</a>
-							
-						</li>
-						
-						<li class="menu-item-has-children ">
-							<a data-no-swup href="/about/" target="">
-								About
-							</a>
-							
-						</li>
-						
-					</ul>
-				</nav>
-			</div>
-			<!-- menu end -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    Home
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a data-no-swup href="/archives/" target="">
+                    Archives
+                </a>
+                
+                <ul>
+                    
+                    <li>
+                        <a  href="/archives/" target="">
+                            year
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a  href="/categories/" target="">
+                            Categories
+                        </a>
+                    </li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a data-no-swup href="/links/" target="">
+                    Links
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a data-no-swup href="/about/" target="">
+                    About
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
 			
-			<!-- mode switcher place -->
-			
-			<div class="trm-mode-switcher-place">
-				<!-- <div class="trm-hidden-switcher"> -->
-					<div class="trm-mode-switcher">
-					  <i class="iconfont far fa-sun"></i>
-					  <input class="tgl tgl-light" id="trm-swich" type="checkbox">
-					  <label class="trm-swich" for="trm-swich"></label>
-					  <i class="iconfont far fa-moon"></i>
-					</div>
-				  <!-- </div> -->
-			</div>
-			
-			<!-- mode switcher place end -->
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
 
 			
-				
-				<div id="trm-search-btn" class="trm-search-btn">
-					<i class="iconfont fas fa-search"></i>
-				</div>
-				 
-			 
+    
+    <div id="trm-search-btn" class="trm-search-btn">
+        <i class="iconfont fas fa-search"></i>
+    </div>
+     
 
 		</div>
 		<div class="trm-menu-btn">
@@ -331,19 +322,18 @@
         Grain Rain
     </h5>
     
-    <div class="trm-label">
-        Stay
-        <span class="trm-typed-text">
-            <!-- Words for theme.user.typedText -->
-        </span>
-    </div>
+        <div class="trm-label">
+            Stay
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
     
 </div>
 <!-- card header end -->
+                <!-- sidebar social -->
 
-<!-- sidebar social -->
 <div class="trm-divider trm-mb-40 trm-mt-40"></div>
-
 <div class="trm-social">
     
         <a href="https://github.com/GrainRainy" title="github" rel="nofollow" target="_blank">
@@ -357,8 +347,7 @@
 </div>
 
 <!-- sidebar social end -->
-
-<!-- info -->
+                <!-- info -->
 <div class="trm-divider trm-mb-40 trm-mt-40"></div>
 <ul class="trm-table trm-mb-20">
     
@@ -381,17 +370,18 @@
         </li>
     
 </ul>
-
 <!-- info end -->
-<div class="trm-divider trm-mb-40 trm-mt-40"></div>
-<!-- action button -->
-<div class="text-center">
-    <a href="mailto:23548399650@qq.com" class="trm-btn">
-        Contact Me
-        <i class="iconfont far fa-envelope"></i>
-    </a>
-</div>
-<!-- action button end -->
+
+                
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:23548399650@qq.com" class="trm-btn">
+            Contact Me
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
 
             </div>
             <div name="tabs-toc" class="trm-tabs-item active">
@@ -452,10 +442,10 @@
 
 <h3 id="区间修改"><a href="#区间修改" class="headerlink" title="区间修改"></a>区间修改</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">modify</span><span class="params">(<span class="type">int</span> idx, <span class="type">int</span> l, <span class="type">int</span> r, <span class="type">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">l</span>(idx) &gt; r || <span class="built_in">r</span>(idx) &lt; l) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span> (l &lt;= <span class="built_in">l</span>(idx) &amp;&amp; r &gt;= <span class="built_in">r</span>(idx))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">lazy</span>(idx) += v;</span><br><span class="line">		<span class="built_in">val</span>(idx) += (<span class="built_in">r</span>(idx) - <span class="built_in">l</span>(idx) + <span class="number">1</span>) * v;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 否则当前区间与赋值区间有交集, 需要先下传懒标记</span></span><br><span class="line">	<span class="built_in">pushdown</span>(idx);</span><br><span class="line">	<span class="built_in">modify</span>(sonl, l, r, v), <span class="built_in">modify</span>(sonr, l, r, v);</span><br><span class="line">	<span class="built_in">pushup</span>(idx);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p><img src="https://pic.imgdb.cn/item/63fef113f144a010078e4dbd.jpg" loading="lazy"></p>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p><img src="https://pic.imgdb.cn/item/63fef113f144a010078e4dbd.jpg" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
 <p>查询时间复杂度 $n·log_2n$，常数大概为4，与之相比树状数组常数较小，稳定为 $1$</p>
 <h4 id="查询时间复杂度证明"><a href="#查询时间复杂度证明" class="headerlink" title="查询时间复杂度证明"></a>查询时间复杂度证明</h4><p>我们尝试分类讨论</p>
-<p><img src="https://pic.imgdb.cn/item/63fef41cf144a01007944626.jpg" loading="lazy"></p>
+<p><img src="https://pic.imgdb.cn/item/63fef41cf144a01007944626.jpg" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
 <p>不难发现，对于任意一种情况都只会递归一次，或在第二层递归终止</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> idx, <span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">l</span>(idx) &gt; r || <span class="built_in">r</span>(idx) &lt; l) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">l</span>(idx) &gt;= l &amp;&amp; <span class="built_in">r</span>(idx) &lt;= r) <span class="keyword">return</span> <span class="built_in">val</span>(idx);</span><br><span class="line">	<span class="built_in">pushdown</span>(idx); <span class="comment">// 下传懒标记</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">query</span>(sonl, l, r) + <span class="built_in">query</span>(sonr, l, r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -466,7 +456,7 @@
 <p>因此线段树维护原序列差分序列即可</p>
 <h3 id="2-洛谷p3373-线段树2"><a href="#2-洛谷p3373-线段树2" class="headerlink" title="2. 洛谷p3373 - 线段树2"></a>2. <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3373">洛谷p3373 - 线段树2</a></h3><p>一个同时维护区间乘和区间加的模板，下放懒标记时先下放乘法标记再下放加法标记即可 </p>
 <h2 id="线段树扩展-扫描线"><a href="#线段树扩展-扫描线" class="headerlink" title="线段树扩展 - 扫描线"></a>线段树扩展 - 扫描线</h2><p>当维护矩形面积的并时，也可以尝试使用线段树优化</p>
-<p><img src="https://pic.imgdb.cn/item/63ff17e5f144a01007cc4b7b.jpg" loading="lazy"></p>
+<p><img src="https://pic.imgdb.cn/item/63ff17e5f144a01007cc4b7b.jpg" loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
 <p>如图，建立平面直角坐标系，如果对于 $n$ 个矩形左右边界作为分割线，可以将整张图分为 $2n - 1$ 个区间，左边界赋为 <code>+1</code>，右边界赋为 <code>-1</code>，需要维护面积时，只需要将当前边上<strong>值为正数的部分乘横坐标之差</strong>即可。因此我们将问题转化成了<strong>维护区间正值部分</strong>。</p>
 <p>考虑解决问题需要的信息，在线段树节点上维护 $cnt$，表示当前区间<strong>整体</strong>被覆盖的次数， $len$ 表示值大于 $0$ 的区间长度。考虑到仍不是很好维护，我们尝试从中挖掘一些性质：</p>
 <ol>
@@ -491,45 +481,45 @@
     </div>
     
         <div class="col-lg-6">
-            <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
-    <div class="trm-older-publication">
-        
-        <a class="trm-op-top trm-anima-link" href="/2023/03/04/Persistable_Segment_Tree/">
-            <span class="trm-op-cover">
-                <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/64036d54f144a0100734f448.jpg">
-            </span>
-            <h6 class="trm-op-title">可持久化线段树 | 学习笔记</h6>
-        </a>
-        <div class="trm-divider trm-mb-15 trm-mt-20"></div>
-        <ul class="trm-card-data trm-label">
-            <li>23/03/04</li>
-            <li>18:45</li>
-            <li>数据结构</li>
-        </ul>
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2023/03/04/Persistable_Segment_Tree/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/64036d54f144a0100734f448.jpg">
+                </span>
+                <h6 class="trm-op-title">可持久化线段树 | 学习笔记</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/03/04</li>
+                <li>18:45</li>
+                <li>数据结构</li>
+            </ul>
+        </div>
     </div>
 </div>
-        </div>
     
     
         <div class="col-lg-6">
-            <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
-    <div class="trm-older-publication">
-        
-        <a class="trm-op-top trm-anima-link" href="/2023/01/31/Manacher/">
-            <span class="trm-op-cover">
-                <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/63d936c3e90d1c00984bb396.jpg">
-            </span>
-            <h6 class="trm-op-title">$Manacher$ | 学习笔记</h6>
-        </a>
-        <div class="trm-divider trm-mb-15 trm-mt-20"></div>
-        <ul class="trm-card-data trm-label">
-            <li>23/01/31</li>
-            <li>23:46</li>
-            <li>字符串</li>
-        </ul>
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el" data-scroll="" data-scroll-offset="40">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2023/01/31/Manacher/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="https://pic.imgdb.cn/item/63d936c3e90d1c00984bb396.jpg">
+                </span>
+                <h6 class="trm-op-title">$Manacher$ | 学习笔记</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>23/01/31</li>
+                <li>23:46</li>
+                <li>字符串</li>
+            </ul>
+        </div>
     </div>
 </div>
-        </div>
     
 </div>
 
@@ -569,11 +559,11 @@
 
 <script>
     function show_date_time () {
-        BirthDay = new Date("12/25/2022 17:00:00");
-        today = new Date();
-        timeold = (today.getTime() - BirthDay.getTime());
-        msPerDay = 24 * 60 * 60 * 1000
-        day = Math.floor(timeold / msPerDay)
+        var BirthDay = new Date("12/25/2022 17:00:00");
+        var today = new Date();
+        var timeold = (today.getTime() - BirthDay.getTime());
+        var msPerDay = 24 * 60 * 60 * 1000
+        var day = Math.floor(timeold / msPerDay)
         since.innerHTML = day
     }
     show_date_time()
@@ -588,16 +578,17 @@
 </div>
             <!-- body end -->
 
-            <!-- body -->
             <div class="trm-fixed-container" data-scroll data-scroll-sticky data-scroll-target=".locomotive-scroll__sticky-target" data-scroll-offset="-10">
     
-        <div class="trm-fixed-btn" data-title="Read Mode" onclick="switchReadMode()">
+        <div class="trm-fixed-btn" data-title="Read Mode" onclick="asyncFun.switchReadMode()">
             <i class="iconfont fas fa-book-reader"></i>
         </div>
     
     
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="Back To Top">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
 </div>
-            <!-- body end -->
           </div>
         </div>
       </div>
@@ -606,9 +597,6 @@
   </div>
   <!-- app wrapper end -->
 
-  <div id="trm-back-top" class="trm-back-top" data-title="Back To Top">
-    <i class="iconfont fas fa-arrow-up"></i>
-</div>
   
 <div class="trm-search-popup">
     <div class="trm-search-header">
@@ -628,27 +616,25 @@
 
 
 
-    
-    
 
+    
     
 <script src="https://unpkg.com/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
 
     
 <script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
-
     
 
     
-        <script src="/js/plugins/typing.js?v=1.2.14"></script>
+        <script src="/js/plugins/typing.js?v=2.0.3"></script>
     
 
     
         
 <script src="https://unpkg.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
 
-        <script src="/js/plugins/local_search.js?v=1.2.14"></script>
+        <script src="/js/plugins/local_search.js?v=2.0.3"></script>
     
 
     <!-- 数学公式 -->
@@ -677,23 +663,26 @@
         </script>
     
 
-
     <!-- 评论插件 -->
     
         
+
         
+
             
 <script src="https://unpkg.com/twikoo@1.6.7/dist/twikoo.all.min.js" data-swup-reload-script data-reset="true"></script>
 
             <script data-swup-reload-script>
-                const twikooConfig = {"enable":true,"envId":"cloud-development-server-cf32436","visitor":true};
-                twikooConfig.el = '#tcomment';
-                twikoo.init(twikooConfig).then(function () {
+                twikoo.init({
+                    ...{"enable":true,"envId":"cloud-development-server-cf32436","visitor":true},
+                    el:'#tcomment'
+                }).then(function () {
                     let container = document.querySelector('body>.tk-admin-container')
                     if(container) container.remove()
                     document.body.append(document.querySelector('.tk-admin-container'))
                 });;
             </script>
+
         
     
 
@@ -732,7 +721,7 @@
 
 
 
-<script id="async-script" src="/js/main.js?v=1.2.14"></script>
+<script id="async-script" src="/js/main.js?v=2.0.3"></script>
 
 </body>
 
