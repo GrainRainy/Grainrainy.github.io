@@ -2,7 +2,7 @@
 
 theme: 
   switch: true 
-  default: style-light 
+  default: auto
 
 # 网站图标
 
@@ -25,7 +25,7 @@ user:
   last_name: Grain # 顶栏姓名标识
   avatar: https://pic.imgdb.cn/item/63ba7e07be43e0d30ed318cd.jpg
   email: 23548399650@qq.com
-  domain: https://grainrain.netlify.app/
+  domain: https://grainrain.site/
   describe: 世事漫随流水 算来一生浮梦。
   ruleText: <br> 暂不接受友链申请，仅收录OJ链接。
 
@@ -36,7 +36,7 @@ top_bars:
     url: /
   
   - title: Archives
-    url: /archives/
+    url: '#'
     noswup: true
     children:
       - title: year
@@ -64,7 +64,7 @@ sidebar:
     
     - name: luogu
       icon: /img/luogu.png
-      url: https://gitee.com
+      url: https://www.luogu.com.cn/user/746291
 
 ## 打字动画
 
@@ -187,3 +187,17 @@ katex:
 search:
   enable: true
   type: local
+
+# 右下角悬浮按钮块
+
+rightside:
+  readmode: true
+  aside: true 
+
+highlight:
+  theme: true 
+  title: default
+  copy: true
+  lang: true
+  code_word_wrap: fasle 
+  height_limit: 700 # 超出时，显示折叠按钮
