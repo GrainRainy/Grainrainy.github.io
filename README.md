@@ -26,7 +26,7 @@ Developer Connection:
 
 <video src="相对路径" position= "absolute" width="100%" height="100%" controls="controls"></video>
 
-### When You Want To Upload to Github
+### When Want To Upload to Github
 
 git add .
 
