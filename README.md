@@ -42,6 +42,12 @@ git clone git@github.com:GrainRainy/Grainrainy.github.io.git
 
 <a href="https://grainrain.netlify.app/2022/11/12/2022.11.12%20-%20%E5%A0%86/" alt="堆">堆</a>
 
+### update
+
+```
+npm update
+```
+
 ### Create a new post
 
 ``` bash
