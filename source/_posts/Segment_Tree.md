@@ -7,81 +7,78 @@ author: GrainRain
 cover: https://pic.imgdb.cn/item/64036deaf144a0100735d9b7.jpg
 ---
 
+
 # 线段树 $Segment\ Tree$
 
 线段树是一种数据结构，可维护区间信息，与树状数组不同的是，线段树可以维护更多信息，因而功能也更强大，但缺点是递归操作和建树的常数较大
 
-线段树的主要思想是将整个区间分成若干小段，以二倍关系向上合成区间（实际代码实现时使用递归从上向下建树），将数组信息构建出树形结构，通过**子结点向父节点传递信息**，从而达到 $log$ 级别的复杂度
+线段树的主要思想是将整个区间分成若干小段，以二倍关系向上合成区间（实际代码实现时使用递归从上向下建树），将数组信息构建出树形结构，通过**子结点向父节点传递信息**，从而达到单次查询 $log$ 级别的复杂度
 
-特别地，我们规定左子结点的下标为 `idx << 1`，右子结点的下标为 `idx << 1 | 1`，从而相对稠密地存储，因此对于一个长度为 $n$ 的区间，需要**开 $4n$ 大小的数组存储**线段树。在动态开点线段树中，抛弃了这一规则，改为与插入操作同步新建节点，在线段树节点中记录左右子结点下标，进一步优化了空间复杂度
+特别地，我们规定左子结点的下标为 `cur << 1`，右子结点的下标为 `cur << 1 | 1`，从而相对稠密地存储，因此对于一个长度为 $n$ 的区间，需要**开 $4n$ 大小的数组存储**线段树。在动态开点线段树中，抛弃了这一规则，改为与插入操作同步新建节点，在线段树节点中记录左右子结点下标，进一步优化了空间复杂度，如需直接学习动态开点线段树，请跳至后文。
 
 ## 模板
 
 ### 存储方式（以维护区间和为例）
 
 ```cpp
-#define sonl (idx << 1)
-#define sonr (idx << 1 | 1)
+#define lson (cur << 1)
+#define rson (cur << 1 | 1)
 
 int n, m;
 int nums[N];
 
-struct SegmentTree
-{
+struct SegmentTree{
 	int l, r, val;
-	int lazy; // 延迟标记 
+	int tag;
 	
 	#define l(x) (tree[(x)].l)
 	#define r(x) (tree[(x)].r)
 	#define val(x) (tree[(x)].val)
-	#define lazy(x) (tree[(x)].lazy)
+	#define tag(x) (tree[(x)].tag)
 }tree[N << 2]; // 4 倍空间
 ```
 
-### 递归建树
+### 递归建树 $Build$
 
 ```cpp
-void build(int idx, int l, int r)
+void build(int cur, int l, int r){
 // 当前节点编号，区间左端点，区间右端点
-{
-	l(idx) = l, r(idx) = r;
-	if (l == r) return val(idx) = nums[l], void();
+	l(cur) = l, r(cur) = r;
+	if (l == r) return val(cur) = nums[l], void();
 	
 	int mid = l + r >> 1;
-	build(sonl, l, mid), build(sonr, mid + 1, r);
-	pushup(idx);
+	build(lson, l, mid), build(rson, mid + 1, r);
+	PushUp(cur);
 }
+```
 
-/*调用时使用*/
-
+```cpp
 build(1, 1, n);
 ```
 
-### 向父节点上传信息
+### 向父节点上传信息 $PushUp$
 
 ```cpp
-void pushup(int idx)
-{
-	val(idx) = val(sonl) + val(sonr);
+void PushUp(int cur) {
+	val(cur) = val(lson) + val(rson);
 }
 ```
 
-### 单点修改（无需懒标记）
+### 单点修改 $Modify$
 
 ```cpp
-void modify(int idx, int x, int v)
+void modify(int cur, int x, int v) {
 // 将位置为 x 的点的值修改为 v
-{
-	if (l(idx) > r || r(idx) < l) return;
-	if (l(idx) == x and r(idx) == x) 
-		return val(idx) = v, void();
+	if (l(cur) > r or r(cur) < l) return;
+	if (l(cur) == x and r(cur) == x) 
+		return val(cur) = v, void();
 
-	modify(sonl, x, v), modify(sonr, x, v);
-	pushup(idx);
+	modify(lson, x, v), modify(rson, x, v);
+	PushUp(cur);
 }
 ```
 
-对于单点修改，每次修改操作最多遍历 $log_2n$ 个节点，而如果对区间中每一个点都进行单点修改，修改时间复杂度会退化到 $O(n)$。
+对于单点修改，每次修改操作最多遍历 $log_2n$ 个节点，而如果对区间中每一个点都进行单点修改，单次修改时间复杂度会退化到 $O(n \cdot logn)$。
 
 类比于区间查询，如果查询区间包含整个线段树区间，我们可以在更新信息后直接返回，因此时间复杂度仍会控制到 $log_2n$ 级别，常数控制在 $4$ 左右。
 
@@ -89,37 +86,36 @@ void modify(int idx, int x, int v)
 
 值得注意的是，懒标记一般不包含当前节点信息。
 
-利用懒标记，线段树可以支持区间修改与区间查询的操作，下面是下放懒标记的 $pushdown$ 操作，需要在 $query$ 和 $modify$ 操作时分别调用
+### 下传懒标记 $PushDown$
+
+利用懒标记，线段树可以支持区间修改与区间查询的操作，下面是下放懒标记的 $PushDown$ 操作，需要在 $query$ 和 $modify$ 操作时分别调用
 
 ```cpp
-void pushdown(int idx)
-{
-	lazy(sonl) += lazy(idx);
-	lazy(sonr) += lazy(idx);
-	// 更新子节点延迟标记信息 lazy 
-	val(sonl) += (r(sonl) - l(sonl) + 1) * lazy(idx);
-	val(sonr) += (r(sonr) - l(sonr) + 1) * lazy(idx);
+void PushDown(int cur) {
+	tag(lson) += tag(cur);
+	tag(rson) += tag(cur);
+	// 更新子节点延迟标记信息 tag 
+	val(lson) += (r(lson) - l(lson) + 1) * tag(cur);
+	val(rson) += (r(rson) - l(rson) + 1) * tag(cur);
 	// 更新子节点 value
-	lazy(idx) = 0;
+	tag(cur) = 0;
 }
 ```
 
 ### 区间修改
 
 ```cpp
-void modify(int idx, int l, int r, int v)
-{
-	if (l(idx) > r || r(idx) < l) return;
-	if (l <= l(idx) && r >= r(idx))
-	{
-		lazy(idx) += v;
-		val(idx) += (r(idx) - l(idx) + 1) * v;
+void modify(int cur, int l, int r, int v){
+	if (l(cur) > r or r(cur) < l) return;
+	if (l <= l(cur) and r >= r(cur)){
+		tag(cur) += v;
+		val(cur) += (r(cur) - l(cur) + 1) * v;
 		return;
 	}
 	// 否则当前区间与赋值区间有交集, 需要先下传懒标记
-	pushdown(idx);
-	modify(sonl, l, r, v), modify(sonr, l, r, v);
-	pushup(idx);
+	PushDown(cur);
+	modify(lson, l, r, v), modify(rson, l, r, v);
+	PushUp(cur);
 }
 ```
 
@@ -138,23 +134,23 @@ void modify(int idx, int l, int r, int v)
 不难发现，对于任意一种情况都只会递归一次，或在第二层递归终止
 
 ```cpp
-int query(int idx, int l, int r)
-{
-	if (l(idx) > r || r(idx) < l) return 0;
-	if (l(idx) >= l && r(idx) <= r) return val(idx);
-	pushdown(idx); // 下传懒标记
-	return query(sonl, l, r) + query(sonr, l, r);
+int query(int cur, int l, int r){
+	if (l(cur) > r or r(cur) < l) return 0;
+	if (l(cur) >= l and r(cur) <= r) return val(cur);
+	PushDown(cur); // 下传懒标记
+	return query(lson, l, r) + query(rson, l, r);
 }
 ```
 
+## $Other\ Tricks$
 
-## $Tricks$
+区间加单点查询可以在线段树中存储差分数组，转化为单点修改区间查询，无需使用懒标记每次询问单点 $x$ 查询 $[1, x]$ 即可
 
-区间加单点查询可以在线段树中存储差分数组，转化为单点修改区间查询，无需使用懒标记每次询问单点x查询[1, x] 即可
+-----------
 
 ## 例题
 
-### 1. [Acwing246 - 区间最大公约数](https://www.acwing.com/activity/content/problem/content/1609/)
+### 1. [区间最大公约数](https://www.acwing.com/activity/content/problem/content/1609/)
 
 核心公式
 
@@ -162,13 +158,155 @@ gcd(a, b, c) = gcd(a, b - a, c - b)
 
 因此线段树维护原序列差分序列即可
 
-### 2. [洛谷p3373 - 线段树2](https://www.luogu.com.cn/problem/P3373)
+### 2. [区间乘 区间加](https://www.luogu.com.cn/problem/P3373)
 
-一个同时维护区间乘和区间加的模板，下放懒标记时先下放乘法标记再下放加法标记即可 
+一个的模板，下放懒标记时先下放乘法标记再下放加法标记即可 
 
-## 线段树扩展 - 扫描线
+### 3. [区间求和 区间异或](https://codeforces.com/problemset/problem/242/E)
 
-当维护矩形面积的并时，也可以尝试使用线段树优化
+考虑对每一位二进制分别处理，时间复杂度 $O(n \cdot logn \cdot logs)$（s为值域）
+
+https://www.luogu.com.cn/record/110827412
+
+### 4. [单点修改 区间异或和](https://www.luogu.com.cn/problem/P6098)
+
+异或运算满足交换律和结合律，因此直接维护就行了，而且无需维护懒标记，甚至更简单。
+
+~~虚晃一枪，没想到吧~~
+
+
+## 线段树扩展
+
+### 动态开点线段树
+
+多用于维护权值线段树，省去离散化的时空复杂度
+
+节点个数 $n \cdot logS$
+
+（$n$ 为插入次数，$S$ 为维护值域）
+
+前置数组：
+
+```cpp
+int root, Ttop, lson[N << 1], rson[N << 1];
+```
+
+$root$ 表示线段树根节点
+$tTop$ 维护栈顶位置，达到动态开点的目的
+$lson[i]\ /\ rson[i]$ 表示线段树节点 $i$ 的左右子节点 
+
+下文以维护区间和 $sum$ 为例，附带懒标记处理。需要注意的是，与普通线段树一样，懒标记已经对当前区间进行了处理
+
+#### 下传懒标记
+
+```cpp
+void pushDown(int u, int tl, int tr) {
+	if (!lson[u]) lson[u] = ++ tTop;
+	if (!rson[u]) rson[u] = ++ tTop;
+	tag[lson[u]] += tag[u], tag[rson[u]] += tag[u];
+	int mid = tl + tr >> 1;
+	sum[lson[u]] += tag[u] * (mid - tl + 1);
+	sum[rson[u]] += tag[u] * (tr - mid);
+	tag[u] = 0;
+}
+```
+
+#### 插入 / 单点修改
+
+不难发现每一层单次修改最多插入一个节点，对于 $logn$ 层的动态开点线段树，单次插入时间复杂度为 $logn$
+
+```cpp
+void modifyDot(int &u, int tl, int tr, int pos, int val) {
+// u 表示当前子树根节点，tl tr 表示当前节点区间，pos 表示插入位置，val 表示插入值
+	if (!u) u = ++ tTop; // 动态开点 
+	sum[u] += val; // 处理信息 
+	if (tl == tr) return;
+	int mid = tl + tr >> 1;
+	if (pos <= mid) modifyDot(lson[u], tl, mid, pos, val);
+	else modifyDot(rson[u], mid + 1, tr, pos, val);	
+}
+```
+
+注意这里的线段树根节点传入引用值
+
+#### 区间修改
+
+```cpp
+void modifyRange(int &u, int tl, int tr, int l, int r, int val) {
+	if (!u) u = ++ tTop;
+	int len = min(tr, r) - max(tl, l) + 1; // 区间重合长度 
+	sum[u] += val * len;
+	if (tl >= l and tr <= r) return tag[u] += val, void(); // 打入懒标记并直接返回 
+	int mid = tl + tr >> 1; // 继续递归处理 
+	if (l <= mid) modifyRange(lson[u], tl, mid, l, r, val);
+	if (r > mid) modifyRange(rson[u], mid + 1, tr, l, r, val);
+}
+```
+
+#### 单点 / 区间查询
+
+```cpp
+LL query(int u, int tl, int tr, int l, int r) {
+// root, tl, tr 代表当前线段树节点信息 l, r 代表查询区间边界 
+	if (tl >= l and tr <= r) return sum[u];
+	pushDown(u, tl, tr);
+	int mid = tl + tr >> 1; LL res = 0;
+	if (l <= mid) res += query(lson[u], tl, mid, l, r);
+	if (r > mid) res += query(rson[u], mid + 1, tr, l, r);
+	return res;
+}
+
+```
+
+#### 例题：
+
+##### 前缀和 动态开点权值线段树：[寒假作业](https://www.luogu.com.cn/problem/P2717)
+
+---------------
+
+### 线段树合并
+
+#### 合并节点 $merge$
+
+复杂度证明：
+
+1. 若当前合并的两颗线段树此处均无节点，则退出
+2. 若当前合并的两颗线段树此处只有一个有节点，则直接传回节点编号，并退出
+3. 若当前合并的两颗线段树此处均有节点，则继续递归左右儿子，并在递归返回后 $pushUp$
+
+不难发现，$1$ 和 $2$ 单次操作复杂度均为 $O(1)$，而没有子节点的节点数量级是 $O(n \cdot logn)$ 的。而$2$, $3$ 操作结束后线段树的总节点个数会 $-1$，线段树总结点个数最多为 $n \cdot logn$，所以总复杂度为线段树节点的个数同阶，复杂度为 $n \cdot logn$。
+
+（这里的 $n$ 表示两棵线段树节点重合部分）
+
+函数返回合并后的节点编号。
+
+```cpp
+int merge(int a, int b, int tl, int tr) {
+	if (!a or !b) return a | b;
+	if (tl == tr) {	sum[a] += sum[b]; return a;	}
+	int mid = tl + tr >> 1;
+	lson[a] = merge(lson[a], lson[b], tl, mid);
+	rson[a] = merge(rson[a], rson[b], mid + 1, tr);
+	update(a);
+	return a;
+}
+```
+
+注意：以上写法在合并过程中丢失了 $a$ 节点的信息，因此需要将所有询问离线。而在某些特定题目中需要新建节点存储
+
+### 空间复杂度分析
+
+对于 $N$ 次操作，若每次操作修改 $x$ 个节点，每次修改的值域为 $T$，假设每次都新开点，则空间复杂度为 $N \cdot x \cdot ( \lceil \log_2 T \rceil + 1 ) $
+
+#### 线段树合并模板：[雨天的尾巴](https://www.luogu.com.cn/problem/P4556)
+
+将路径修改转化为树上差分，进行单点修改，最后 $dfs$ 合并每个节点的权值线段树即可。
+
+-----------
+
+### 扫描线
+
+当维护矩形面积并时，也可以尝试使用线段树优化
 
 ![](https://pic.imgdb.cn/item/63ff17e5f144a01007cc4b7b.jpg)
 
@@ -177,34 +315,26 @@ gcd(a, b, c) = gcd(a, b - a, c - b)
 考虑解决问题需要的信息，在线段树节点上维护 $cnt$，表示当前区间**整体**被覆盖的次数， $len$ 表示值大于 $0$ 的区间长度。考虑到仍不是很好维护，我们尝试从中挖掘一些性质：
 
 1. 区间值必定先加后减，不存在负值情况
-2. 查询时只需要根节点信息，$query$ 不需要 $pushdown$
+2. 查询时只需要根节点信息，$query$ 不需要 $PushDown$
 3. 所有操作均是成对出现
 
-综上可以发现，在树中进行维护操作时不需要 $pushdown$ 操作，因此保证了时间复杂度 $n·logn$
+综上可以发现，在树中进行维护操作时不需要 $PushDown$ 操作，因此保证了时间复杂度 $n·logn$
 
 另外值得注意的是，线段树中维护的是区间而不是点位，因此右边界值需要在适当位置 `- 1`
 
-### 模板
+#### $Solutions$
 
 ```cpp
-#define sonl (idx << 1)
-#define sonr (idx << 1 | 1)
-using LL = long long;
-
 int n;
-struct Segment
-{
+struct Segment{
     double x, y1, y2;
     int k;
-
-    bool operator < (const Segment t) const
-    {
+    bool operator < (const Segment t) const {
         return x < t.x;
     }
 }seg[N << 1];
 
-struct SegmentTree
-{
+struct SegmentTree{
     int l, r;
     int cnt;
     double len;
@@ -217,53 +347,45 @@ struct SegmentTree
 
 vector<double> lis;
 
-int find(double y)
-{
+int find(double y) {
     return lower_bound(lis.begin(), lis.end(), y) - lis.begin();
 }
 
-void pushup(int idx)
-{
-    if (cnt(idx)) len(idx) = lis[r(idx) + 1] - lis[l(idx)];
-    else if (l(idx) != r(idx)) len(idx) = len(sonl) + len(sonr);
-    else len(idx) = 0;
+void PushUp(int cur) {
+    if (cnt(cur)) len(cur) = lis[r(cur) + 1] - lis[l(cur)];
+    else if (l(cur) != r(cur)) len(cur) = len(lson) + len(rson);
+    else len(cur) = 0;
 }
 
-void build(int idx, int l, int r)
-{
-    tree[idx] = {l, r, 0, 0};
-    if (l != r)
-    {
+void build(int cur, int l, int r) {
+    tree[cur] = {l, r, 0, 0};
+    if (l != r) {
         int mid = l + r >> 1;
-        build(sonl, l, mid), build(sonr, mid + 1, r);
+        build(lson, l, mid), build(rson, mid + 1, r);
     }
 }
 
-void modify(int idx, int l, int r, int k)
-{
-    if (l(idx) > r or r(idx) < l) return;
-    if (l(idx) >= l and r(idx) <= r)
+void modify(int cur, int l, int r, int k) {
+    if (l(cur) > r or r(cur) < l) return;
+    if (l(cur) >= l and r(cur) <= r)
     {
-        cnt(idx) += k;
-        pushup(idx);
+        cnt(cur) += k;
+        PushUp(cur);
         return;
     }
-    modify(sonl, l, r, k), modify(sonr, l, r, k);
-    pushup(idx);
+    modify(lson, l, r, k), modify(rson, l, r, k);
+    PushUp(cur);
 }
 
-int main()
-{
+int main() {
     int t; input(t);
-    while (t --)
-    {
+    while (t --) {
 		int n; input(n);
-        for (int i = 0, j = 0; i < n; i ++)
-        {
+        for (int i = 0, j = 0; i < n; i ++) {
             double x1, x2, y1, y2;
             cin >> x1 >> y1 >> x2 >> y2;
-            seg[j ++] = {x1, y1, y2, 1};
-            seg[j ++] = {x2, y1, y2, -1};
+            seg[j ++] = { x1, y1, y2, 1 };
+            seg[j ++] = { x2, y1, y2, -1 };
             lis.push_back(y1), lis.push_back(y2);
         }
 
@@ -277,12 +399,10 @@ int main()
 		// 建树
 
         double ans = 0;
-        for (int i = 0; i < 2 * n; i ++)
-        {
+        for (int i = 0; i < 2 * n; i ++) {
             if (i > 0) ans += len(1) * (seg[i].x - seg[i - 1].x);
             modify(1, find(seg[i].y1), find(seg[i].y2) - 1, seg[i].k);
         }
-
         cout << ans << endl;
     }
     return 0;

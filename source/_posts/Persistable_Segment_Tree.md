@@ -7,9 +7,10 @@ author: GrainRain
 cover: https://pic.imgdb.cn/item/64036d54f144a0100734f448.jpg
 ---
 
+
 # 可持久化线段树 (主席树)
 
-有一个非常上流的英文名：$Persistable\ Segment\ Tree$
+一个非常上流的英文名：$Persistable\ Segment\ Tree$
 
 $Persistable$ 意为可读写的，动态的，持久的
 
@@ -21,7 +22,7 @@ $Persistable$ 意为可读写的，动态的，持久的
 
 ## 空间复杂度
 
-对于 $m$ 次修改，单次单点修改最多改变 $log_2 n$ 个节点，因此可持久化线段树空间复杂度为 $O(m·log_2 n)$
+对于 $m$ 次修改，单次单点修改最多改变 $log_2 n$ 个节点，因此可持久化线段树空间复杂度为 $m·log_2 n$
 
 可持久化线段树一般应用于维护区间问题，当维护 $1e9$ 值域而数据量比较小时，尝试用离散化的技巧存储以优化空间复杂度：
 
@@ -31,8 +32,7 @@ $Persistable$ 意为可读写的，动态的，持久的
 int a[N];
 vector<int> nums;
 
-for (int i = 1; i <= n; i ++)
-{
+for (int i = 1; i <= n; i ++) {
     cin >> a[i];
     nums.push_back(a[i]);
 }
@@ -44,8 +44,7 @@ nums.erase(unique(nums.begin(), nums.end()), nums.end());
 利用 $stl$ 查找离散化值
 
 ```cpp
-int find(int x)
-{
+int find(int x) {
     return lower_bound(nums.begin(), nums.end()) - nums.begin();
 }
 ```
@@ -68,25 +67,22 @@ int find(int x)
 可持久化线段树 $Solution$：
 
 1. 离散化，减小维护值域
-2. 类似于权值线段树，该题在数值上建立线段树，维护每个数值区间中一共有多少个数
+2. 类似于权值线段树，该题在数值上建立线段树，维护每个数值区间中数的个数
 3. 线段树上二分
 
-每次递归一边，$log_2n$ 层，最多访问 $log_2n$ 个节点，因此时间复杂度为$O(log_2n)$
+每次递归一边，logn层，最多访问logn个节点，时间复杂度logn
 
-寻找区间信息，考虑到信息的可运算性，尝试使用容斥原理：
-`[1, r]` 找到插入 $r$ 时的版本
-`[l, r]` 插入 $r$ 时的版本减去插入 $l$ 时的版本
+[1, r] 找到插入 r 时的版本
+[l, r] 插入 r 时的版本减去插入 l 时的版本
 
 插入操作，同时新建节点存储新版本信息
 
 ```cpp
-int insert(int cur, int l, int r, int k)
-{
+int insert(int cur, int l, int r, int k) {
     int to = ++ idx;
     tree[to] = tree[cur];
     if (l == r) cnt(to) ++;
-    else
-    {
+    else {
         int mid = l + r >> 1;
         if (k <= mid) idxl(to) = insert(idxl(cur), l, mid, k);
         else idxr(to) = insert(idxr(cur), mid + 1, r, k);
@@ -99,9 +95,7 @@ int insert(int cur, int l, int r, int k)
 查询版本信息，为访问到原树中未修改的信息，需要同时遍历原树节点和新节点
 
 ```cpp
-int query(int to, int cur, int l, int r, int k)
-{
-
+int query(int to, int cur, int l, int r, int k){
     if (l == r) return r;
     int cnt = cnt(idxl(to)) - cnt(idxl(cur));
     int mid = l + r >> 1;
@@ -115,11 +109,9 @@ int query(int to, int cur, int l, int r, int k)
 在主函数中，我们需要将原数组离散化后去重，并插入可持久化线段树中
 
 ```cpp
-signed main()
-{
+signed main() {
 	cin >> n >> m;
-	for (int i = 1; i <= n; i ++)
-	{ 
+	for (int i = 1; i <= n; i ++) { 
 		cin >> a[i];
 		nums.push_back(a[i]); // start from 0
 	}
@@ -130,8 +122,7 @@ signed main()
 	for (int i = 1; i <= n; i ++)
 		root[i] = insert(root[i - 1], 0, nums.size() - 1, find(a[i]));
 	
-	while (m --)
-	{
+	while (m --) {
 		int l, r, k;
 		cin >> l >> r >> k;
 		cout << nums[query(root[r], root[l - 1], 0, nums.size() - 1, k)] << endl;

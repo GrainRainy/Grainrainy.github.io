@@ -7,19 +7,20 @@ author: GrainRain
 cover: https://pic.imgdb.cn/item/63ba9f4cbe43e0d30e0ffb56.jpg
 ---
 
+
 # $STL$ 容器
 
 ## $vector$ 变长数组
 
 > 包含在 < vector > 头文件中
 
-**基本思想：倍增**
+### 基本思想：倍增
 
-系统为某一程序分配空间时，所用时间与空间大小无关，只与申请次数有关。因此 `vector` 为保证效率，需要尽可能减少申请次数。**`vector` 使用倍增的思想分配空间**
+系统为某一程序分配空间时，所用时间与空间大小无关，只与申请次数有关。因此 `vector` 为保证效率，需要尽可能减少申请次数。**`vector` 使用倍增的方式分配空间**
 
 `vector` 在定义时，先开辟一定长度的空间，当元素个数大于当前数组长度时，开一个两倍于该长度的空间，再将原数组复制进新数组
 
-由此可知，当开辟一个长度为 `n` 的 `vector` 数组时，需进行 log~2~n 次开辟空间的操作，总复制次数为 `n`，平均**插入每个数的时间复杂度是 O(1)**
+由此可知，当开辟一个长度为 `n` 的 `vector` 数组时，需进行 $log_2n$ 次开辟空间的操作，总复制次数为 `n`，平均**插入每个数的时间复杂度是 $O(1)$**
 
 ### 定义
 
@@ -39,7 +40,7 @@ vector<int> a[10];
 
 ### 操作函数
 
-O(1):
+$O(1)$:
 
 ```cpp
 a.size();
@@ -63,7 +64,7 @@ a.pop_back();
 // 删除 a 数组最后一个元素
 ```
 
-O(n)；
+$O(n)$:
 
 ```cpp
 a.clear();
@@ -111,9 +112,9 @@ for (auto x : a)
 ```cpp
 pair<int, string> a;
 
-a = make_pair(10, "Hello");
+a = make_pair(114, "Hello");
 
-a = {10, "World"};
+a = {514, "World"};
 ```
 
 ### 操作函数
@@ -267,9 +268,8 @@ priority_queue<int> heap;
 heap.push(-x);
 // 在大根堆进行此操作，即可将 x 的绝对值按照从小到大排序(小根堆)
 
-priority_queue<int, vector<int>, greater<int> > heap;
+priority_queue<int, vector<int>, greater<int>> heap;
 // 定义小根堆(从小到大排序，以最小值为根节点)
-
 ```
 
 ### 操作函数
@@ -372,7 +372,7 @@ a.upper_bound(x);
 > 包含在 < map > 头文件中
 
 - 基于平衡二叉树 (红黑树) 实现
-  动态维护有序序列
+- 动态维护有序序列
 
 ### 定义
 
@@ -448,79 +448,87 @@ cout << a["wangk"] << endl;
 
 ***
 
-### bitset 压位
+## bitset 容器
 
-#### 定义
+类似于 `bool` 类型数组，但 `bitset` 单个元素 `0/1` 只占 $1\ bit$ 空间（1byte = 8bit）
+
+### 定义
 
 ```cpp
 bitset<10000> s;
 // 定义长度为 10000 的 bitset
 ```
 
-#### 操作
+#### 赋值
 
-- `~` `&` `|` `^` `>>` `<<` `==` `!=`
+- 定义同时直接赋值 `bitset<100> s(string("101"));`
+- 单个位置赋值 `s[10] = 1;` （即代表 $2^{10}$）
+- 整体赋值 `s = 101;`
+
+#### 运算 / 操作符
+
 - 取某一位 `s[]`
+- 支持比较 `==` `!=`
+- 支持位运算 `>>` `<<` `~` `&` `|` `^` 
+
+#### 输出
+
+1. 转化为整型变量输出 `printf("%d", s.to_ulong());`
+
+2. 直接输出 `cout << s;` （带前导 $0$）
+
+#### 操作函数
 
 ```cpp
-s.count();
-// 返回 1 的个数
+s.count(); // 返回 1 的个数
 
-s.any();
-// 是否至少有一个 1
+s.any(); // 是否至少有一个 1
 
-s.none();
-// 是否全部为 0
+s.none(); // 是否全部为 0
 
-s.set();
-// 将所有位置初始化成 1
+s.set(); // 将所有位置初始化成 1
 
-s.reset();
-// 将所有位置初始化为 0
+s.reset(); // 将所有位置初始化为 0
 
-s.set(k, v);
-// 将第 k 位赋为 v
+s.set(k, v); // 将第 k 位赋为 v
 
-s.flip();
-// 将所有位置取反
+s.flip(); // 将所有位置取反
 
-s.flip(k);
-// 将第 k 位取反
+s.flip(k); // 将第 k 位取反
 ```
 
 # STL 函数
 
 需引入 `<alrorithm>` 头文件
 
-- 规定下文中 `begin` 和 `end` 均为迭代器
-
 ```cpp
-min(x, y);
-
-max(x, y);
-
-swap(x, y);
-
 find(begin, end, x);
 
-count(begin, end, x);
+count(begin, end, x); 
 
 revise(begin, end);
+// 反转序列元素 
 
 random_shuffle(begin, end);
+// 随机打乱元素 
 
 unique(begin, end);
+// 对于数组元素去重，仅对排序好的序列有效 
 
 nth_element(bengin, begin + k, end, compare);
 // 找出序列中第 n 大的元素，使其左边均为小于它的数，右边均为大于它的数。
 
-lower_bound(begin, end, x);
-upper_bound(begin, end, x);
+lower_bound(begin, end, x); // 返回第一个大于等于 x 的数的指针 
+upper_bound(begin, end, x); // 返回第一个大于 x 的数的指针 
 
 next_permutation(begin, end);
 prev_permutation(begin, end);
-// 返回数列按字典序的上 / 下一个位置，可用于枚举全排列
+// 时间复杂度 O(n)
+// 更改数列为原数列按字典序的上 / 下一个位置，可用于枚举全排列
+// 函数返回值为 T/F，用于指示新序列是否生成 
 ```
+
+（以上 `begin` 代表头指针，`end` 代表尾指针）
 
 值得注意的是，`random_shuffle` 自 C++14 起被弃用，C++17 起被移除。我们可以使用 `shuffle` 函数代替原来的 `random_shuffle`。使用方法为:
 
@@ -528,5 +536,5 @@ prev_permutation(begin, end);
 shuffle(v.begin(), v.end(), rng);
 ```
 
-（最后一个参数传入的是使用的随机数生成器，一般情况使用以真随机数生成器 random_device 播种的梅森旋转伪随机数生成器 mt19937）。
+（最后一个参数传入的是使用的随机数生成器，一般情况使用以真随机数生成器 `random_device` 播种的梅森旋转伪随机数生成器 mt19937）。
 

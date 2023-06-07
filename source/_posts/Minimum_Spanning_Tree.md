@@ -9,6 +9,7 @@ cover: https://pic.imgdb.cn/item/63d53f59face21e9efc45f4c.jpg
 
 
 # 最小生成树 
+
 $Minimum\ Spanning\ Tree$
 
 最小生成树指在无向图中找出任意两点都相互连通的树结构的最小边权
@@ -38,14 +39,13 @@ int dist[N];
 bool st[N];
 
 int n ,m;
+int u, v, w;
 
-int prime()
-{
+int prime() {
 	memset(dist, 0x3f, sizeof dist);
 	int ans = 0;
 	// 用于存储最小生成树中所有边权之和 
-	for (int i = 0; i < n; i ++)
-	{
+	for (int i = 0; i < n; i ++) {
 		int t = -1;
 		for (int j = 1; j <= n; j ++)
 			if (!st[j] && (t == -1 || dist[t] > dist[j]))
@@ -67,13 +67,10 @@ int prime()
 	return ans;
 }
 
-int main()
-{
+int main() {
 	cin >> n >> m;
 	memset(g, 0x3f, sizeof g);
-	while (m --)
-	{
-		int u, v, w;
+	while (m --) {
 		cin >> u >> v >> w;
 		g[u][v] = g[v][u] = min(g[v][u], w);
 	}
@@ -97,29 +94,22 @@ int main()
 2. 枚举每条边，设这条边从 $a$ 指向 $b$ ，权重为 $c$。如果当前 $a$ 和 $b$ 所在的集合不连通（使用并查集维护），就将这条边加入集合中
 
 ```cpp
-const int N = 2e5 + 10;
+int n, m;
+int p[N]; // 并查集 father 数组
 
-struct node
-{
+struct node {
 	int a, b, w;
-	
-	bool operator < (const node &t) const
-	{
+	bool operator < (const node &t) const {
 		return w < t.w;
 	}
 }edge[N];
 
-int p[N]; // 并查集 father 数组
-int find(int x)
-{
+int find(int x) {
 	if (p[x] != x) p[x] = find(p[x]);
 	return p[x];
 }
 
-int n, m;
-
-void kruskal()
-{
+void kruskal() {
 	sort(edge, edge + m);
 	for (int i = 1; i <= n; i ++) p[i] = i;
 	// 初始化并查集 
@@ -127,13 +117,11 @@ void kruskal()
 	int res = 0, cnt = 0;
 	// res 存储最小生成树中边权之和
 	// cnt 存储最小生成树中边数 
-	for (int i = 0; i < m; i ++)
-	{
+	for (int i = 0; i < m; i ++) {
 		int a = edge[i].a, b = edge[i].b, w = edge[i].w;
 
 		a = find(a), b = find(b);
-		if (a != b)
-		{
+		if (a != b) {
 			p[a] = b; 
 			res += w;
 			cnt ++;
@@ -143,11 +131,9 @@ void kruskal()
 	else cout << res << endl;
 }
 
-int main()
-{
+int main() {
 	cin >> n >> m;
-	for (int i = 0; i < m ;i ++)
-	{
+	for (int i = 0; i < m ;i ++) {
 		int a, b, w;
 		cin >> a >> b >> w;
 		edge[i] = {a, b, w};
@@ -162,8 +148,6 @@ int main()
 
 当且仅当图中不含奇数环[^1]时，一个图是二分图
 
-
-
 ## 染色法($dfs$) - 判别二分图
 
 - 时间复杂度由 $dfs$ 继承而来，$O(m + n)$
@@ -175,13 +159,11 @@ const int N = 1e5 + 10, M = N << 1;
 int n, m;
 int color[N];
 
-bool dfs(int u, int c)
-// point and color
-{
+bool dfs(int u, int c) {
+// point and color 
 	color[u] = c;
 	
-	for (int i = h[u]; i != -1; i = edge[i].nxt)
-	{
+	for (int i = head[u]; i != -1; i = edge[i].nxt) {
 		int t = edge[i].to;
 		if (!color[t] && !dfs(t, 3 - c)) 
 			return false;
@@ -191,13 +173,10 @@ bool dfs(int u, int c)
 	return true;
 }
 
-int main()
-{
-	memset(h, -1, sizeof h);
-	// init
+int main() {
+	memset(head, -1, sizeof head);
 	cin >> n >> m;
-	for (int i = 0; i < m; i ++)
-	{
+	for (int i = 0; i < m; i ++) {
 		int a, b;
 		cin >> a >> b;
 		add(a, b), add(b, a);
@@ -205,8 +184,7 @@ int main()
 	// input
 	bool judge = true;
 	for (int i = 1; i <= n; i ++)
-		if (!color[i] && !dfs(i, 1))
-		{
+		if (!color[i] && !dfs(i, 1)) {
 			judge = false;
 			break;
 		}
@@ -222,13 +200,10 @@ int main()
 
 
 ```cpp
-const int N = 510, M = 1e5 + 10;
-
 int n1, n2, m;
 
-int h[N], idx;
-struct node
-{
+int head[N], idx;
+struct node {
 	int val, nxt;
 }edge[M];
 
@@ -237,24 +212,18 @@ int match[N];
 bool st[N];
 // 存储是否考虑过该点 
 
-void add(int a, int b)
-{
+void add(int a, int b) {
 	edge[++ idx].val = b;
-	edge[idx].nxt = h[a];
-	h[a] = idx;
+	edge[head[a] = idx].nxt = head[a];
 }
 
-bool find(int x)
-{
-	for (int i = h[x]; i != -1; i = edge[i].nxt)
-	{
+bool find(int x) {
+	for (int i = head[x]; i != -1; i = edge[i].nxt) {
 		int t = edge[i].val;
-		if (!st[t])
-		{
+		if (!st[t]) {
 			st[t] = true;
-			if (match[t] == 0 || find(match[t]))
+			if (match[t] == 0 || find(match[t])) {
 			// 右侧点可用 
-			{
 				match[t] = x;
 				return true;
 			}
@@ -263,23 +232,19 @@ bool find(int x)
 	return false;
 }
 
-int main()
-{
-	memset(h, -1, sizeof h);
-	// init
+int main() {
+	memset(head, -1, sizeof head);
 	cin >> n1 >> n2 >> m;
-	while (m --)
-	{
-		int a, b;
+	int a, b;
+	while (m --) {
 		cin >> a >> b;
 		add(a, b);
 	}
 	// input
 	int res = 0;
 	// 当前匹配数量
-	for (int i = 1; i <= n1; i ++)
-	{
-		memset(st, false, sizeof st);
+	for (int i = 1; i <= n1; i ++) {
+		memset(st, false, sizeof st); // 注意每次清空 st 数组
 		if (find(i)) res ++;
 	}
 	cout << res << endl;
