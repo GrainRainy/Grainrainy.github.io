@@ -1,10 +1,10 @@
 ---
-title: 基础动态规划 | 学习笔记
+title: 线性动态规划 | 学习笔记
 date: 2022-10-13 13:40:03
 categories: 动态规划
 tags: 学习笔记
 author: GrainRain
-cover: https://pic.imgdb.cn/item/6480a0eb1ddac507cc645a3c.png
+cover: https://pic.imgdb.cn/item/6482fc961ddac507cce180b2.png
 ---
 
 

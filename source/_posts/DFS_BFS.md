@@ -4,7 +4,7 @@ date: 2022-10-14 17:09:19
 categories: 基础算法
 tags: 学习笔记
 author: GrainRain
-cover: https://pic.imgdb.cn/item/64809ffa1ddac507cc62bda1.jpg
+cover: https://pic.imgdb.cn/item/6482fc961ddac507cce18117.jpg
 ---
 
 

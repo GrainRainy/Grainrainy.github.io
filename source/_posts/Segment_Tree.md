@@ -4,7 +4,7 @@ date: 2023-3-4 18:30:22
 categories: 数据结构
 tags: 数据结构
 author: GrainRain
-cover: https://pic.imgdb.cn/item/64036deaf144a0100735d9b7.jpg
+cover: https://pic.imgdb.cn/item/648306dd1ddac507ccf2d531.png
 ---
 
 
@@ -41,7 +41,7 @@ struct SegmentTree{
 ### 递归建树 $Build$
 
 ```cpp
-void build(int cur, int l, int r){
+void build(int cur, int l, int r) {
 // 当前节点编号，区间左端点，区间右端点
 	l(cur) = l, r(cur) = r;
 	if (l == r) return val(cur) = nums[l], void();
@@ -105,7 +105,7 @@ void PushDown(int cur) {
 ### 区间修改
 
 ```cpp
-void modify(int cur, int l, int r, int v){
+void modify(int cur, int l, int r, int v) {
 	if (l(cur) > r or r(cur) < l) return;
 	if (l <= l(cur) and r >= r(cur)){
 		tag(cur) += v;
@@ -134,7 +134,7 @@ void modify(int cur, int l, int r, int v){
 不难发现，对于任意一种情况都只会递归一次，或在第二层递归终止
 
 ```cpp
-int query(int cur, int l, int r){
+int query(int cur, int l, int r) {
 	if (l(cur) > r or r(cur) < l) return 0;
 	if (l(cur) >= l and r(cur) <= r) return val(cur);
 	PushDown(cur); // 下传懒标记
@@ -152,9 +152,9 @@ int query(int cur, int l, int r){
 
 ### 1. [区间最大公约数](https://www.acwing.com/activity/content/problem/content/1609/)
 
-核心公式
+核心公式：
 
-gcd(a, b, c) = gcd(a, b - a, c - b)
+$$gcd(a, b, c) = gcd(a, b - a, c - b)$$
 
 因此线段树维护原序列差分序列即可
 
@@ -174,6 +174,7 @@ https://www.luogu.com.cn/record/110827412
 
 ~~虚晃一枪，没想到吧~~
 
+-----------
 
 ## 线段树扩展
 
@@ -182,7 +183,6 @@ https://www.luogu.com.cn/record/110827412
 多用于维护权值线段树，省去离散化的时空复杂度
 
 节点个数 $n \cdot logS$
-
 （$n$ 为插入次数，$S$ 为维护值域）
 
 前置数组：
@@ -192,7 +192,8 @@ int root, Ttop, lson[N << 1], rson[N << 1];
 ```
 
 $root$ 表示线段树根节点
-$tTop$ 维护栈顶位置，达到动态开点的目的
+$tTop$ 维护栈顶位置，达到动态开
+点的目的
 $lson[i]\ /\ rson[i]$ 表示线段树节点 $i$ 的左右子节点 
 
 下文以维护区间和 $sum$ 为例，附带懒标记处理。需要注意的是，与普通线段树一样，懒标记已经对当前区间进行了处理
@@ -255,12 +256,34 @@ LL query(int u, int tl, int tr, int l, int r) {
 	if (r > mid) res += query(rson[u], mid + 1, tr, l, r);
 	return res;
 }
-
 ```
 
-#### 例题：
+#### 应用：
 
 ##### 前缀和 动态开点权值线段树：[寒假作业](https://www.luogu.com.cn/problem/P2717)
+
+一句话题意：给定序列和一个整数 $k$，求区间平均数大于等于 $k$ 的区间个数
+
+###### $Solutions$
+
+首先将所有数 $-k$，问题转化为求 $sum_{l, r} \geqslant 0$ 的区间个数. 再对区间前缀和处理，转化为求 $s_r - s_{l - 1}$ 的书数对个数. 
+
+以上都是很经典且一般的套路. 
+
+尝试固定一个边界（左），查询另一边界（右）. 
+
+当固定了一个边界 $x$，只需求 $r$ 使得 $sum_r \geqslant sum_{x - 1}$. 即求当前插入的元素中大于等于 $sum_{x - 1}$ 的数的个数. 使用权值线段树 / 离散化后树状数组 维护都是可以的. 
+
+```cpp
+for (int i = n; i; -- i) {
+	insert(rt, 1, INF << 1, a[i] + INF);
+	ans += query(rt, 1, INF << 1, a[i - 1] + INF, INF << 1);
+}
+```
+
+单次插入与单次查询时间复杂度均为 $O(logn)$，总时间复杂度 $O(n \cdot logn)$
+
+当然，以上枚举的是左边界，换用右边界枚举也是一样的. 
 
 ---------------
 
@@ -294,9 +317,9 @@ int merge(int a, int b, int tl, int tr) {
 
 注意：以上写法在合并过程中丢失了 $a$ 节点的信息，因此需要将所有询问离线。而在某些特定题目中需要新建节点存储
 
-### 空间复杂度分析
+#### 空间复杂度分析
 
-对于 $N$ 次操作，若每次操作修改 $x$ 个节点，每次修改的值域为 $T$，假设每次都新开点，则空间复杂度为 $N \cdot x \cdot ( \lceil \log_2 T \rceil + 1 ) $
+对于 $N$ 次操作，若每次操作修改 $x$ 个节点，每次修改的值域为 $T$，假设每次都新开点，则空间复杂度为 $N \cdot x \cdot ( \lceil \log_2 T \rceil + 1 )$
 
 #### 线段树合并模板：[雨天的尾巴](https://www.luogu.com.cn/problem/P4556)
 
@@ -310,17 +333,17 @@ int merge(int a, int b, int tl, int tr) {
 
 ![](https://pic.imgdb.cn/item/63ff17e5f144a01007cc4b7b.jpg)
 
-如图，建立平面直角坐标系，如果对于 $n$ 个矩形左右边界作为分割线，可以将整张图分为 $2n - 1$ 个区间，左边界赋为 `+1`，右边界赋为 `-1`，需要维护面积时，只需要将当前边上**值为正数的部分乘横坐标之差**即可。因此我们将问题转化成了**维护区间正值部分**。
+如图，建立平面直角坐标系，如果对于 $n$ 个矩形左右边界作为分割线，可以将整张图分为 $2n - 1$ 个区间，左边界赋为 $+1$，右边界赋为 $-1$，需要维护面积时，只需要将当前边上**值为正数的部分乘横坐标之差**即可。因此我们将问题转化成了**维护区间正值部分**。
 
 考虑解决问题需要的信息，在线段树节点上维护 $cnt$，表示当前区间**整体**被覆盖的次数， $len$ 表示值大于 $0$ 的区间长度。考虑到仍不是很好维护，我们尝试从中挖掘一些性质：
 
 1. 区间值必定先加后减，不存在负值情况
-2. 查询时只需要根节点信息，$query$ 不需要 $PushDown$
+2. 查询时只需要根节点信息，$query$ 不需要 $pushDown$
 3. 所有操作均是成对出现
 
-综上可以发现，在树中进行维护操作时不需要 $PushDown$ 操作，因此保证了时间复杂度 $n·logn$
+综上可以发现，在树中进行维护操作时不需要 $pushDown$ 操作，因此保证了时间复杂度 $n \cdot logn$
 
-另外值得注意的是，线段树中维护的是区间而不是点位，因此右边界值需要在适当位置 `- 1`
+另外值得注意的是，线段树中维护的是区间而不是点位，因此右边界值需要在适当位置 $-1$
 
 #### $Solutions$
 
@@ -408,3 +431,5 @@ int main() {
     return 0;
 }
 ```
+
+~~写了 $400$ 多行，不赞一个吗~~

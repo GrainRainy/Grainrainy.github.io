@@ -4,7 +4,7 @@ date: 2022-12-21 09:04:34
 categories: 基础算法
 tags: 学习笔记
 author: GrainRain
-cover: https://pic.imgdb.cn/item/63ba9bcabe43e0d30e0a3029.jpg
+cover: https://pic.imgdb.cn/item/6480a72f1ddac507cc6d4f37.jpg
 ---
 
 
@@ -68,6 +68,7 @@ cout << mny * 200 << endl;
 ## 经典套路
 
 ### 工序安排问题
+
 
 #### 双工序 第二工序需等待：[工序安排](https://www.luogu.com.cn/problem/P2751)
 
