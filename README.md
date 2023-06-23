@@ -8,23 +8,35 @@
 
 ### 插入本地视频
 
+```
 <video src="相对路径" position= "absolute" width="100%" height="100%" controls="controls"></video>
+```
 
 ### When Want To Upload to Github
 
+```
 git add .
+```
 
+```
 git commit -m "commit信息"
+```
 
+```
 git push
+```
 
 ### When Download
 
+```
 git clone git@github.com:GrainRainy/Grainrainy.github.io.git
+```
 
 ### 文章内使用文章链接
 
+```
 <a href="https://grainrain.netlify.app/2022/11/12/2022.11.12%20-%20%E5%A0%86/" alt="堆">堆</a>
+```
 
 ### update theme
 
@@ -39,6 +51,12 @@ $ hexo new "My New Post"
 ```
 
 More info: [Writing](https://hexo.io/docs/writing.html)
+
+### Local Test
+
+```
+hexo s
+```
 
 ### Run server
 
