@@ -5,6 +5,7 @@ categories: 字符串
 tags: 字符串
 author: GrainRain
 cover: https://pic.imgdb.cn/item/63d936c3e90d1c00984bb396.jpg
+single_column: true
 ---
 
 # $Manacher$ 回文字符串匹配

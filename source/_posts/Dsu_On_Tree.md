@@ -1,10 +1,11 @@
 ---
 title: 树上启发式合并 | 学习笔记
-date: 2023-06-07 23:39:16
+date: 2023-06-07 23:37:21
 categories: 图论
 tags: 学习笔记
 author: GrainRain
 cover: https://pic.imgdb.cn/item/6480a8d11ddac507cc6f7b70.jpg
+single_column: true
 ---
 
 # 树上启发式合并 $dfu\ on\ tree$

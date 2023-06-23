@@ -5,6 +5,7 @@ categories: 图论
 tags: 图论
 author: GrainRain
 cover: https://pic.imgdb.cn/item/63d53f59face21e9efc45f4c.jpg
+single_column: true
 ---
 
 

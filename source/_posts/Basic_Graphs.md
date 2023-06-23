@@ -4,7 +4,8 @@ date: 2022-10-29 19:10:28
 categories: 图论
 tags: 学习笔记
 author: GrainRain
-cover: https://pic.imgdb.cn/item/6480a25d1ddac507cc666918.png
+cover: https://pic.imgdb.cn/item/648308191ddac507ccf44c1c.jpg
+single_column: true
 ---
 
 

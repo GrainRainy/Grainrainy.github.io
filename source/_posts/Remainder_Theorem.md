@@ -5,6 +5,7 @@ categories: 数学与数论
 tags: 学习笔记
 author: GrainRain
 cover: https://pic.imgdb.cn/item/63ba9f76be43e0d30e103609.jpg
+single_column: true
 ---
 
 # 余数加法定理

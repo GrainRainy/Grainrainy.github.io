@@ -5,6 +5,7 @@ categories: 基础算法
 tags: 学习笔记
 author: GrainRain
 cover: https://pic.imgdb.cn/item/63ba99bebe43e0d30e064975.jpg
+single_column: true
 ---
 
 # 高精度运算

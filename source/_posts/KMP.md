@@ -5,6 +5,7 @@ categories: 字符串
 tags: 学习笔记
 author: GrainRain
 cover: https://pic.imgdb.cn/item/63ba8003be43e0d30ed5b43f.jpg
+single_column: true
 ---
 
 # $KMP$ 字符串匹配

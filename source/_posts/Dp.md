@@ -4,7 +4,8 @@ date: 2022-10-13 13:40:03
 categories: 动态规划
 tags: 学习笔记
 author: GrainRain
-cover: https://pic.imgdb.cn/item/6482fc961ddac507cce180b2.png
+cover: https://pic.imgdb.cn/item/6483087b1ddac507ccf4c197.jpg
+single_column: true
 ---
 
 

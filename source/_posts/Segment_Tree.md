@@ -4,7 +4,8 @@ date: 2023-3-4 18:30:22
 categories: 数据结构
 tags: 数据结构
 author: GrainRain
-cover: https://pic.imgdb.cn/item/648306dd1ddac507ccf2d531.png
+cover: https://pic.imgdb.cn/item/648307cf1ddac507ccf3f688.jpg
+single_column: true
 ---
 
 

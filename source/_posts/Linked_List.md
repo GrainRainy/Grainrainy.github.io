@@ -4,17 +4,17 @@ date: 2022-10-06 19:33:00
 categories: 数据结构
 tags: 学习笔记
 author: GrainRain
-cover: https://pic.imgdb.cn/item/63ba9d54be43e0d30e0c9f03.jpg
+cover: https://pic.imgdb.cn/item/6483087b1ddac507ccf4c1ac.jpg
+single_column: true
 ---
+
 
 # 单链表
 
-## English Time
+## $English\ Time$
 
-> init 初始化
-> initialize  [ɪˈnɪʃəlaɪz] v. 初始化
-
-<br>
+> $init$ 初始化
+> $initialize$  $v.$ 初始化
 
 ## 单链表图解
 
@@ -27,8 +27,7 @@ cover: https://pic.imgdb.cn/item/63ba9d54be43e0d30e0c9f03.jpg
 ### 定义方式1：
 
 ```cpp
-struct Node
-{
+struct Node {
     int val;
     Node *Next;
 };
@@ -36,9 +35,7 @@ struct Node
 new Node();
 ```
 
-缺点：new函数效率极低
-
-<br>
+缺点：$new$ 函数效率极低
 
 ### 定义方式2：
 
@@ -50,26 +47,19 @@ int head, val[100], Next[100], idx = 0;
 
 优点：静态链表，效率高
 
->head 表示头节点的下标
-  val[i] 表示节点i的值
-  Next[i] 表示节点i的指针指向
-  dx 存储当前用到的地址数量，同时存储可用的数组下标位置
-
-<br>
+> $head$ 表示头节点的下标
+  $val_i$ 表示节点i的值
+  $Next_i$ 表示节点i的指针指向
+  $idx$ 存储当前用到的地址数量，同时存储可用的数组下标位置
 
 ## 单链表的初始化
 
 ```cpp
-void init()
-{
-    head = -1;
-    // -1 表示空集
-    idx = 0;
-	// 使用了多少个节点(数组的最大下标)
+void init() {
+    head = -1; // -1 表示空集
+    idx = 0; // 使用了多少个节点(数组的最大下标)
 }
 ```
-
-<br>
 
 ## 单链表的插入操作
 
@@ -78,25 +68,21 @@ void init()
 ![tuli][toucharu]
 
 ```cpp
-void add_to_head(int x)
-{
-    val[idx] = x;
-    // 从 0 开始存储
+void add(int x) {
+    val[idx] = x; // 从 0 开始存储
     Next[idx] = head;	
     head = idx ++;
-    // head 表示指向头节点，但位置不一定是第一个，而是idx，也就是说数组中各数排列的顺序不一定是链表的逻辑顺序
+    // head 表示指向头节点，但位置不一定是第一个，而是idx
+	// 也就是说数组中各数排列的顺序不一定是链表的逻辑顺序
 }
 ```
 
-<br>
-
-一般化插入(将值为 x 的值插入下标为 k 的节点后)：
+一般化插入(将值为 $x$ 的值插入下标为 $k$ 的节点后)：
 
 ![tujie][yibancharu]
 
 ```cpp
-void add(int x， int k)
-{
+void add(int x， int k) {
 	val[idx] = x;
 	nxt[idx] = nxt[k];
 	nxt[k] = idx ++;
@@ -112,85 +98,69 @@ void add(int x， int k)
 ![tujie][shanchu]
 
 ```cpp
-void remove(int k)
-{
+void remove(int k) {
 	nxt[k] = nxt[nxt[k]];
 }
 ```
-
-<br>
 
 # 双链表
 
 > 相比于单链表，双链表多维护了当前点前一个位置的数
 
-链表中 `val` 表示存储遇的值， `l` 指向该节点左侧节点的地址， `r` 指向该节点右侧节点的地址。
+链表中 $val$ 表示存储遇的值， $l$ 指向该节点左侧节点的地址， $r$ 指向该节点右侧节点的地址。
 
-在双链表中， head 指向第 0 个点， tail 指向第 1 个点
-
-<br>
+在双链表中， $head $指向第 $0$ 个点， $tail$ 指向第 $1$ 个点
 
 ## 双链表图解
 ![tujie][shuanglianbiao]
-
-<br>
 
 ## 双链表初始化
 ![tujie][shuanglianbiaochushihua]
 ```cpp
 int val[N + 10], l[N + 10], r[N + 10], idx;
-void init()
-{
-	r[0] = 1, l[1] = 0;
-	idx = 2;
+void init() {
+	r[0] = 1, l[1] = 0, idx = 2;
 }
 ```
 
-<br>
-
 ## 双链表插入操作
-(在第 k 个点右边插入一个点 x )
+
+(在第 $k$ 个点右边插入一个点 $x$)
 
 ![tujie][shuanglianbiaocharu]
 
 ```cpp
-void add(int k, int x)
-{
+void add(int k, int x) {
 	e[idx] = x;
 	r[idx] = r[k];
-	l[idx] = k;
-	// 建立新的节点
-	l[r[k]] = idx;
-	// 对 idx 右侧的节点指针进行处理
-	r[k] = idx;
-	// 对 idx 左侧的节点指针进行处理
+	l[idx] = k; // 建立新的节点
+	l[r[k]] = idx; // 对 idx 右侧的节点指针进行处理
+	r[k] = idx; // 对 idx 左侧的节点指针进行处理
 	idx ++;
 }
 ```
->如果要在 k 的左边插入一个点，那么只需要进行：
+
+如果要在 $k$ 的左边插入一个点，那么只需要进行：
 `add(l[k])`
 
-<br>
-
 ## 双链表删除操作
-(在第 k 个点右边删除一个点)
+(在第 $k$ 个点右边删除一个点)
 
 ![tujie][shuanglianbiaoshanchu]
 
 ```cpp
-void remove(int k)
-{
+void remove(int k) {
 	r[l[k]] = r[k];
 	l[r[k]] = l[k];
 }
 ```
 
-<br>
-
 # 邻接表
-开 n 个单链表，存储每个点所有的邻边	
+
+开 $n$ 个单链表，存储每个点所有的邻边	
 
 ## 链表用途：
+
 单链表 -> 邻接表 -> 存储树和图
 双链表 -> 做优化
 

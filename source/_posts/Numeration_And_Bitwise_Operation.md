@@ -5,6 +5,7 @@ categories: 基础算法
 tags: 学习笔记
 author: GrainRain
 cover: https://pic.imgdb.cn/item/63ba9ca3be43e0d30e0b9225.jpg
+single_column: true
 ---
 
 # 计算机数据存储方式

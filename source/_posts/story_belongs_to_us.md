@@ -9,6 +9,7 @@ banner:
   type: img
   bgurl: https://pic.imgdb.cn/item/63ba8042be43e0d30ed5f68b.jpg
   bannerText: WE ARE FRIENDS FOREVER!
+single_column: true
 ---
 
 > 2022, 是如此精彩的落幕

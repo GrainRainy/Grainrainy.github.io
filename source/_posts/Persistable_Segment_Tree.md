@@ -5,6 +5,7 @@ categories: 数据结构
 tags: 数据结构
 author: GrainRain
 cover: https://pic.imgdb.cn/item/6483059e1ddac507ccf14f08.jpg
+single_column: true
 ---
 
 

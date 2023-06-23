@@ -5,6 +5,7 @@ categories: 数学
 tags: 数学
 author: GrainRain
 cover: https://pic2.imgdb.cn/item/644fbba10d2dde577788bbb2.jpg
+single_column: true
 ---
 
 # 质数

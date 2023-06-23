@@ -5,6 +5,7 @@ categories: 字符串
 tags: 学习笔记
 author: GrainRain
 cover: https://pic.imgdb.cn/item/6482fc961ddac507cce180d6.jpg
+single_column: true
 ---
 
 # $AC$自动机 $AC - Automaton$

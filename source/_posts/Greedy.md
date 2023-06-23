@@ -5,6 +5,7 @@ categories: 基础算法
 tags: 学习笔记
 author: GrainRain
 cover: https://pic.imgdb.cn/item/6480a72f1ddac507cc6d4f37.jpg
+single_column: true
 ---
 
 

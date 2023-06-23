@@ -5,6 +5,7 @@ categories: 数据结构
 tags: 学习笔记
 author: GrainRain
 cover: https://pic.imgdb.cn/item/63ba9a5bbe43e0d30e077a0b.jpg
+single_column: true
 ---
 
 # 堆

@@ -1,11 +1,9 @@
 # 主题模式
-
 theme: 
   switch: true 
   default: auto
 
 # 网站图标
-
 favicon:
   logo: /img/logo.svg
   icon16: /img/logo.svg
@@ -18,7 +16,6 @@ favicon:
   hideText: (●—●)哎呀，崩溃了！
 
 # 用户信息
-
 user:
   name: Grain Rain # 侧边栏与其他位置的姓名标识
   first_name: Rain
@@ -55,7 +52,6 @@ top_bars:
 # 侧栏
 
 ## 社交链接
-
 sidebar:
   social:  # 社交地址
     - name: github
@@ -107,6 +103,7 @@ banner:
 categorie_card:
   enable: true
   len: 2
+  list: ["数据结构", "图论"]
 
 # 归档页
 
@@ -144,11 +141,9 @@ toc:
 
 
 # 百度SEO
-
 baidu_push: true
 
 # 评论
-
 comment:
   twikoo:
     enable: true
@@ -160,27 +155,23 @@ comment:
 
 
 # 字数统计
-
 wordcount:
   enable: false
   count: true
   time: true
 
 # KaTeX
-
 katex:
   copy_tex: true
   global: true
   options: {}
 
 # 站内搜索
-
 search:
   enable: true
   type: local
 
 # 右下角悬浮按钮块
-
 rightside:
   readmode: true
   aside: true 

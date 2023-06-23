@@ -1,26 +1,10 @@
----
-title: Hello World
----
+# Hello World !
 
-## Links
+🎓 This is the blog of a 16-year-old algorithm competition student.
 
-Hexo:
+🎇 Thank you for your guidance!
 
-[Hexo](https://hexo.io/)
-
-Documents:
-
-[documentation](https://hexo.io/docs/)
-
-Problem Solving:
-
-[troubleshooting](https://hexo.io/docs/troubleshooting.html)
-
-Developer Connection:
-
-[GitHub](https://github.com/hexojs/hexo/issues)
-
-## Quick Start
+## Instructions
 
 ### 插入本地视频
 
@@ -42,7 +26,7 @@ git clone git@github.com:GrainRainy/Grainrainy.github.io.git
 
 <a href="https://grainrain.netlify.app/2022/11/12/2022.11.12%20-%20%E5%A0%86/" alt="堆">堆</a>
 
-### update
+### update theme
 
 ```
 npm update
