@@ -63,8 +63,6 @@ int query(int l, int r) {
 注意 $ST$ 中存储值最大的下标。
 
 ```cpp
-const int N = 5e5 + 10;
-const int LOGN = 20; 
 int n, k, l, r;
 LL st[N][LOGN], sum[N], ans;
 

@@ -1,10 +1,10 @@
 ---
-title: 基础数论 | 学习笔记
+title: 基础总述 | 一文从入门到毕业
 date: 2023-4-27 23:47:52
 categories: 数学
 tags: 数学
 author: GrainRain
-cover: https://pic2.imgdb.cn/item/644fbba10d2dde577788bbb2.jpg
+cover: https://pic.imgdb.cn/item/64b0149b1ddac507cc895387.jpg
 single_column: true
 ---
 
@@ -16,7 +16,7 @@ single_column: true
 
 ## 判质数
 
-### 1. 试除法 $O(\sqrt(n))$
+### 1. 试除法 $O(\sqrt n)$
 
 ```cpp
 bool isPrime(int u){
@@ -28,7 +28,7 @@ bool isPrime(int u){
 }
 ```
 
-### 2. 埃氏筛 $O(n·\log_2 \log_2 n)$
+### 2. 埃氏筛 $O(n \cdot \log_2 \log_2 n)$
 
 只筛质数即可
 
@@ -55,6 +55,8 @@ void Eratosthenes(int n){
 
 标记非素数的过程相当于对于每一个素数之上建立一个剩余系，随着 $i$ 的推进，逐步扩大剩余系规模，通过 $*i$ 实现。当 `i % primes[j] == 0` 则表示当前系统中已有 `primes[j] * i` 及其以后的数(他们已经被其他剩余系筛过了)，直接跳出即可
 
+对于上述情况的处理也成为实现 $O(n)$ 预处理质数的关键
+
 例如：如果 $i$ 是 $10$，第一个质数是 $2$，那么 $10$ % $2$ == $0$。所有 $10$ 的倍数都是第一个质数 $2$ 的倍数，避免重复标记，因此 `break` 掉。
 
 ```cpp
@@ -70,21 +72,20 @@ void Euler(int n){
 }
 ```
 
+进行以上算法之后，我们即得到了一张质数表 `notPrime`
+
 然而，线性筛中使用了大量~~模法~~模运算，常数比埃氏筛略大。在小数据范围时，埃氏筛的 log 会很小，因此数据范围不大时埃氏筛可能不失为一种更好的选择
 
 ## 分解质因数
 
-### 试除法 $O(\sqrt(n))$
+### 试除法 $O(\sqrt n)$
 
 ```cpp
-void divide(int u){
-    for (int i = 2; i <= n / i; i ++){
-            while (n % i == 0){
-                n /= i;
-                cnt[i] ++;
-            }
+void decompose(int u) {
+	for (int i = 2; ; ++ i) {
+        while (u % i == 0) cnt[i] ++, u /= i;
+        if (u == 1) return;
     }
-    if (n > 1) cnt[n] ++;
 }
 ```
 
@@ -92,7 +93,7 @@ void divide(int u){
 
 ## 求所有约数
 
-### 试除法 $O(\sqrt(n))$
+### 试除法 $O(\sqrt n)$
 
 ```cpp
 vector<int> getDivisors(int n){
@@ -235,7 +236,7 @@ $$i^{-1} \equiv -\lfloor \frac{p}{i} \rfloor * (p \bmod i)^{-1} \pmod p$$
 因此，我们获得了在线性时间内递推区间模 $p$ 的逆元的方法
 
 ```cpp
-inv[1] = 1;
+inv[0] = inv[1] = 1;
 for(int i = 2; i < p; ++ i)
     inv[i] = (p - p / i) * inv[p % i] % p;
 ```
