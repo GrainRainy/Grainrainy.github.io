@@ -4,7 +4,7 @@ date: 2023-1-20 21:16:14
 categories: 图论
 tags: 图论
 author: GrainRain
-cover: https://pic.imgdb.cn/item/63d53f59face21e9efc45f4c.jpg
+cover: https://pic.imgdb.cn/item/64b010071ddac507cc7679e3.jpg
 single_column: true
 ---
 
