@@ -1,0 +1,185 @@
+# 将要覆盖的语言
+en:
+  site:
+    title: Site Information
+    webmaster: Webmaster
+    domain: Domain
+    avatar: Avatar
+    describe: Describe
+    ruleText: Friend chain requirements
+
+  sidebar:
+    residence: Residence
+    city: City
+    age: Age
+    contact: Contact Me
+
+  footer:
+    powered: 'Powered by %s'
+    theme: Theme
+    tips: '该服务器已在冒烟的边缘运行了 %s 天' 
+    day: day
+    hour: hour
+    minute: minute
+    seconds: seconds
+
+  title:
+    links: Friendly Link
+    new_publish: Newest Publications
+    comment: Message
+    author: Author
+    blog: Blog Application
+    privacy: Privacy and Comments
+    more: Read More
+    all_archives: All Archives
+    year_archives: 'Archive for %s'
+    other_articles: Other Articles
+    unclassified: Unclassified
+
+  menu:
+    home: Home
+    archives: Archives
+    links: Links
+    about: About
+
+  favicon:
+    showText: (/≧▽≦/)Hey! Good again!
+    hideText: (●—●)Oh, crash!
+    
+  search:
+    placeholder: Searching...
+    result_placeholder: Please enter keywords to search
+    empty: 'We didn''t find any results for the search: ${query}.'
+    hits: '${hits} results found'
+    hits_time: '${hits} results found in ${time} ms'
+
+  reward:
+    comment: I'm so cute. Please give me money.
+
+  post:
+    sticky: TOP
+    read_more: READ MORE
+    copyright:
+      author: Post author
+      link: Post link
+      license_title: Copyright Notice
+      license_content: 'All articles in this blog are licensed under %s unless otherwise stated.'
+    copy:
+      success: Copied
+      failure: Copy failed
+    read_mode:
+      open: Enter reading mode
+      exit: Exit reading mode
+    notice_outdate_message: 'It has been %s days since the last update, the content of the article may be outdated.'
+
+  rightside:
+    readmode_title: Read Mode
+    back_to_top: Back To Top
+    aside: Toggle between single-column and double-column
+
+  date_suffix:
+    just: Just
+    min: minutes ago
+    hour: hours ago
+    day: days ago
+    month: months ago
+
+  symbol:
+    comma: ', '
+    period: '. '
+    colon: ': '
+
+  ieTips: For a better experience, use a browser other than Internet Explorer
+
+zh-Hans:
+  site:
+    title: 本站信息
+    webmaster: 网站名称
+    domain: 网站链接
+    avatar: 网站头像
+    describe: 网站简介
+    ruleText: 友链要求
+
+  sidebar:
+    residence: Residence
+    city: City
+    age: Age
+    contact: 联系我
+
+  footer:
+    powered: '由 %s 驱动'
+    theme: 主题
+    tips: '博客已萌萌哒运行 %s 天'
+    day: 天
+    hour: 时
+    minute: 分
+    seconds: 秒
+
+  title:
+    links: 友情链接
+    new_publish: 最近发布
+    comment: 留言板
+    author: 作者
+    blog: 博客
+    privacy: 隐私权及评论
+    more: 查看分类
+    all_archives: 所有归档
+    year_archives: '%s 年的归档'
+    other_articles: 其他文章
+    unclassified: 未分类
+
+  menu:
+    home: 首页
+    archives: 归档
+    links: 友链
+    about: 关于
+
+  favicon:
+    showText: (/≧▽≦/)咦！又好了！
+    hideText: (●—●)喔哟，崩溃啦！
+
+  search:
+    placeholder: 搜索文章...
+    result_placeholder: 请输入关键词进行搜索
+    empty: '找不到您查询的内容: ${query}'
+    hits: '找到 ${hits} 条结果'
+    hits_time: '找到 ${hits} 条结果（用时 ${time} 毫秒）'
+
+  reward:
+    comment: 我很可爱，请给我钱
+
+  post:
+    sticky: 置顶
+    more: 更多
+    copyright:
+      author: 本文作者
+      link: 本文链接
+      license_title: 版权声明
+      license_content: '本博客所有文章除特别声明外，均默认采用 %s 许可协议。'
+    copy:
+      success: 复制成功
+      failure: 复制失败
+    read_mode:
+      open: 进入阅读模式
+      exit: 退出阅读模式
+    notice_outdate_message: '距离上次更新已经 %s 天了, 文章内容可能已经过时。'
+
+  rightside:
+    readmode_title: 阅读模式
+    back_to_top: 回到顶部
+    aside: 单栏和双栏切换
+
+  date_suffix:
+    just: 刚刚
+    min: 分钟前
+    hour: 小时前
+    day: 天前
+    month: 个月前
+
+  symbol:
+    comma: ，
+    period: 。
+    colon: ：
+
+  ieTips: 为了更好的体验,请使用非IE浏览器
+# 你也可以扩展其他语言

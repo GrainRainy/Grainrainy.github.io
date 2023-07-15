@@ -1,14 +1,14 @@
 ---
 title: 树上启发式合并 | 学习笔记
-date: 2023-06-07 23:37:21
+date: 2023-05-31 21:20:30
 categories: 图论
 tags: 学习笔记
 author: GrainRain
-cover: https://pic.imgdb.cn/item/6480a8d11ddac507cc6f7b70.jpg
+cover: https://pic.imgdb.cn/item/64b0176c1ddac507cc96f72b.jpg
 single_column: true
 ---
 
-# 树上启发式合并 $dfu\ on\ tree$
+# 树上启发式合并 $dsu\ on\ tree$
 
 ~~和 并查集 ($\sout{Disjoint\ Set\ Union}$) 一点儿关系没有~~
 
@@ -16,7 +16,7 @@ single_column: true
 
 利用遍历中的重复信息达到减少时间复杂度的效果。
 
-考虑暴力计算字数信息的方式：
+考虑暴力计算子树信息的方式：
 
 ```cpp
 void dfs(int u, int fa) {
@@ -32,11 +32,11 @@ void dfs(int u, int fa) {
 
 发现在上面的 $dfs$ 遍历过程中，最后一个子树的信息在计算当前节点父节点的子树中仍需要重新计算，因此遍历最后一棵子树时可以不删除存储信息。
 
-保留哪棵子树的信息好呢？当然是子节点规模最大的一棵，因此我们想到保留重儿子。
+保留哪棵子树的信息好呢？当然是子节点规模最大的一棵（这种~~玄学~~优化方式被称为启发式算法），因此我们想到保留重儿子。
 
 ```cpp
 void dfs(int u, int fa, bool kp = 1) {
-// kp 传入子树是否保留信息 
+// kp -> keep, 传入子树是否保留信息 
 	for (int i = head[u], j; ~i; i = edge[i].nxt) {
 		j = edge[i].to;
 		if (j != fa and j != hs[u]) dfs(j, u, false);
@@ -65,6 +65,10 @@ int col[N], cnt[N], tCol;
 int ans[N];
 int siz[N], hs[N], node[N], dfn[N], stamp;
 ```
+
+$tCol$ 维护颜色种类. 
+$hs$ 表示当前节点的重儿子. 
+$node$ 存储 $dfn$ 到树上节点编号的映射. 
 
 ### 维护颜色个数桶
 
@@ -102,7 +106,8 @@ void init(int u, int fa) {
 void dfs(int u, int fa, bool kp) {
 	for (int i = head[u], j; ~i; i = edge[i].nxt) {
 		j = edge[i].to;
-		if (j != fa and j != hs[u]) dfs(j, u, false); // 判掉重儿子保证时间复杂度 很重要
+		if (j != fa and j != hs[u]) dfs(j, u, false); 
+		// 判掉重儿子保证时间复杂度 很重要
 	}
 	if (hs[u]) dfs(hs[u], u, true); // 最后遍历重子节点 
 	for (int i = head[u], j; ~i; i = edge[i].nxt) {
