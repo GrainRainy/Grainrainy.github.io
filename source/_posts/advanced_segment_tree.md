@@ -1,7 +1,7 @@
 ---
 title: 线段树进阶应用
 date: 2023-7-4 15:07:21
-categories: 图论
+categories: 数据结构
 tags: 学习笔记
 author: GrainRain
 cover: https://pic.imgdb.cn/item/64bfd2cc1ddac507cc65b86d.jpg
@@ -496,8 +496,7 @@ void build(int cur, int l, int r) {
 
 void modify(int cur, int l, int r, int k) {
     if (l(cur) > r or r(cur) < l) return;
-    if (l(cur) >= l and r(cur) <= r)
-    {
+    if (l(cur) >= l and r(cur) <= r) {
         cnt(cur) += k;
         PushUp(cur);
         return;
@@ -510,13 +509,13 @@ int main() {
     int t; input(t);
     while (t --) {
 		int n; input(n);
-        for (int i = 0, j = 0; i < n; i ++) {
-            double x1, x2, y1, y2;
-            cin >> x1 >> y1 >> x2 >> y2;
-            seg[j ++] = { x1, y1, y2, 1 };
-            seg[j ++] = { x2, y1, y2, -1 };
-            lis.push_back(y1), lis.push_back(y2);
-        }
+		for (int i = 0, j = 0; i < n; i ++) {
+			double x1, x2, y1, y2;
+			cin >> x1 >> y1 >> x2 >> y2;
+			seg[j ++] = { x1, y1, y2, 1 };
+			seg[j ++] = { x2, y1, y2, -1 };
+			lis.push_back(y1), lis.push_back(y2);
+	}
 
         sort(lis.begin(), lis.end());
         lis.erase(unique(lis.begin(), lis.end()), lis.end());
