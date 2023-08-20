@@ -24,10 +24,9 @@ user:
   email: 23548399650@qq.com
   domain: https://grainrain.site/
   describe: Off to See The World. 
-  ruleText: <br> 无！都来找我加友链！。
+  ruleText: <br> 无！都来找我加友链！
 
 # 顶栏 | 导航栏 | TopBars
-
 top_bars:
   - title: Home
     url: /
@@ -54,17 +53,12 @@ sidebar:
     - name: github
       icon: fab fa-github   
       url: https://github.com/GrainRainy
-    - name: luogu
-      icon: https://pic.imgdb.cn/item/64e213ca661c6c8e54c24d03.png
-      url: https://www.luogu.com.cn/user/746291
 
 ## 打字动画
-
-  typedTextPrefix: Stay
-  typedText: [ 'Hungry | Stay Foolish' ]
+typedTextPrefix: Stay
+typedText: [ 'Hungry | Stay Foolish' ]
 
 ## 侧边信息
-
 info: # 个人信息
   - key: Ages
     val: 16
@@ -73,7 +67,6 @@ info: # 个人信息
 
 
 # 横幅 Banner
-
 banner:
   index:
     type: video
@@ -95,40 +88,32 @@ banner:
 
 
 # 分类卡片
-
 categorie_card:
   enable: true
   len: 2
   list: ["数据结构", "图论"]
 
 # 归档页
-
 archive:
   type: more # less / more
 
 
 # 页脚
-
 footer:
-  copyrightYear: 2023
-  
+  copyrightYear: 2022
   powered:
     enable: false
-  
   live_time:
     enable: true
     prefix: footer.tips
     start_time: 12/25/2022 17:00:00
 
 # 文章Artical
-
 post_pagination: 
   enable: true 
   type: small # large || small
 
-
 ## 目录
-
 toc:
   enable: true
   list_number: true
@@ -178,7 +163,7 @@ highlight:
   copy: true
   lang: true
   code_word_wrap: fasle 
-  height_limit: 700 # 超出时，显示折叠按钮
+  height_limit: 700 # 单位 px, 超出显示折叠按钮 
 
 # rss 地址
 rss: atom.xml
