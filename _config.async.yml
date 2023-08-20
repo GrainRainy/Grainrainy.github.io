@@ -5,9 +5,9 @@ theme:
 
 # 网站图标
 favicon:
-  logo: /img/logo.svg
-  icon16: /img/logo.svg
-  icon32: /img/logo.svg
+  logo: /img/logo-32×32.png
+  icon16: /img/logo-16×16.png
+  icon32: /img/logo-32×32.png
   appleTouchIcon: apple-touch-icon.png
   webmanifest: /site.webmanifest
   visibilitychange: true
@@ -17,13 +17,13 @@ favicon:
 
 # 用户信息
 user:
-  name: Grain Rain # 侧边栏与其他位置的姓名标识
+  name: GrainRain # 侧边栏与其他位置的姓名标识
   first_name: Rain
   last_name: Grain # 顶栏姓名标识
   avatar: https://pic.imgdb.cn/item/63ba7e07be43e0d30ed318cd.jpg
   email: 23548399650@qq.com
   domain: https://grainrain.site/
-  describe: 世事漫随流水 算来一生浮梦。
+  describe: Off to See The World. 
   ruleText: <br> 无！都来找我加友链！。
 
 # 顶栏 | 导航栏 | TopBars
@@ -31,7 +31,6 @@ user:
 top_bars:
   - title: Home
     url: /
-  
   - title: Archives
     url: '#'
     noswup: true
@@ -40,11 +39,9 @@ top_bars:
         url: /archives/
       - title: Categories
         url: /categories/
-
   - title: Links
     url: /links/
     noswup: true
-
   - title: About
     url: /about/
     noswup: true
@@ -57,9 +54,8 @@ sidebar:
     - name: github
       icon: fab fa-github   
       url: https://github.com/GrainRainy
-    
     - name: luogu
-      icon: /img/luogu.png
+      icon: https://pic.imgdb.cn/item/64e213ca661c6c8e54c24d03.png
       url: https://www.luogu.com.cn/user/746291
 
 ## 打字动画
@@ -69,11 +65,11 @@ sidebar:
 
 ## 侧边信息
 
-  info: # 个人信息
-    - key: Ages
-      val: 16
-    - key: Address
-      val: Hebei - China  
+info: # 个人信息
+  - key: Ages
+    val: 16
+  - key: Address
+    val: Hebei - China  
 
 
 # 横幅 Banner
@@ -83,7 +79,7 @@ banner:
     type: video
     bgurl: https://cdn.moji.com/websrc/video/autumn20190924.mp4
     bannerTitle: 树深时见鹿，<br>溪午不闻钟。
-    bannerText: Hi my new friend!
+    bannerText: Hi my friend!
 
   archive: 
     type: img
@@ -114,7 +110,7 @@ archive:
 # 页脚
 
 footer:
-  copyrightYear: 2022
+  copyrightYear: 2023
   
   powered:
     enable: false
@@ -183,3 +179,6 @@ highlight:
   lang: true
   code_word_wrap: fasle 
   height_limit: 700 # 超出时，显示折叠按钮
+
+# rss 地址
+rss: atom.xml

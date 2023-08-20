@@ -4,26 +4,15 @@
 
 🎇 Thank you for your guidance!
 
+
+------------
+
 ## Instructions
 
 ### 插入本地视频
 
 ```
 <video src="相对路径" position= "absolute" width="100%" height="100%" controls="controls"></video>
-```
-
-### When Want To Upload to Github
-
-```
-git add .
-```
-
-```
-git commit -m "commit信息"
-```
-
-```
-git push
 ```
 
 ### When Download

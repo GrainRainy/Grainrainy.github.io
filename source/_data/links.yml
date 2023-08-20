@@ -1,14 +1,24 @@
 - name: Tibrella
   url: https://blog.tibrella.top/
   image: https://blog.tibrella.top/img/avatar.webp
-  desc: 计算机界的百科全书，总是在鼓捣我们看不懂的东西 /kk
+  desc: 计算机界的百科全书，总是在鼓捣我们看不懂的东西. 
 
 - name: intconstlee
   url: https://intconstlee.github.io/
   image: https://cdn.luogu.com.cn/upload/usericon/812448.png
-  desc: The bigest OJ on the world
+  desc: 你的代码是现代的，算法却相当古老，你究竟是什么人? 
 
 - name: shuangmu
   url: https://www.cnblogs.com/frostwood/
   image: https://cdn.luogu.com.cn/upload/usericon/772592.png
   desc: 狐狸霜木毛茸茸的窝
+
+- name: Ifyoung
+  url: https://www.cnblogs.com/Ifyoung/
+  image: https://cdn.luogu.com.cn/upload/usericon/745434.png
+  desc: 对于自己未曾拥有的东西，应当通过努力来获取，而非像小孩一样追在人家身后渴望却不可及. 
+
+- name: pdqb
+  url: https://lnyxqwq.github.io/
+  image: https://cdn.luogu.com.cn/upload/usericon/392943.png
+  desc: 我骄傲，我是一名石门人！
