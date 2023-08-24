@@ -2,7 +2,7 @@
 
 🎓 This is the blog of a 16-year-old algorithm competition student.
 
-🎇 Thank you for your guidance!
+🎇 Welcome to my website!
 
 
 ------------
