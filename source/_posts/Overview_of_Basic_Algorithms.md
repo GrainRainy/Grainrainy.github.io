@@ -1,6 +1,6 @@
 ---
 title: 基础算法总述 | 学习笔记
-date: 2022-09-11 18:50:10
+date: 2022-10-04 18:50:10
 categories: 基础算法
 tags: 学习笔记
 author: GrainRain
@@ -14,9 +14,9 @@ single_column: true
 
 ### 快速排序 $Quick\ Sort$
 
-将待排序的序列分为左右两段，找出一个标记点 $x$（一般为中间值），将小于 $x$ 的值放在 $x$ 左侧的序列，将大于 $x$ 的值放在 $x$ 右侧的序列，再递归处理左右两段，因而这是一种稳定的排序方式，平均时间复杂度为 $O(n \cdot log_2n)$.
+将待排序的序列分为左右两段, 找出一个标记点 $x$（一般为中间值）, 将小于 $x$ 的值放在 $x$ 左侧的序列, 将大于 $x$ 的值放在 $x$ 右侧的序列, 再递归处理左右两段, 因而这是一种稳定的排序方式, 平均时间复杂度为 $O(n \cdot log_2n)$.
 
->注意 **平均** 二字，这也就意味着快排的时间复杂度是不稳定的，在最坏的结果下可能会出现 $O(n^2)$的情况，但出现概率极小
+>注意 **平均** 二字, 这也就意味着快排的时间复杂度是不稳定的, 在最坏的结果下可能会出现 $O(n^2)$的情况, 但出现概率极小
 
 ```cpp
 int n, a[N];
@@ -50,7 +50,7 @@ int main() {
 
 ### 归并排序 $Merge\ Sort$
 
-将序列分成两部分分别排序，最后以双指针合并为一个序列。因而归并排序是一种效率高，稳定但占用空间大的排序方式，时间复杂度为 $O(n \cdot log_2n)$.
+将序列分成两部分分别排序, 最后以双指针合并为一个序列. 因而归并排序是一种效率高, 稳定但占用空间大的排序方式, 时间复杂度为 $O(n \cdot log_2n)$.
 ```cpp
 int n, q[N], ans[N];
 
@@ -91,13 +91,13 @@ int main() {
 
 ### 整数二分
 
-算法思路：假设目标值在闭区间 $[l, r]$ 中， 每次将区间长度缩小一半，当 $l = r$ 时，我们就找到了目标值.
+算法思路：假设目标值在闭区间 $[l, r]$ 中,  每次将区间长度缩小一半, 当 $l = r$ 时, 我们就找到了目标值.
 
 > 注意：二分查找无法找到重复元素
 
 #### 版本 $1$
 
-当我们将区间 $[l, r]$ 划分成 $[l, mid]$ 和 $[mid + 1, r]$ 时，其更新操作是 $r = mid$ 或者 $l = mid + 1$ ，计算 $mid$ 时不需要加 $1$.
+当我们将区间 $[l, r]$ 划分成 $[l, mid]$ 和 $[mid + 1, r]$ 时, 其更新操作是 $r = mid$ 或者 $l = mid + 1$ , 计算 $mid$ 时不需要加 $1$.
 
 ```cpp
 int binarySearch(int l, int r) {
@@ -112,7 +112,7 @@ int binarySearch(int l, int r) {
 
 #### 版本 $2$
 
-当我们将区间 $[l, r]$ 划分成 $[l, mid - 1]$ 和 $[mid, r]$ 时，其更新操作是 $r = mid - 1$ 或者 $l = mid$ ，此时为了防止死循环，计算 $mid$ 时需要加 $1$。
+当我们将区间 $[l, r]$ 划分成 $[l, mid - 1]$ 和 $[mid, r]$ 时, 其更新操作是 $r = mid - 1$ 或者 $l = mid$ , 此时为了防止死循环, 计算 $mid$ 时需要加 $1$. 
 
 ```cpp
 int binarySearch(int l, int r) {
@@ -159,7 +159,7 @@ int binarySearch(int a[], int n, int x) {
 ```cpp
 int binarySearch(double l, double r) {
     double eps = 1e-4;
-    // 精度下 2 位，如此时保留 2 位小数
+    // 精度下 2 位, 如此时保留 2 位小数
     while (r - l < rps) {
         double mid = (l + r) / 2;
         if (check(mid)) r = mid;
@@ -169,7 +169,7 @@ int binarySearch(double l, double r) {
 }
 ```
 
-另外，浮点二分可以**转化为整数**之后进行二分求解
+另外, 浮点二分可以**转化为整数**之后进行二分求解
 
 ### 二分答案
 
@@ -198,7 +198,7 @@ int binarySearch(int l, int r) {
 
 注意: 
 
-为处理边界问题，统一从下标1开始读入，且初始化 $a[0] = 0$
+为处理边界问题, 统一从下标1开始读入, 且初始化 $a[0] = 0$
 
 ### 一维前缀和
 
@@ -233,11 +233,11 @@ $\sum \limits_{i = x_1}^{x_2} \sum \limits_{j = y_1}^{y_2}$ 即为：
 $$s_{x_2, y_2} - s_{x_1 - 1, y_2} - s_{x_2, y_1 - 1} + s_{x_1 - 1, y_1 - 1}$$
 
 
-（事实上这里已经出现了容斥原理的影子，在很多算法中，容斥原理都有广泛的应用）
+（事实上这里已经出现了容斥原理的影子, 在很多算法中, 容斥原理都有广泛的应用）
 
 递推计算 $s_{i, j}$：
 
-$$s_{i,j} = s_{i - 1, j} + s_{i，j - 1} - s_{i - 1, j - 1} + a_{i, j}$$
+$$s_{i,j} = s_{i - 1, j} + s_{i, j - 1} - s_{i - 1, j - 1} + a_{i, j}$$
 
 
 ```cpp
@@ -269,14 +269,14 @@ int main() {
 
 ### 一维差分
 
-将A数组的 $[l, r]$ 区间全部加上一个常数 $c$，如果使用暴力计算的时间复杂度为 $O(n)$，而如果使用差分算法，只需要对 $A$ 数组的差分数组 $B$ 进行如下处理：
+将A数组的 $[l, r]$ 区间全部加上一个常数 $c$, 如果使用暴力计算的时间复杂度为 $O(n)$, 而如果使用差分算法, 只需要对 $A$ 数组的差分数组 $B$ 进行如下处理：
 
-$$B[l] += c，B[r + 1] -= c$$
+$$B[l] += c, B[r + 1] -= c$$
 
 而此时的时间复杂度为 $O(1)$
 
 
-#### 对于现有的 $A$ 数组，构造一个数组 $B$ 使得 $B$ 成为A数组的差分数组：
+#### 对于现有的 $A$ 数组, 构造一个数组 $B$ 使得 $B$ 成为A数组的差分数组：
 
 将A数组中的第i个元素视为在A数组的 $[i, i]$区间插入数值为 $A_i$ 的数即可
 
@@ -289,7 +289,7 @@ void insert(int l, int r, int c) {
 
 ### 二维差分
 
-二维矩阵的差分计算，如果在某一区间 $[x1, x1][x2, y2]$ 增加一个常量 $c$，那么只需要：
+二维矩阵的差分计算, 如果在某一区间 $[x1, x1][x2, y2]$ 增加一个常量 $c$, 那么只需要：
 
 ```cpp
 b[x1][y1] += c;
@@ -298,7 +298,7 @@ b[x1][y2 + 1] -= c;
 b[x2 + 1][y2 + 1] += c;
 ```
 
-初始化和一维差分矩阵的插入类似，只需要视为在 $[i, j][i, j]$ 插入一个值为 $a[i][j]$ 的数
+初始化和一维差分矩阵的插入类似, 只需要视为在 $[i, j][i, j]$ 插入一个值为 $a[i][j]$ 的数
 
 
 ***********
@@ -315,7 +315,7 @@ for (int i = 0; i < n; ;i ++)
     for (int j = 0; j < n; j ++)
 ```
 
-一个 $O(n^2)$ 时间复杂度的爆搜算法，使用
+一个 $O(n^2)$ 时间复杂度的爆搜算法, 使用
 
 ```cpp
 for (int i = 0, j = 0; i < n; i ++)
@@ -327,7 +327,7 @@ for (int i = 0, j = 0; i < n; i ++)
 
 - 为什么是 $O(n)$ 呢？
 
->因为 $j$ 不会在每个 $i$ 循环内更新成 $0$，再开始循环，而是直接沿用上次循环的 $j$ 值，因而 $j$ 移动的次数总共是 $< n$ 的，而 `i = 0; i < 0; i ++` 移动次数也是小于 $n$ 的，所以双指针算法总共的时间复杂度是 $O(n)$ 的
+>因为 $j$ 不会在每个 $i$ 循环内更新成 $0$, 再开始循环, 而是直接沿用上次循环的 $j$ 值, 因而 $j$ 移动的次数总共是 $< n$ 的, 而 `i = 0; i < 0; i ++` 移动次数也是小于 $n$ 的, 所以双指针算法总共的时间复杂度是 $O(n)$ 的
 
 ### 例题：[最长连续不重复子序列](https://www.acwing.com/problem/content/801/)
 
@@ -357,9 +357,9 @@ int main() {
 
 ## 离散化 $Discretizing$
 
-将大整数映射成小整数并存储的过程，称之为整数离散化，整数离散化具有数值跨度大，但在数组中的分布稀疏的特点
+将大整数映射成小整数并存储的过程, 称之为整数离散化, 整数离散化具有数值跨度大, 但在数组中的分布稀疏的特点
 
-注意：对于待离散化的整数序列，其值必须是有序的，而对于离散之后的新序列，仍保持着原数组中数的顺序
+注意：对于待离散化的整数序列, 其值必须是有序的, 而对于离散之后的新序列, 仍保持着原数组中数的顺序
 
 ![图解][lisan]
 
@@ -368,9 +368,9 @@ int main() {
 1. 对于原整数序列中有重复元素时如何映射————利用unique去重函数
 
     > $unique$ 函数：
-    将序列中所有重复的元素去重，并且返回去重之后新数组的尾端点。
+    将序列中所有重复的元素去重, 并且返回去重之后新数组的尾端点. 
 
-    对数组进行 $unique$ 去重处理后，剩余的重复元素会被保留在序列最后的位置，所以需要使用 $erase$ 函数清空这些重复的值。
+    对数组进行 $unique$ 去重处理后, 剩余的重复元素会被保留在序列最后的位置, 所以需要使用 $erase$ 函数清空这些重复的值. 
 
 2. 如何在最小的时间复杂度内计算出原整数序列中的数离散化后的值
 
@@ -392,19 +392,19 @@ int find(int x) {
         else l = mid + 1;
     }
     return r + 1;
-    // 加 1 意为从数组下标的 1 处开始映射，好处是可以方便前缀和的计算
+    // 加 1 意为从数组下标的 1 处开始映射, 好处是可以方便前缀和的计算
 }
 ```
 
 ### 例题：[区间和](https://www.acwing.com/problem/content/804/)
 ```cpp
-using PII = pair<int, int>; // 定义二元组，分别表示对序列的操作
+using PII = pair<int, int>; // 定义二元组, 分别表示对序列的操作
 
 int n, m, x, c;
 int a[N + 10]; // 离散化之后的序列
 int s[N + 10]; // 离散化之后序列的前缀和
 vector<int> alls; // 用于存储待离散化的值
-vector<PII> add, access; // 对原序列进行的操作（加，访问）
+vector<PII> add, access; // 对原序列进行的操作（加, 访问）
 
 int find(int x) {
 	int l = 0, r = alls.size() - 1;
@@ -414,7 +414,7 @@ int find(int x) {
 		else l = mid + 1;
 	}
 	return r + 1;
-	// 从1开始将所有的数进行映射，为了方便前缀和的计算
+	// 从1开始将所有的数进行映射, 为了方便前缀和的计算
 }
 // 找到x离散化后的结果
  
@@ -433,7 +433,7 @@ int main() {
 		alls.push_back(l);
 		alls.push_back(r);
 	}
-	// 读入所有的区间，并求和
+	// 读入所有的区间, 并求和
 	
 	sort(alls.begin(), alls.end());	// 排序
 	alls.erase(unique(alls.begin(), alls.end()), alls.end()); // 去重
@@ -453,6 +453,227 @@ int main() {
 	}
 	return 0;
 }
+```
+
+------------
+
+## 高精度运算
+
+若要直接使用封装好的高精度类型 `BigNum`, 请直接滑至文末. 
+
+### 基本思想
+
+- 以字符串 / 字符数组存储大整数. 
+- 模拟人类计算过程按位计算. 
+- 重点和难点是判断进位以及借位的边界问题. 
+
+***
+
+### 读入与存储
+
+```cpp
+string a, b;
+vector<int> A, B;
+cin >> a >> b;
+// 以字符串形式读入
+for (int i = a.size() - 1; i >= 0; i --) 
+	A.push_back(a[i] - '0');
+for (int i = b.size() - 1; i >= 0; i --)
+	B.push_back(b[i] - '0');
+// 注意：要以逆序读入, 为方便处理进位产生的问题
+
+auto C = add(A, B); // 高精度加法
+auto C = sub(A, B); // 高精度减法
+auto C = mul(A, b) // 高精度乘法
+auto C = div(A, b, t)// 高精度除法, t 为余数
+
+for (int i = C.size() - 1; i >= 0; i --)
+	printf("%d", C[i]);
+// 逆序输出
+```
+
+### 高精度加法 (add)
+
+```c++
+vector<int> add(vector<int> &A, vector<int> &B){
+	vector<int> C;
+	int t = 0;
+	// 存储当前一位以及产生的进位
+	for (int i = 0; i < A.size() || i < B.size(); i ++)
+	{
+		if (i < A.size()) t += A[i];
+		if (i < B.size()) t += B[i];
+		C.push_back(t % 10);
+		t = t / 10;
+	}
+	if (t) C.push_back(1);
+	return C;
+}
+```
+
+### 高精度减法 (sub)
+
+要求：$A > 0$ 且 $B > 0$
+如果：$A \geqslant B$ 计算 $A - B$
+否则：$A < B$ 计算 $-(B - A)$
+
+```c++
+vector<int> sub(vector<int> &A, vector<int> &B) {
+	vector<int> C;
+	for (int i = 0, t = 0; i < A.size(); i ++) {
+		// 处理借位问题 
+		t = A[i] - t;
+		if (i < B.size()) t -= B[i];
+		C.push_back((t + 10) % 10);
+		// 如果t > 0, 返回t; 如果t < 0, 返回t + 10;
+		if (t < 0) t = 1;
+		else t = 0;
+		// 标记借位
+	}
+	while (C.size() > 1 and C.back() == 0) C.pop_back();
+	// 去掉前导0 
+	return C;
+}
+```
+
+高精度减法输出需要特殊判定得数为负数的情况
+
+```cpp
+if (cmp(A, B)) {
+	auto C = sub(A, B);
+	for (int i = C.size() - 1; i >= 0; i --)
+		printf("%d", C[i]);
+} else {
+	auto C = sub(B, A);
+	cout << '-';
+	for (int i = C.size() - 1; i >= 0; i --)
+	printf("%d", C[i]);
+	
+}
+```
+
+### 高精度乘法(mul)
+
+注意：高精度乘法和手撕的乘法有所差别, 比如说`A * b`,  是将`A`的每一位与`b`相乘, 而不是将`A`的每一位与`b`的每一位相乘再相加
+
+```cpp
+vector<int> mul(vector<int> &A, int b) {
+	vector<int> C;
+	int t = 0;
+	// 表示当前数位上的值并处理进位问题
+	 
+	for (int i = 0; i < A.size() or t; i ++) {
+		if (i < A.size()) t += A[i] * b;
+		C.push_back(t % 10);
+		t /= 10; // 处理进位 
+	}
+	while (C.size() > 1 && C.back() == 0) C.pop_back();
+	// 处理多位数 * 0 导致 C 中出现多位0的情况 
+	return C;
+}
+```
+
+对于高精乘高精的情况, 我们可以先模拟一下乘法的计算过程. 
+
+不难发现, 如果用 $i$ 表示第一个高精数计算到的位置, $j$ 表示第二个高精度计算到的位置, 枚举两个高精数的数位, 利用两层循环计算：
+
+`c[i + j - 1] += a[i] + b[j];`
+
+输出数组 $c$ 即为计算结果
+
+### 高精度除法(div)
+
+注意：除法需要多定义一个变量 $t$ 来存储除不尽的余数
+
+```c++
+vector<int> div(const vector<int> &A, int b, int &r) {
+// r 返回无法整除时的余数
+	vector<int> C;
+	r = 0;
+	// 表示在当前数位上等待做除法运算的值
+	for (int i = A.size() - 1; i >= 0; i --) {
+		r = r * 10 + A[i];
+		C.push_back(r / b);
+		r = r % b;
+	}
+	reverse(C.begin(), C.end());
+	while (C.size() > 1 && C.back() == 0) C.pop_back();
+	return C;
+}
+```
+
+### 两个高精度数的大小比较(cmp)
+
+基本思想：先比较两个高精度数的位数, 如果位数不同直接返回即可, 如果位数相同, 从最高位使用贪心的思想比较每一位, 直到第1位
+
+```cpp
+bool cmp(vector<int> &A, vector<int> &B) {
+	if (A.size() != B.size()) return A.size() > B.size();
+	else {
+		for(int i = 0; i < A.size(); i ++)
+			if (A[i] > B[i]) return 1;
+		return 0;
+	}
+}
+// 前一个数比后一个数大则返回 1 , 否则返回 0 
+```
+
+----------------
+
+### 高精度封装类 `BigNum`
+
+以下是一个封装完成的类 $BigNum$, 重载了运算符, 可以直接使用运算符进行高精度运算. 并且重载了输入输出, 可直接使用 `cin >>` 输入 `BigNum` 类
+
+```cpp
+struct BigNum : vector<int> {
+    BigNum (int n = 0) { push_back(n); Carry(); }
+    BigNum (int SIZE, int _val) { assign(SIZE, _val); }
+    BigNum &Carry() { // 进位
+        while (!empty() && !back()) pop_back();
+        if (empty()) return *this;
+        for (int i = 1; i < size(); i ++ )
+            (*this)[i] += (*this)[i - 1] / 10,
+            (*this)[i - 1] %= 10;
+        while (back() >= 10)
+			emplace_back(back() / 10), (*this)[size() - 2] %= 10;
+        return *this;
+    }
+};
+
+istream &operator >> (istream &s, BigNum &n) {
+// input 
+    string S; s >> S; n.clear();
+    for (auto i : S) n.emplace_back(i ^ 48);
+    reverse(n.begin(), n.end()); return s;
+}
+ostream &operator << (ostream &s, const BigNum &n) {
+// output
+    if (n.empty()) s << 0;
+    for (int i = n.size() - 1; i >= 0; i -- ) s << n[i];
+    return s;
+}
+BigNum operator * (const BigNum &a, const BigNum &b) {
+// multiplication 
+    BigNum ans(a.size() + b.size(), 0);
+    for (int i = 0; i < a.size(); i ++ )
+        for (int j = 0; j < b.size(); j ++ )
+            ans[i + j] += a[i] * b[j];
+    return ans.Carry();
+}
+BigNum operator + (const BigNum &a, const BigNum &b) {
+// addition
+    BigNum ans(max(a.size(), b.size()) + 1, 0);
+    for (int i = 0; i < a.size(); i ++ ) ans[i] += a[i];
+    for (int i = 0; i < b.size(); i ++ ) ans[i] += b[i];
+    return ans.Carry();
+}
+/*  定义时直接使用 BigNum 类型 ：
+ *  BigNum a, b;
+ *
+ *  读入：  
+ *  cin >> a >> b;
+ *  cout << a * b;
+ */
 ```
 
 

@@ -36,8 +36,20 @@ top_bars:
     children:
       - title: year
         url: /archives/
-      - title: Categories
-        url: /categories/
+      - title: 动态规划
+        url: /categories/动态规划/
+      - title: 图论
+        url: /categories/图论/
+      - title: 基础算法
+        url: /categories/基础算法/
+      - title: 字符串
+        url: /categories/字符串/
+      - title: 数学
+        url: /categories/数学/
+      - title: 数据结构
+        url: /categories/数据结构/
+      - title: 杂文随笔
+        url: /categories/杂文随笔/
   - title: Links
     url: /links/
     noswup: true
@@ -121,19 +133,25 @@ toc:
   min_depth: 1
 
 
-# 百度SEO
-baidu_push: true
-
 # 评论
+## vercel id: https://twikoo-comment-api-eight.vercel.app/
 comment:
   twikoo:
     enable: true
     visitor: true
-    envId: https://twikoo-comment-api-eight.vercel.app/
+    envId: https://grainrain.zeabur.app/
 
 
 # 链接页配置，请见 /source/_data/links.yml
 
+
+# 站内搜索
+search:
+  enable: true
+  type: local
+
+# 百度SEO
+baidu_push: true
 
 # 字数统计
 wordcount:
@@ -141,32 +159,30 @@ wordcount:
   count: true
   time: true
 
+# rss 地址
+rss: atom.xml
+
+# pjax 局部刷新 
+swup: true
+
 # KaTeX
 katex:
   copy_tex: true
   global: true
   options: {}
 
-# 站内搜索
-search:
-  enable: true
-  type: local
-
 # 右下角悬浮按钮块
 rightside:
   readmode: true
   aside: true 
 
-highlight:
-  theme: true 
-  title: default
-  copy: true
-  lang: true
-  code_word_wrap: fasle 
-  height_limit: 700 # 单位 px, 超出显示折叠按钮 
+# highlight:
+#   theme: true 
+#   title: default
+#   copy: true
+#   lang: true
+#   code_word_wrap: fasle 
+#   height_limit: 700 # 单位 px, 超出显示折叠按钮 
 
-# rss 地址
-rss: atom.xml
 
-# 切换动画 
-swup: true
+
