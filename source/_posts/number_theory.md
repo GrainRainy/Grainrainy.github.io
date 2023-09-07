@@ -173,12 +173,14 @@ $$n = p_1^{c_1} \times p_2^{c_2} \times ... \times p_k^{c_k}.$$
 
 同理, 考虑 $n$ 的一个因数是如何组成的：在每个质因子中选择 $0 \sim c_i$ 个相乘得到一个因数. 若求所有因数和, 根据乘法原理, 即得
 
+<div>
 $$
 \begin{aligned}
 	\sigma_1(n) & = (p_1^0 + p_1^1 + ... + p_1^{c_1}) \times ... \times (p_k^0 + p_k^1 + ... + p_k^{c_k}) \\ 
 			  & = \prod\limits_{i = 1}^{k} \sum\limits_{j = 0}^{c_i} p_i^j. 
 \end{aligned}
 $$
+</div>
 
 推广可得
 
@@ -324,7 +326,9 @@ $$\text{id}(n) = n.$$
 
 ### 单位函数
 
+<div>
 $$\epsilon(n) = \begin{cases} 1 & x = 1 \\ 0 & x \ne 1 \end{cases} = [n = 1].$$
+</div>
 
 ### 莫比乌斯函数
 
