@@ -152,12 +152,14 @@ $$n = p_1^{c_1} \times p_2^{c_2} \times ... \times p_k^{c_k}. $$
 
 则约数个数为
 
+<div>
 $$
 \begin{aligned}
 	d(n) & = (c_1 + 1) \times (c_2 + 1) \times ... \times (c_k + 1) \\
 		 & = \prod \limits_{i = 1}^{k} (c_i + 1). 
 \end{aligned}
 $$
+</div>
 
 ### 约数之和
 
