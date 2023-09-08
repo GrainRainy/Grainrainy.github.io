@@ -1,5 +1,5 @@
 ---
-title: [未完工] 组合数学 | 学习笔记
+title: (未完工) 组合数学 | 学习笔记
 date: 2023-07-17 23:08:21
 categories: 数学
 tags: 学习笔记
@@ -55,6 +55,7 @@ $$ \binom{n}{m} = \binom{n - 1}{m} + \binom{n - 1}{m - 1}$$
 
 因此我们尝试下严谨的公式证明. 
 
+<div>
 $$
 \begin{aligned}
     (1 + x)^n 
@@ -63,6 +64,7 @@ $$
     & = 
 \end{aligned}
 $$
+</div>
 
 ## 圆排列
 
@@ -237,9 +239,7 @@ $$f_S = $$
 
 答案为
 
-$$
-\frac{(n + m - 1) \times \binom{n + m - 2}{n - 1}}{\binom{n + m}{m}} = \frac{n \times m}{n + m}
-$$
+$$\frac{(n + m - 1) \times \binom{n + m - 2}{n - 1}}{\binom{n + m}{m}} = \frac{n \times m}{n + m}$$
 
 ## 斯特林数
 
