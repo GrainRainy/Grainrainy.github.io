@@ -30,7 +30,7 @@ git clone git@github.com:GrainRainy/Grainrainy.github.io.git
 ### update theme
 
 ```
-npm update
+npm install hexo-theme-async@latest
 ```
 
 ### Create a new post
