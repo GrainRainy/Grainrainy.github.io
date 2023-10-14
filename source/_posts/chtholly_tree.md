@@ -1,6 +1,6 @@
 ---
-title: 珂朵莉树 | 常见题型总结
-date: 2023-01-18 23:07:31
+title: 珂朵莉树 | 学习笔记
+date: 2023-08-18 23:26:15
 categories: 数据结构
 tags: 学习笔记
 author: GrainRain
@@ -11,7 +11,7 @@ single_column: true
 
 # 珂朵莉树 $Chtholly\ Tree$
 
-珂朵莉树是由 [$\color{#ff8c00}{\mathbf{ODT}}$](https://codeforces.com/profile/ODT) 在 [Codeforces Round #449](https://codeforces.com/contest/896) 的题解中发明的一种数据结构, 或者说是做法, 因为它事实上是一系列基于 $\rm set$ 实现维护区间信息的操作. 仅适用于随机数据, 并且随机数据下实际运行效率不错. 
+珂朵莉树是由 [$\color{ff8c00}{\mathbf{ODT}}$](https://codeforces.com/profile/ODT) 在 [Codeforces Round #449](https://codeforces.com/contest/896) 的题解中发明的一种数据结构, 或者说是做法, 因为它事实上是一系列基于 $\rm set$ 实现维护区间信息的操作. 仅适用于随机数据, 并且随机数据下实际运行效率不错. 
 
 ### 珂朵莉树能解决的问题
 
