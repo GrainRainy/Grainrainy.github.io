@@ -33,20 +33,6 @@ git clone git@github.com:GrainRainy/Grainrainy.github.io.git
 npm install hexo-theme-async@latest
 ```
 
-### Create a new post
-
-``` bash
-$ hexo new "My New Post"
-```
-
-More info: [Writing](https://hexo.io/docs/writing.html)
-
-### Local Test
-
-```
-hexo s
-```
-
 ### Run server
 
 ``` bash
