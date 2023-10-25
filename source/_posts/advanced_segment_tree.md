@@ -127,6 +127,41 @@ for (int i = n; i; -- i) {
 
 ---------------
 
+## 单侧递归线段树: [楼房重建](https://www.luogu.com.cn/problem/P4198)
+
+### 简化题意
+
+动态维护整个序列每一个元素大于前一项的必选, 小于等于前一项的必不选, 所的得到的序列长度, $n \le 10^5$. 
+
+### $Solutions$
+
+由于包含区间修改, 因此尝试放在线段树上去做. 重点在于如何将两个子区间的答案合并为父区间答案. 
+
+对于一个固定的序列, 其每个子区间答案是一定的(由于是必选, 不具有决策). 因此合并两个区间时需要找到右区间中首项大于左区间末项的位置, 父区间的答案即为该长度与左区间答案之和. 因此在线段树上维护区间答案和区间首项值即可. 
+
+```cpp
+int query(int u, int tl, int tr, double lim) {
+	if (mx(u) <= lim) return 0;
+	if (tl == tr) return mx(u) > lim;
+	int mid = tl + tr >> 1;
+	if (mx(lson) <= lim) return query(rson, mid + 1, tr, lim);
+	else return query(lson, tl, mid, lim) + len(u) - len(lson);
+}
+
+void modify(int u, int tl, int tr, int pos, double val) {
+	if (tl == tr) return mx(u) = val, len(u) = 1, void();
+	int mid = tl + tr >> 1;
+	if (pos <= mid) modify(lson, tl, mid, pos, val);
+	else modify(rson, mid + 1, tr, pos, val);
+	mx(u) = max(mx(lson), mx(rson));
+	len(u) = len(lson) + query(rson, mid + 1, tr, mx(lson));
+}
+```
+
+单次区间修改至多向右区间递归一次, 不难发现时间复杂度 $O(n \cdot logn)$. 
+
+---------------
+
 ## 线段树合并：[雨天的尾巴](https://www.luogu.com.cn/problem/P4556)
 
 ### 合并节点 $merge$
@@ -358,7 +393,7 @@ int main() {
 
 `n` 表示线段（一次函数）个数, 由于一条线段最多分成 $logn$ 个线段, 因此总规模为 $n \cdot logn$. 
 
-`a` 存储函数属性（斜率 $k$, 纵截距 $b$）
+`a` 存储函数属性（斜率 $k$, 纵截距 $b$. 
 
 `tree` 存储当前线段树节点对应函数位置
 
@@ -402,8 +437,6 @@ PDI pMax(PDI a, PDI b) {
 ```cpp
 D calc(int i, int x) { return a[i].k * x + a[i].b; }
 ```
-
----------------
 
 #### 添加一次函数
 
@@ -456,9 +489,23 @@ PDI query(int rt, int l, int r, int x) {
 
 另外, 注意本题强制在线. 
 
+### 应用: [李超线段树优化 dp](https://www.luogu.com.cn/problem/P4655)
+
+### 扩展: [李超线段树合并](https://www.luogu.com.cn/problem/CF932F)
+
+#### 简化题意
+
+
+
+#### $Solutions$
+
+
+
 -----------
 
-## 吉司机线段树: [线段树 3](https://www.luogu.com.cn/problem/P6242)
+## 吉司机线段树 $\rm Segment Beats$: [线段树 3](https://www.luogu.com.cn/problem/P6242)
+
+### 复杂度证明
 
 
 
