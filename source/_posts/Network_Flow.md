@@ -22,7 +22,7 @@ $S$ 表示源点,  $T$ 表示汇点
 容量一般用 $c$ 表示, $u$, $v$ 间的流量一般用 $f_{(u, v)}$ 表示, 整张图的 $f$ 被称为流函数. 
 
 对 $f$ 的限制有以下两点：
-1. 容量限制： $0 \leqslant f_{(u, v)} \leqslant c_{(u, v)}$
+1. 容量限制： $0 \le f_{(u, v)} \le c_{(u, v)}$
 2. 流量守恒：对于 $\forall v \ne S, v \ne T$ 流入流出流量满足 $\sum \limits_{(a, v) \in E} f_{(a, v)} = \sum \limits_{(v, b) \in E} f_{(v, b)}$. 因此除源点与汇点的其他各个节点不储存流量. 
 
 满足以上两个性质即为**可行流**
@@ -150,8 +150,7 @@ bool bfs() {
 	while (q.size()) {
 		int u = q.front(); q.pop();
 		for (int i = head[u], j; ~i; i = edge[i].nxt) {
-			j = edge[i].to;
-			if (edge[i].f and dis[j] == INF) {
+			if (edge[i].f and dis[j = edge[i].to] == INF) {
 				q.push(j), dis[j] = dis[u] + 1, now[j] = head[j];
 				if (j == t) return true;
 			}
@@ -166,9 +165,8 @@ int dfs(int u, int limit) {
 	if (u == t) return limit;
 	int k, res = limit;
 	for (int i = now[u], j; ~i and res; i = edge[i].nxt) {
-		now[u] = i;
-		j = edge[i].to;
-		if (edge[i].f and (dis[j] == dis[u] + 1)) {
+		now[u] = i, j = edge[i].to;
+		if (edge[i].f and dis[j] == dis[u] + 1) {
 			k = dfs(j, min(res, edge[i].f));
 			if (!k) dis[j] = INF;
 			edge[i].f -= k;
@@ -199,9 +197,9 @@ int main() {
 
 $Minimum\ Cost\ Maximum\ Flow$ 问题
 
-[洛谷p3381 - 最小费用最大流](https://www.luogu.com.cn/problem/P3381)
+[$\rm Luogu\ P3381$ - 最小费用最大流](https://www.luogu.com.cn/problem/P3381)
 
-给定一个网络 $G = (V, E)$, 每条边除了有容量限制 $c(u, v)$, 还有一个单位流量的费用 $f(u, v)$. 要求在取得最大流量的同时付出最小代价
+给定一个网络 $G = (V, E)$, 每条边除了有容量限制 $f(u, v)$, 还有一个单位流量的费用 $c(u, v)$. 要求在取得最大流量的同时付出最小代价
 
 所有的 $MCMF$ 算法都基于 $SSP$ 的思想, $SSP$（$Successive\ Shortest\ Path$）算法是一个贪心的算法. 通过每次寻找单位费用最小的增广路进行增广, 直到图上不存在增广路为止. 
 
