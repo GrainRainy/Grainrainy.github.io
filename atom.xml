@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-12-08T13:46:40.650Z</updated>
+  <updated>2023-12-08T13:48:55.379Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/intersection_view/"/>
+    <id>http://example.com/intersection_view/</id>
+    <published>2023-12-08T13:48:17.353Z</published>
+    <updated>2023-12-08T13:48:55.379Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h2><p>河北 2025 届物化地考生，noip2023 爆炸退役回归文化课。<a href="https://grainrain.site/oi_dream/">了解 TA 的竞赛生涯？</a></p><p>当时光的列车发动的那一刻，我们终将到站。既然已经回到了 whk 的道路上，就让 OI 的回忆消散在从西伯利亚雪原吹来的寒风中吧。</p><p>对于文化课日记的形式，我曾有过几种想象。最终我尝试使用手写后拍照上传的方式。一方面是我自己给自己搞了一种寄宿制的玩意（在学校附近租房，但不带手机去），因此只有周末能拿到手机。另一方面是我愈加发现如今那些严格对齐的字符，规范到像素的字体逐渐在我们之间形成一层厚厚的障壁，键盘嘈杂的敲击声逐渐淹没了我们内心深处的呐喊，一点点对虚无缥缈的数据的追求正在愈发使我们远离我们所处的现实。希望这些最真实的笔迹能够唤起你对高中生活的回忆，亦或是能给仍处于高中时代的你的心灵带来一点慰藉，又或是具象化你对未来高中生活的想象，顺便也督促一下我拖延了八百年的练字计划。</p><h2 id="2023-11-20-2023-11-25-回归文化课第一周"><a href="#2023-11-20-2023-11-25-回归文化课第一周" class="headerlink" title="2023.11.20 - 2023.11.25 回归文化课第一周"></a>2023.11.20 - 2023.11.25 回归文化课第一周</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;&#92;assets&#92;css&#92;APlayer.min.css&quot;&gt;&lt;script src=&quot;&#92;assets&#92;js&#92;APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>一场持续 502 天的梦</title>
@@ -469,26 +489,6 @@
     
     
     <category term="鲜花" scheme="http://example.com/tags/%E9%B2%9C%E8%8A%B1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World | Test Blog</title>
-    <link href="http://example.com/Test_Blog/"/>
-    <id>http://example.com/Test_Blog/</id>
-    <published>2022-12-24T05:04:34.000Z</published>
-    <updated>2023-06-23T13:07:56.143Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><blockquote><p>the story of GrainRain’s blog starts from now on</p></blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;&#92;assets&#92;css&#92;APlayer.min.css&quot;&gt;&lt;script src=&quot;&#92;assets&#92;js&#92;APlayer.min.js&quot; cla</summary>
-      
-    
-    
-    
     
   </entry>
   
