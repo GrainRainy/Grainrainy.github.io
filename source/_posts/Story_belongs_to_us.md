@@ -1,8 +1,8 @@
 ---
 title: 我们的 2022 | 元旦随笔
 date: 2023-1-1 00:00:00
-categories: 杂文随笔
-tags: 杂文随笔
+categories: 鲜花
+tags: 鲜花
 author: GrainRain
 cover: https://pic.imgdb.cn/item/63baa3b6be43e0d30e183cca.jpg
 single_column: true

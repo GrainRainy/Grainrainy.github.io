@@ -15,12 +15,6 @@
 <video src="相对路径" position= "absolute" width="100%" height="100%" controls="controls"></video>
 ```
 
-### When Download
-
-```
-git clone git@github.com:GrainRainy/Grainrainy.github.io.git
-```
-
 ### 文章内使用文章链接
 
 ```

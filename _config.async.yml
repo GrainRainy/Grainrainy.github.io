@@ -48,8 +48,8 @@ top_bars:
         url: /categories/数学/
       - title: 数据结构
         url: /categories/数据结构/
-      - title: 杂文随笔
-        url: /categories/杂文随笔/
+      - title: 鲜花
+        url: /categories/鲜花/
   - title: Links
     url: /links/
     noswup: true
@@ -134,12 +134,13 @@ toc:
 
 
 # 评论
-## vercel id: https://twikoo-comment-api-eight.vercel.app/
+## vercel url: https://twikoo-comment-api-eight.vercel.app/
+## netlify url: https://app.netlify.com/sites/grainrain-twikoo/overview
 comment:
   twikoo:
     enable: true
     visitor: true
-    envId: https://grainrain.zeabur.app/
+    envId: https://grainrain-twikoo.netlify.app/.netlify/functions/twikoo
 
 
 # 链接页配置，请见 /source/_data/links.yml
